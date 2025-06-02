@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script> <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 1rem; 
+            padding-bottom: 2rem;
+        }
+        .content-section h2 { /* Title for "Parte X" */
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            color: #1F2937; 
+            border-bottom: 3px solid #2563EB; 
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 { /* Title for "Módulo X" */
+            font-size: 1.875rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1E40AF; 
+        }
+        .content-section h4 { /* Title for "Apartado X.X" */
+            font-size: 1.5rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1D4ED8; 
+        }
+        .content-section h5 { /* Sub-sub-titles */
+            font-size: 1.25rem; 
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1F2937; 
+        }
+        .content-section h6 { /* Sub-sub-sub-titles / Card titles */
+            font-size: 1.125rem; 
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151; 
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #4B5563; 
+            margin-bottom: 1rem;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 1.5rem;
+        }
+        .content-section ul { list-style-type: disc; }
+        .content-section ol { list-style-type: decimal; }
+        
+        .content-section strong {
+            color: #111827; 
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #F0F9FF; 
+            border-left: 4px solid #0EA5E9; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .example-box {
+            background-color: #EFF6FF; 
+            border: 1px solid #BFDBFE; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .example-box strong {
+            color: #1E40AF; 
+        }
+
+        /* Styles for interactive map */
+        .filter-button {
+            @apply px-4 py-2 mr-2 mb-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors;
+        }
+        .filter-button.active {
+            @apply bg-blue-800 ring-4 ring-blue-400;
+        }
+        .org-card {
+            @apply bg-white border border-gray-200 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col justify-between;
+        }
+        .org-logo {
+            @apply w-24 h-12 object-contain mx-auto mb-2 flex-shrink-0;
+        }
+        .org-name {
+            @apply text-center font-semibold text-blue-700 text-sm flex-grow;
+        }
+        .org-acronym {
+            @apply text-center text-xs text-gray-500;
+        }
+
+        /* Modal styles */
+        .modal {
+            @apply fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex justify-center items-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto;
+        }
+        .modal-close-button {
+            @apply absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold leading-none p-1;
+        }
+
+        /* Styles for certification guide & ISO 9001 Guide */
+        .step-card, .iso-step-card {
+            @apply bg-white rounded-xl shadow-lg p-6 mb-6 flex items-start space-x-4 hover:shadow-xl transition-shadow;
+        }
+        .step-icon-container, .iso-step-icon-container {
+            @apply flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold;
+        }
+        .iso-step-icon-container { @apply bg-indigo-600; } 
+
+        .step-content h5, .iso-step-content h5 {
+            @apply text-xl font-semibold text-blue-700 mb-1 mt-0;
+        }
+        .iso-step-content h5 { @apply text-indigo-700; }
+        .iso-phase-title {
+             @apply text-2xl font-bold text-indigo-800 mb-4 mt-8 border-b-2 border-indigo-300 pb-2;
+        }
+
+        .step-content p, .iso-step-content p {
+            @apply text-sm text-gray-600;
+        }
+         .step-content ul, .iso-step-content ul {
+            @apply text-sm text-gray-600 list-disc pl-5 mt-2;
+        }
+
+        /* Case study (DFMA) styles */
+        .case-study-section {
+            @apply mt-6 mb-4;
+        }
+        .case-study-section h6 { 
+            @apply text-lg font-semibold text-blue-700 mb-2 mt-4;
+        }
+        .case-study-image-placeholder {
+            @apply w-full h-48 md:h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-lg md:text-xl my-4; /* Adjusted height */
+        }
+        .results-table {
+            @apply min-w-full divide-y divide-gray-200 mt-4 mb-4;
+        }
+        .results-table th {
+            @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .results-table td {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+         .comparison-grid {
+            @apply grid md:grid-cols-2 gap-6 my-4;
+        }
+        .comparison-item {
+            @apply bg-gray-50 p-4 rounded-lg border border-gray-200;
+        }
+        .comparison-item h6 {
+             @apply text-md font-semibold text-gray-700 mb-2 mt-0;
+        }
+
+        /* Tutorial Section Styles */
+        .tutorial-section {
+            @apply mt-8 mb-12;
+        }
+        .tutorial-subsection {
+            @apply mt-6 mb-8 p-6 bg-sky-50 rounded-lg shadow;
+        }
+        .tutorial-subsection h5 { 
+            @apply text-xl font-semibold text-sky-700 mb-3;
+        }
+         .tutorial-subsection h6 { 
+            @apply text-lg font-semibold text-sky-600 mb-2 mt-4;
+        }
+        .tool-card {
+            @apply bg-white p-4 rounded-lg shadow border border-sky-200 mb-4;
+        }
+        .tool-card h6 {
+             @apply text-md font-semibold text-sky-700 mb-1 mt-0;
+        }
+        .tool-card p, .tool-card ul {
+            @apply text-sm;
+        }
+        .clickable-definition {
+            @apply cursor-pointer text-blue-600 hover:text-blue-800 underline decoration-dotted;
+        }
+        .definition-content {
+            @apply hidden mt-2 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm;
+        }
+        .icon-placeholder-tutorial {
+            @apply w-10 h-10 bg-sky-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-3 flex-shrink-0;
+        }
+        .flex-title {
+            @apply flex items-center mb-3;
+        }
+
+        /* Value Analysis Calculator Styles */
+        .calculator-section {
+            @apply mt-8 mb-12 p-6 bg-green-50 rounded-lg shadow;
+        }
+        .calculator-section h5 {
+            @apply text-xl font-semibold text-green-700 mb-4;
+        }
+        .calculator-input-group {
+            @apply grid grid-cols-1 md:grid-cols-5 gap-4 items-end mb-3 p-3 border border-green-200 rounded-md bg-white;
+        }
+        .calculator-input-group label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .calculator-input-group input[type="text"],
+        .calculator-input-group input[type="number"] {
+            @apply mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm;
+        }
+        .remove-row-btn {
+            @apply bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-3 rounded-md transition-colors h-10;
+        }
+        .add-row-btn {
+            @apply bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors;
+        }
+        .value-index-low { @apply text-red-600 font-bold; }
+        .value-index-medium { @apply text-yellow-600 font-bold; }
+        .value-index-high { @apply text-green-600 font-bold; }
+        #valueAnalysisTable th, #valueAnalysisTable td {
+            @apply px-4 py-2 text-sm;
+        }
+
+        /* ISO 9001 Guide Section */
+        .iso-guide-section {
+             @apply mt-8 mb-12 p-6 bg-indigo-50 rounded-lg shadow;
+        }
+
+        /* Innovation Case Study Section */
+        .innovation-case-section {
+            @apply mt-8 mb-12 p-6 bg-purple-50 rounded-lg shadow;
+        }
+        .innovation-case-section h5 {
+             @apply text-xl font-semibold text-purple-700 mb-3;
+        }
+        .innovation-case-card {
+            @apply bg-white p-6 rounded-lg shadow-md border border-purple-200 mb-6;
+        }
+        .innovation-case-card h6 {
+            @apply text-lg font-semibold text-purple-600 mb-2 mt-0;
+        }
+        .innovation-case-card ul {
+            @apply list-disc pl-5 text-sm text-gray-600 space-y-1;
+        }
+        .comparison-table-innovation th {
+            @apply px-4 py-3 bg-purple-100 text-left text-xs font-medium text-purple-700 uppercase tracking-wider;
+        }
+        .comparison-table-innovation td {
+             @apply px-4 py-3 text-sm text-gray-700 border-t border-purple-200;
+        }
+
+        /* ACV Simulator Styles */
+        .acv-simulator-section {
+            @apply mt-8 mb-12 p-6 bg-teal-50 rounded-lg shadow;
+        }
+        .acv-simulator-section h5 {
+            @apply text-xl font-semibold text-teal-700 mb-4;
+        }
+        .acv-stage-card {
+            @apply bg-white p-4 rounded-lg shadow border border-teal-200 mb-4;
+        }
+        .acv-stage-card h6 {
+            @apply text-md font-semibold text-teal-700 mb-2 mt-0;
+        }
+        .acv-input-field label {
+            @apply block text-xs font-medium text-gray-600;
+        }
+        .acv-input-field input[type="number"] {
+            @apply mt-1 block w-full px-2 py-1.5 text-sm bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500;
+        }
+        .calculate-acv-btn {
+            @apply bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-6 rounded-md transition-colors mt-4;
+        }
+        #acvResultsChartContainer {
+            @apply mt-6 p-4 bg-white rounded-lg shadow;
+            max-width: 600px; /* Control chart size */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-blue-700">Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <section id="parte1" class="mb-12">
+             <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 1: Fundamentos y Estándares</h2>
+            <article id="modulo1" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+            </article>
+        </section>
+
+        <section id="parte2" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 2: Optimización y Calidad</h2>
+            <article id="modulo4_5" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+            </article>
+        </section>
+
+        <section id="parte3" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 3: Sostenibilidad y Tecnologías Emergentes</h2>
+
+            <article id="modulo7_8_9" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 7/8/9: Sostenibilidad, Tecnologías Emergentes y Cadena de Suministro</h3>
+                
+                <div id="apartado3_1" class="acv-simulator-section">
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">3.1 Simulador Básico de Análisis de Ciclo de Vida (ACV)</h4>
+                    <p class="mb-4 text-sm text-gray-600">El Análisis de Ciclo de Vida (ACV) es una herramienta para evaluar el impacto ambiental potencial de un producto o servicio a lo largo de todas las etapas de su existencia: desde la extracción de materias primas, pasando por la fabricación, distribución, uso, y hasta su fin de vida (disposición o reciclaje).</p>
+                    <p class="mb-6 text-sm text-gray-600"><strong>Este simulador básico</strong> te permite ingresar datos simplificados para obtener una estimación general del impacto. Los "factores de impacto" son ilustrativos y no corresponden a una base de datos científica completa.</p>
+
+                    <form id="acvForm" class="space-y-6">
+                        <div class="acv-stage-card">
+                            <div class="flex items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-teal-600 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125V6.375c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v.001c0 .621.504 1.125 1.125 1.125z" /></svg>
+                                <h6>Etapa 1: Extracción y Procesamiento de Materias Primas</h6>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="acv-input-field">
+                                    <label for="materialWeight">Peso total de materiales (kg):</label>
+                                    <input type="number" id="materialWeight" name="materialWeight" value="1" min="0" step="0.1" required>
+                                    <p class="text-xs text-gray-500 mt-1">Factor de impacto: 5 puntos/kg</p>
+                                </div>
+                                <div class="acv-input-field">
+                                    <label for="recycledContent">Porcentaje de contenido reciclado (%):</label>
+                                    <input type="number" id="recycledContent" name="recycledContent" value="0" min="0" max="100" step="1">
+                                    <p class="text-xs text-gray-500 mt-1">Reduce impacto de materiales proporcionalmente.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="acv-stage-card">
+                             <div class="flex items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-teal-600 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.528-1.036.926-2.186.926-3.417A6.901 6.901 0 0012 2.25c-2.672 0-5.085 1.5-6.086 3.75M11.42 15.17L6.086 20.488A2.652 2.652 0 009 21.75l5.877-5.877m0 0a3.004 3.004 0 002.496-3.03c0-1.23-.4-2.38-.927-3.417M11.42 15.17L12 14.25M12 14.25L11.42 15.17z" /></svg>
+                                <h6>Etapa 2: Fabricación y Ensamblaje</h6>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="acv-input-field">
+                                    <label for="manufacturingEnergy">Consumo de energía en fabricación (kWh):</label>
+                                    <input type="number" id="manufacturingEnergy" name="manufacturingEnergy" value="10" min="0" step="1" required>
+                                    <p class="text-xs text-gray-500 mt-1">Factor de impacto: 2 puntos/kWh</p>
+                                </div>
+                                <div class="acv-input-field">
+                                    <label for="manufacturingWaste">Residuos de fabricación (kg):</label>
+                                    <input type="number" id="manufacturingWaste" name="manufacturingWaste" value="0.2" min="0" step="0.1">
+                                     <p class="text-xs text-gray-500 mt-1">Factor de impacto: 3 puntos/kg</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="acv-stage-card">
+                            <div class="flex items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-teal-600 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106A48.554 48.554 0 0012 5.25c-2.295 0-4.515.933-6.207 2.553a11.942 11.942 0 00-1.313 1.313A48.554 48.554 0 006.013 9.57c-.565.058-.987.538-.987 1.106v.958m0 0H3.375m0 0h-.375a1.125 1.125 0 01-1.125-1.125V11.25m17.25 0h.375a1.125 1.125 0 011.125 1.125v3.75m0 0h-1.125M4.5 15.75l3-3m0 0l3 3m-3-3v6" /></svg>
+                                <h6>Etapa 3: Distribución y Transporte</h6>
+                            </div>
+                            <div class="acv-input-field">
+                                <label for="transportDistance">Distancia total de transporte (km):</label>
+                                <input type="number" id="transportDistance" name="transportDistance" value="500" min="0" step="10" required>
+                                <p class="text-xs text-gray-500 mt-1">Factor de impacto: 0.1 puntos/km</p>
+                            </div>
+                        </div>
+
+                        <div class="acv-stage-card">
+                            <div class="flex items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-teal-600 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <h6>Etapa 4: Uso y Mantenimiento</h6>
+                            </div>
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="acv-input-field">
+                                    <label for="useEnergy">Consumo de energía en uso (total kWh en vida útil):</label>
+                                    <input type="number" id="useEnergy" name="useEnergy" value="50" min="0" step="1" required>
+                                    <p class="text-xs text-gray-500 mt-1">Factor de impacto: 2 puntos/kWh</p>
+                                </div>
+                                <div class="acv-input-field">
+                                    <label for="lifespan">Vida útil del producto (años):</label>
+                                    <input type="number" id="lifespan" name="lifespan" value="5" min="1" step="1">
+                                    <p class="text-xs text-gray-500 mt-1">(Informativo, no afecta directamente el puntaje en este simulador básico)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="acv-stage-card">
+                            <div class="flex items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-teal-600 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12.56 0c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                                <h6>Etapa 5: Fin de Vida</h6>
+                            </div>
+                            <div class="acv-input-field">
+                                <label for="recyclabilityRate">Tasa de reciclabilidad del producto (%):</label>
+                                <input type="number" id="recyclabilityRate" name="recyclabilityRate" value="50" min="0" max="100" step="5" required>
+                                 <p class="text-xs text-gray-500 mt-1">Impacto base fin de vida: 100 puntos. Se reduce por tasa de reciclabilidad (Impacto = 100 * (1 - tasa/100)).</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="calculate-acv-btn w-full md:w-auto">Calcular Impacto ACV</button>
+                    </form>
+
+                    <div id="acvResults" class="mt-8 hidden">
+                        <h5 class="text-lg font-semibold text-teal-700 mb-3">Resultados del ACV (Estimación Básica):</h5>
+                        <p class="mb-2"><strong>Impacto Total Estimado:</strong> <span id="totalImpactScore" class="font-bold text-xl">0</span> puntos</p>
+                        <p class="text-sm text-gray-600 mb-4">(Menor puntaje indica menor impacto ambiental relativo en este simulador)</p>
+                        <div id="acvResultsChartContainer">
+                            <canvas id="acvImpactChart"></canvas>
+                        </div>
+                        <div id="acvBreakdown" class="mt-4 text-sm">
+                            </div>
+                    </div>
+                </div>
+                
+            </article>
+            </section>
+
+        </main>
+
+    <div id="organizationModal" class="modal hidden">
+        </div>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Manual Multimedia de Estandarización y Optimización de Procesos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        let acvChartInstance = null; // Variable para mantener la instancia del gráfico
+
+        // --- Script para el Mapa Interactivo de Organismos (Apartado 1.2) ---
+        const organizations = [ /* ... data ... */ ]; 
+        
+        // --- Script para el Tutorial Interactivo (Apartado 2.1) ---
+        
+        // --- Script para Calculadora de Análisis de Valor (Apartado 2.2) ---
+        
+        // --- Script para Simulador ACV (Apartado 3.1) ---
+        const acvForm = document.getElementById('acvForm');
+        const acvResultsSection = document.getElementById('acvResults');
+        const totalImpactScoreEl = document.getElementById('totalImpactScore');
+        const acvBreakdownEl = document.getElementById('acvBreakdown');
+        const acvChartCanvas = document.getElementById('acvImpactChart');
+
+        if (acvForm) {
+            acvForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                calculateACV();
+            });
+        }
+
+        function calculateACV() {
+            const data = new FormData(acvForm);
+
+            const materialWeight = parseFloat(data.get('materialWeight')) || 0;
+            const recycledContent = parseFloat(data.get('recycledContent')) || 0;
+            const manufacturingEnergy = parseFloat(data.get('manufacturingEnergy')) || 0;
+            const manufacturingWaste = parseFloat(data.get('manufacturingWaste')) || 0;
+            const transportDistance = parseFloat(data.get('transportDistance')) || 0;
+            const useEnergy = parseFloat(data.get('useEnergy')) || 0;
+            // const lifespan = parseFloat(data.get('lifespan')) || 1; // No usado en cálculo directo de impacto aquí
+            const recyclabilityRate = parseFloat(data.get('recyclabilityRate')) || 0;
+
+            // Factores de impacto simplificados (puntos por unidad)
+            const materialImpactFactor = 5;       // puntos/kg
+            const energyImpactFactor = 2;         // puntos/kWh
+            const wasteImpactFactor = 3;          // puntos/kg
+            const transportImpactFactor = 0.1;    // puntos/km
+            const endOfLifeBaseImpact = 100;      // puntos base para fin de vida
+
+            // Cálculos de impacto por etapa
+            let materialImpact = materialWeight * materialImpactFactor;
+            materialImpact = materialImpact * (1 - (recycledContent / 100)); // Reducción por contenido reciclado
+
+            const manufacturingImpact = (manufacturingEnergy * energyImpactFactor) + (manufacturingWaste * wasteImpactFactor);
+            const distributionImpact = transportDistance * transportImpactFactor;
+            const usePhaseImpact = useEnergy * energyImpactFactor;
+            const endOfLifeImpact = endOfLifeBaseImpact * (1 - (recyclabilityRate / 100));
+
+            const totalImpact = materialImpact + manufacturingImpact + distributionImpact + usePhaseImpact + endOfLifeImpact;
+
+            // Mostrar resultados
+            if (totalImpactScoreEl) totalImpactScoreEl.textContent = totalImpact.toFixed(2);
+            
+            if (acvBreakdownEl) {
+                acvBreakdownEl.innerHTML = `
+                    <h6 class="font-semibold text-teal-600 mb-2">Desglose del Impacto Estimado:</h6>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Materias Primas: ${materialImpact.toFixed(2)} puntos</li>
+                        <li>Fabricación: ${manufacturingImpact.toFixed(2)} puntos</li>
+                        <li>Distribución: ${distributionImpact.toFixed(2)} puntos</li>
+                        <li>Uso: ${usePhaseImpact.toFixed(2)} puntos</li>
+                        <li>Fin de Vida: ${endOfLifeImpact.toFixed(2)} puntos</li>
+                    </ul>
+                `;
+            }
+
+            if (acvResultsSection) acvResultsSection.classList.remove('hidden');
+            
+            // Actualizar o crear gráfico
+            const chartData = {
+                labels: ['Materias Primas', 'Fabricación', 'Distribución', 'Uso', 'Fin de Vida'],
+                datasets: [{
+                    label: 'Puntaje de Impacto ACV',
+                    data: [
+                        materialImpact.toFixed(2), 
+                        manufacturingImpact.toFixed(2), 
+                        distributionImpact.toFixed(2), 
+                        usePhaseImpact.toFixed(2), 
+                        endOfLifeImpact.toFixed(2)
+                    ],
+                    backgroundColor: [
+                        'rgba(20, 184, 166, 0.6)', // teal-500
+                        'rgba(13, 148, 136, 0.6)', // teal-600
+                        'rgba(15, 118, 110, 0.6)', // teal-700
+                        'rgba(19, 78, 74, 0.6)',   // teal-800
+                        'rgba(12, 54, 51, 0.6)'    // teal-900
+                    ],
+                    borderColor: [
+                        'rgb(20, 184, 166)',
+                        'rgb(13, 148, 136)',
+                        'rgb(15, 118, 110)',
+                        'rgb(19, 78, 74)',
+                        'rgb(12, 54, 51)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            if (acvChartInstance) {
+                acvChartInstance.data = chartData;
+                acvChartInstance.update();
+            } else {
+                if (acvChartCanvas) {
+                    acvChartInstance = new Chart(acvChartCanvas, {
+                        type: 'bar', // o 'pie', 'doughnut'
+                        data: chartData,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false, // Para controlar mejor el tamaño con CSS
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: { display: true, text: 'Puntaje de Impacto Estimado' }
+                                }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                title: { display: true, text: 'Distribución del Impacto Ambiental por Etapa del Ciclo de Vida' }
+                            }
+                        }
+                    });
+                }
+            }
+             // Scroll to results
+            if (acvResultsSection) {
+                acvResultsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+        // --- (Re)inicialización de scripts de secciones anteriores ---
+        function initializePageScripts() {
+            // Mapa Interactivo (1.2) - Código colapsado por brevedad
+            const orgContainer = document.getElementById('organizationsContainer');
+            if (orgContainer) { /* ... lógica del mapa ... */ }
+
+            // Tutorial Interactivo (2.1) - Código colapsado por brevedad
+            const newClickableDefinitions = document.querySelectorAll('.clickable-definition');
+            newClickableDefinitions.forEach(definition => { /* ... lógica del tutorial ... */ });
+
+            // Calculadora de Análisis de Valor (2.2) - Código colapsado por brevedad
+            const calcAddComponentRowButton = document.getElementById('addComponentRow');
+            if (calcAddComponentRowButton) { /* ... lógica de la calculadora ... */ }
+        }
+        
+        // Ejecutar la inicialización de scripts cuando el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', initializePageScripts);
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            initializePageScripts(); // Para casos de actualizaciones parciales o si el script se carga tarde
+        }
+    </script>
+
+</body>
+</html>
