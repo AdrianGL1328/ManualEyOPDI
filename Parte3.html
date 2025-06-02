@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 1rem; 
+            padding-bottom: 2rem;
+        }
+        .content-section h2 { /* Title for "Parte X" */
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            color: #1F2937; 
+            border-bottom: 3px solid #2563EB; 
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 { /* Title for "Módulo X" */
+            font-size: 1.875rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1E40AF; 
+        }
+        .content-section h4 { /* Title for "Apartado X.X" */
+            font-size: 1.5rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1D4ED8; 
+        }
+        .content-section h5 { /* Sub-sub-titles */
+            font-size: 1.25rem; 
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1F2937; 
+        }
+        .content-section h6 { /* Sub-sub-sub-titles / Card titles */
+            font-size: 1.125rem; 
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151; 
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #4B5563; 
+            margin-bottom: 1rem;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 1.5rem;
+        }
+        .content-section ul { list-style-type: disc; }
+        .content-section ol { list-style-type: decimal; }
+        
+        .content-section strong {
+            color: #111827; 
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #F0F9FF; 
+            border-left: 4px solid #0EA5E9; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .example-box {
+            background-color: #EFF6FF; 
+            border: 1px solid #BFDBFE; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .example-box strong {
+            color: #1E40AF; 
+        }
+
+        /* Styles for interactive map */
+        .filter-button {
+            @apply px-4 py-2 mr-2 mb-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors;
+        }
+        .filter-button.active {
+            @apply bg-blue-800 ring-4 ring-blue-400;
+        }
+        .org-card {
+            @apply bg-white border border-gray-200 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col justify-between;
+        }
+        .org-logo {
+            @apply w-24 h-12 object-contain mx-auto mb-2 flex-shrink-0;
+        }
+        .org-name {
+            @apply text-center font-semibold text-blue-700 text-sm flex-grow;
+        }
+        .org-acronym {
+            @apply text-center text-xs text-gray-500;
+        }
+
+        /* Modal styles */
+        .modal {
+            @apply fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex justify-center items-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto;
+        }
+        .modal-close-button {
+            @apply absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold leading-none p-1;
+        }
+
+        /* Styles for certification guide & ISO 9001 Guide */
+        .step-card, .iso-step-card {
+            @apply bg-white rounded-xl shadow-lg p-6 mb-6 flex items-start space-x-4 hover:shadow-xl transition-shadow;
+        }
+        .step-icon-container, .iso-step-icon-container {
+            @apply flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold;
+        }
+        .iso-step-icon-container { @apply bg-indigo-600; } /* Different color for ISO guide */
+
+        .step-content h5, .iso-step-content h5 {
+            @apply text-xl font-semibold text-blue-700 mb-1 mt-0;
+        }
+        .iso-step-content h5 { @apply text-indigo-700; }
+        .iso-phase-title {
+             @apply text-2xl font-bold text-indigo-800 mb-4 mt-8 border-b-2 border-indigo-300 pb-2;
+        }
+
+        .step-content p, .iso-step-content p {
+            @apply text-sm text-gray-600;
+        }
+         .step-content ul, .iso-step-content ul {
+            @apply text-sm text-gray-600 list-disc pl-5 mt-2;
+        }
+
+        /* Case study styles */
+        .case-study-section {
+            @apply mt-6 mb-4;
+        }
+        .case-study-section h6 { 
+            @apply text-lg font-semibold text-blue-700 mb-2 mt-4;
+        }
+        .case-study-image-placeholder {
+            @apply w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xl my-4;
+        }
+        .results-table {
+            @apply min-w-full divide-y divide-gray-200 mt-4 mb-4;
+        }
+        .results-table th {
+            @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .results-table td {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+         .comparison-grid {
+            @apply grid md:grid-cols-2 gap-6 my-4;
+        }
+        .comparison-item {
+            @apply bg-gray-50 p-4 rounded-lg border border-gray-200;
+        }
+        .comparison-item h6 {
+             @apply text-md font-semibold text-gray-700 mb-2 mt-0;
+        }
+
+        /* Tutorial Section Styles */
+        .tutorial-section {
+            @apply mt-8 mb-12;
+        }
+        .tutorial-subsection {
+            @apply mt-6 mb-8 p-6 bg-sky-50 rounded-lg shadow;
+        }
+        .tutorial-subsection h5 { 
+            @apply text-xl font-semibold text-sky-700 mb-3;
+        }
+         .tutorial-subsection h6 { 
+            @apply text-lg font-semibold text-sky-600 mb-2 mt-4;
+        }
+        .tool-card {
+            @apply bg-white p-4 rounded-lg shadow border border-sky-200 mb-4;
+        }
+        .tool-card h6 {
+             @apply text-md font-semibold text-sky-700 mb-1 mt-0;
+        }
+        .tool-card p, .tool-card ul {
+            @apply text-sm;
+        }
+        .clickable-definition {
+            @apply cursor-pointer text-blue-600 hover:text-blue-800 underline decoration-dotted;
+        }
+        .definition-content {
+            @apply hidden mt-2 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm;
+        }
+        .icon-placeholder-tutorial {
+            @apply w-10 h-10 bg-sky-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-3 flex-shrink-0;
+        }
+        .flex-title {
+            @apply flex items-center mb-3;
+        }
+
+        /* Value Analysis Calculator Styles */
+        .calculator-section {
+            @apply mt-8 mb-12 p-6 bg-green-50 rounded-lg shadow;
+        }
+        .calculator-section h5 {
+            @apply text-xl font-semibold text-green-700 mb-4;
+        }
+        .calculator-input-group {
+            @apply grid grid-cols-1 md:grid-cols-5 gap-4 items-end mb-3 p-3 border border-green-200 rounded-md bg-white;
+        }
+        .calculator-input-group label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .calculator-input-group input[type="text"],
+        .calculator-input-group input[type="number"] {
+            @apply mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm;
+        }
+        .remove-row-btn {
+            @apply bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-3 rounded-md transition-colors h-10;
+        }
+        .add-row-btn {
+            @apply bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors;
+        }
+        .value-index-low { @apply text-red-600 font-bold; }
+        .value-index-medium { @apply text-yellow-600 font-bold; }
+        .value-index-high { @apply text-green-600 font-bold; }
+        #valueAnalysisTable th, #valueAnalysisTable td {
+            @apply px-4 py-2 text-sm;
+        }
+
+        /* ISO 9001 Guide Section */
+        .iso-guide-section {
+             @apply mt-8 mb-12 p-6 bg-indigo-50 rounded-lg shadow;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-blue-700">Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <section id="parte1" class="mb-12">
+             <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 1: Fundamentos y Estándares</h2>
+            <article id="modulo1" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                 </article>
+        </section>
+
+        <section id="parte2" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 2: Optimización y Calidad</h2>
+
+            <article id="modulo4_5" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 4/5: Optimización de Procesos y Gestión de Calidad</h3>
+                
+                <div id="apartado2_1" class="tutorial-section">
+                    </div>
+
+                <div id="apartado2_2" class="calculator-section">
+                    </div>
+                
+                <div id="apartado2_3" class="iso-guide-section">
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">2.3 Guía Paso a Paso: Implementación de ISO 9001 en Pequeñas Empresas de Diseño</h4>
+                    <p class="mb-4 text-sm text-gray-600">Implementar un Sistema de Gestión de Calidad (SGC) basado en ISO 9001 puede parecer una tarea abrumadora para una pequeña empresa o un estudio de diseño. Sin embargo, los beneficios en términos de eficiencia, satisfacción del cliente y credibilidad son significativos. Esta guía simplifica el proceso en fases y pasos manejables.</p>
+                    <p class="mb-6 text-sm text-gray-600"><strong>Beneficios de ISO 9001 para Diseñadores Industriales y PYMEs:</strong>
+                        <ul class="list-disc pl-5 text-sm text-gray-600">
+                            <li>Mejora la consistencia y calidad de los entregables del diseño.</li>
+                            <li>Optimiza los procesos internos, reduciendo errores y retrabajos.</li>
+                            <li>Aumenta la satisfacción del cliente al asegurar que se cumplen sus requisitos.</li>
+                            <li>Mejora la imagen y credibilidad de la empresa, facilitando el acceso a nuevos mercados o clientes.</li>
+                            <li>Fomenta una cultura de mejora continua.</li>
+                        </ul>
+                    </p>
+
+                    <div>
+                        <h5 class="iso-phase-title">Fase 1: Planificación y Compromiso</h5>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">1</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 1: Compromiso de la Dirección</h5>
+                                <p>El liderazgo debe estar convencido y comprometido. Designar un responsable del SGC (puede ser un diseñador senior o el propio director en PYMEs).</p>
+                                <ul>
+                                    <li>Definir por qué se quiere implementar ISO 9001 (objetivos claros).</li>
+                                    <li>Asignar recursos (tiempo, presupuesto si es necesario para formación o consultoría).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">2</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 2: Formación y Concienciación Inicial</h5>
+                                <p>Todo el equipo debe entender qué es ISO 9001 y cómo les afectará positivamente. Especialmente relevante para el equipo de diseño.</p>
+                                <ul>
+                                    <li>Capacitación básica sobre los principios de ISO 9001 y el enfoque basado en procesos.</li>
+                                    <li>Comunicar los beneficios esperados para la empresa y para el trabajo diario.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">3</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 3: Diagnóstico Inicial (Análisis GAP)</h5>
+                                <p>Evaluar la situación actual de la empresa frente a los requisitos de ISO 9001.</p>
+                                <ul>
+                                    <li>Identificar qué procesos ya existen (formales o informales) en el estudio de diseño (ej. proceso de briefing, desarrollo conceptual, revisión de diseños, entrega al cliente).</li>
+                                    <li>Detectar las brechas (GAPs) entre las prácticas actuales y lo que exige la norma.</li>
+                                    <li>Priorizar áreas de mejora.</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="iso-step-card">
+                            <div class="iso-step-icon-container">4</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 4: Plan de Implementación</h5>
+                                <p>Definir un cronograma realista con responsables y tareas específicas.</p>
+                                <ul>
+                                    <li>Establecer hitos y plazos para cada fase de la implementación.</li>
+                                    <li>Considerar si se necesitará ayuda externa (consultor), aunque muchas PYMEs lo hacen internamente.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="iso-phase-title">Fase 2: Diseño y Documentación del SGC</h5>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">5</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 5: Definir el Alcance del SGC</h5>
+                                <p>Determinar qué partes de la empresa y qué procesos estarán cubiertos por el SGC. Para un estudio de diseño, podría ser "Diseño y desarrollo de productos industriales".</p>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">6</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 6: Elaborar la Política y Objetivos de Calidad</h5>
+                                <p>La política de calidad es una declaración del compromiso de la empresa con la calidad. Los objetivos deben ser medibles y coherentes con la política.</p>
+                                <ul>
+                                    <li><em>Ej. Política:</em> "Entregar diseños innovadores que cumplan consistentemente los requisitos del cliente y superen sus expectativas."</li>
+                                    <li><em>Ej. Objetivo:</em> "Reducir errores de diseño que requieran retrabajo en un 15% en los próximos 12 meses."</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">7</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 7: Mapear y Documentar Procesos Clave</h5>
+                                <p>Identificar y describir los procesos principales. Para diseñadores: proceso de diseño y desarrollo, gestión de proyectos, comunicación con el cliente, control de cambios de diseño, etc.</p>
+                                <ul>
+                                    <li>Utilizar diagramas de flujo simples.</li>
+                                    <li>Documentar solo lo necesario. ISO 9001 es flexible; no exige burocracia excesiva. Enfocarse en la eficacia.</li>
+                                    <li><em>Información documentada requerida:</em> Manual de calidad (opcional pero útil para PYMEs), procedimientos obligatorios y los que la empresa determine necesarios, registros.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">8</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 8: Definir Roles, Responsabilidades y Autoridades</h5>
+                                <p>Asegurar que todos en el estudio de diseño sepan qué se espera de ellos en relación con el SGC.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="iso-phase-title">Fase 3: Implementación y Operación</h5>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">9</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 9: Poner en Práctica el SGC</h5>
+                                <p>Comenzar a operar según los procesos documentados. Esto incluye la gestión de proyectos de diseño, el control de la información documentada (versiones de planos, especificaciones), la gestión de recursos (software, hardware, formación).</p>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">10</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 10: Formación Específica del Personal</h5>
+                                <p>Capacitar al equipo en los nuevos procedimientos y en cómo utilizar la documentación del SGC. Por ejemplo, cómo registrar revisiones de diseño o feedback del cliente.</p>
+                            </div>
+                        </div>
+                         <div class="iso-step-card">
+                            <div class="iso-step-icon-container">11</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 11: Comunicación Interna y Externa</h5>
+                                <p>Establecer canales para la comunicación sobre el SGC y la calidad, tanto dentro del equipo como con clientes y proveedores.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="iso-phase-title">Fase 4: Verificación y Mejora Continua</h5>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">12</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 12: Auditoría Interna</h5>
+                                <p>Realizar una auditoría completa del SGC para verificar que se ha implementado correctamente y es eficaz. Puede ser realizada por personal interno formado o un consultor externo.</p>
+                                <ul>
+                                    <li>Identificar no conformidades y oportunidades de mejora.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">13</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 13: Revisión por la Dirección</h5>
+                                <p>La dirección debe revisar periódicamente el desempeño del SGC, los resultados de las auditorías, el feedback de los clientes y los objetivos de calidad para tomar decisiones y asignar recursos para la mejora.</p>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">14</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 14: Acciones Correctivas y Mejora Continua</h5>
+                                <p>Tratar las no conformidades identificadas y buscar continuamente formas de mejorar los procesos y el SGC. Es el ciclo PDCA (Planificar-Hacer-Verificar-Actuar) en acción.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div>
+                        <h5 class="iso-phase-title">Fase 5: Certificación (Opcional pero Recomendado)</h5>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">15</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 15: Selección del Organismo Certificador</h5>
+                                <p>Si se decide buscar la certificación, seleccionar un organismo certificador acreditado (ver Apartado 1.3, Paso 2).</p>
+                            </div>
+                        </div>
+                        <div class="iso-step-card">
+                            <div class="iso-step-icon-container">16</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 16: Auditoría de Certificación</h5>
+                                <p>El organismo certificador realizará una auditoría en dos etapas:
+                                    <ol class="list-decimal pl-4 mt-1">
+                                        <li><strong>Etapa 1 (Revisión Documental):</strong> Similar a la auditoría interna, pero por un externo.</li>
+                                        <li><strong>Etapa 2 (Auditoría Principal):</strong> Verificación in situ de la implementación y eficacia del SGC.</li>
+                                    </ol>
+                                </p>
+                                <p>Si se superan las auditorías (o se cierran las no conformidades), se obtiene el certificado ISO 9001.</p>
+                            </div>
+                        </div>
+                         <div class="iso-step-card">
+                            <div class="iso-step-icon-container">17</div>
+                            <div class="iso-step-content">
+                                <h5>Paso 17: Mantenimiento y Auditorías de Seguimiento</h5>
+                                <p>El certificado ISO 9001 requiere auditorías de seguimiento anuales y una recertificación cada tres años.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box mt-8 bg-purple-50 border-purple-400">
+                        <p class="text-sm text-purple-700"><strong>Consejo para Diseñadores:</strong> Vean ISO 9001 no como una carga burocrática, sino como un marco para profesionalizar sus procesos de diseño, asegurar la calidad de sus entregables y mejorar la colaboración con los clientes. Documenten sus procesos de diseño de forma simple y visual, enfocándose en cómo realmente trabajan y cómo pueden mejorar.</p>
+                    </div>
+                </div>
+
+
+            </article>
+            </section>
+
+        </main>
+
+    <div id="organizationModal" class="modal hidden">
+        </div>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Manual Multimedia de Estandarización y Optimización de Procesos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Script para el Mapa Interactivo de Organismos (Apartado 1.2) ---
+        const organizations = [ /* ... data ... */ ]; // Data colapsada por brevedad
+        const organizationsContainer = document.getElementById('organizationsContainer');
+        const modal = document.getElementById('organizationModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        let currentFilters = { region: 'all', type: 'all' };
+
+        if (organizationsContainer) { 
+            function renderOrganizations(filteredOrgs) { /* ... */ }
+            function showOrganizationDetails(org) { /* ... */ }
+            if(closeModalButton) { /* ... */ }
+            if(modal) { /* ... */ }
+            function applyFilters() { /* ... */ }
+            filterButtons.forEach(button => { /* ... */ });
+            // Initial render for map (colapsado por brevedad)
+        }
+
+        // --- Script para el Tutorial Interactivo (Apartado 2.1) ---
+        const clickableDefinitions = document.querySelectorAll('.clickable-definition');
+        clickableDefinitions.forEach(definition => { /* ... */ });
+
+        // --- Script para Calculadora de Análisis de Valor (Apartado 2.2) ---
+        const componentRowsContainer = document.getElementById('componentRowsContainer');
+        const addComponentRowButton = document.getElementById('addComponentRow');
+        const valueAnalysisResultsBody = document.getElementById('valueAnalysisResultsBody');
+        const noDataRow = document.getElementById('noDataRow');
+        let componentIdCounter = 0;
+
+        function createComponentRow() { /* ... */ }
+        function updateValueAnalysisTable() { /* ... */ }
+        
+        if(addComponentRowButton) {
+            // Código de la calculadora (colapsado por brevedad)
+        }
+
+        // --- Re-ejecutar scripts que dependen de elementos ahora presentes ---
+         // (Re-adjuntar listeners o inicializar si es necesario)
+        
+        // Re-inicializar mapa interactivo si los elementos están presentes
+        if (document.getElementById('organizationsContainer')) {
+            const orgContainer = document.getElementById('organizationsContainer');
+            const orgModal = document.getElementById('organizationModal');
+            const orgCloseModalBtn = orgModal ? orgModal.querySelector('#closeModalButton') : null; // Safely query
+            const orgFilterBtns = document.querySelectorAll('.filter-button');
+            const orgNoResultsMsg = document.getElementById('noResultsMessage');
+            let orgCurrentFilters = { region: 'all', type: 'all' };
+            
+            // Asegurarse de que las funciones estén definidas en este alcance o accesibles
+            function orgRender(filteredOrgs) {
+                if(!orgContainer || !orgNoResultsMsg) return;
+                orgContainer.innerHTML = ''; 
+                if (filteredOrgs.length === 0) {
+                    orgNoResultsMsg.classList.remove('hidden');
+                } else {
+                    orgNoResultsMsg.classList.add('hidden');
+                    filteredOrgs.forEach(org => {
+                        const card = document.createElement('div');
+                        card.className = 'org-card';
+                        card.innerHTML = `<img src="${org.logo}" alt="Logo de ${org.acronym}" class="org-logo"><h5 class="org-name">${org.name}</h5><p class="org-acronym">${org.acronym}</p>`;
+                        card.addEventListener('click', () => orgShowDetails(org));
+                        orgContainer.appendChild(card);
+                    });
+                }
+            }
+
+            function orgShowDetails(org) {
+                if(orgModal){
+                    orgModal.querySelector('#modalOrgLogo').src = org.logo;
+                    orgModal.querySelector('#modalOrgLogo').alt = `Logo de ${org.acronym}`;
+                    orgModal.querySelector('#modalOrgName').textContent = org.name;
+                    orgModal.querySelector('#modalOrgAcronym').textContent = org.acronym;
+                    orgModal.querySelector('#modalOrgType').textContent = `${org.type}`;
+                    orgModal.querySelector('#modalOrgDescription').textContent = org.description;
+                    orgModal.querySelector('#modalOrgRegion').textContent = org.region;
+                    orgModal.querySelector('#modalOrgCountry').textContent = org.country || 'N/A';
+                    orgModal.querySelector('#modalOrgWebsite').href = org.website;
+                    orgModal.classList.remove('hidden');
+                    const modalContent = orgModal.querySelector('.modal-content');
+                    if (modalContent) modalContent.scrollTop = 0; 
+                }
+            }
+
+            if(orgCloseModalBtn && orgModal){
+                orgCloseModalBtn.addEventListener('click', () => orgModal.classList.add('hidden'));
+            }
+            if(orgModal){
+                 orgModal.addEventListener('click', (event) => { if (event.target === orgModal) orgModal.classList.add('hidden'); });
+            }
+           
+            function orgApplyFilters() {
+                const filtered = organizations.filter(org => (orgCurrentFilters.region === 'all' || org.region === orgCurrentFilters.region) && (orgCurrentFilters.type === 'all' || org.type === orgCurrentFilters.type));
+                orgRender(filtered);
+            }
+
+            orgFilterBtns.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filterType = button.dataset.filterType;
+                    const filterValue = button.dataset.filterValue;
+                    orgCurrentFilters[filterType] = filterValue;
+                    document.querySelectorAll(`.filter-button[data-filter-type="${filterType}"]`).forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    orgApplyFilters();
+                });
+            });
+
+            const orgInitialRegionFilter = document.querySelector('.filter-button[data-filter-type="region"][data-filter-value="all"]');
+            const orgInitialTypeFilter = document.querySelector('.filter-button[data-filter-type="type"][data-filter-value="all"]');
+            if(orgInitialRegionFilter) orgInitialRegionFilter.classList.add('active');
+            if(orgInitialTypeFilter) orgInitialTypeFilter.classList.add('active');
+            if(typeof organizations !== 'undefined') orgRender(organizations);
+        }
+
+
+        // Re-inicializar tutorial interactivo
+        const newClickableDefinitions = document.querySelectorAll('.clickable-definition');
+        newClickableDefinitions.forEach(definition => {
+            // Remover listeners antiguos si es necesario para evitar duplicados, aunque en este caso es seguro re-adjuntar.
+            definition.addEventListener('click', () => {
+                const targetId = definition.dataset.target;
+                const contentElement = document.getElementById(targetId);
+                if (contentElement) {
+                    const isHidden = contentElement.classList.toggle('hidden');
+                    definition.setAttribute('aria-expanded', !isHidden);
+                    contentElement.setAttribute('aria-hidden', isHidden);
+                }
+            });
+            if (!definition.getAttribute('role')) { // Solo si no se ha seteado antes
+                definition.setAttribute('role', 'button');
+                definition.setAttribute('aria-expanded', 'false');
+                const targetId = definition.dataset.target;
+                const contentElement = document.getElementById(targetId);
+                if (contentElement) {
+                    contentElement.setAttribute('aria-hidden', 'true');
+                    definition.setAttribute('aria-controls', targetId);
+                }
+            }
+        });
+
+        // Re-inicializar calculadora
+        if (document.getElementById('addComponentRow')) {
+            const calcComponentRowsContainer = document.getElementById('componentRowsContainer');
+            const calcAddComponentRowButton = document.getElementById('addComponentRow');
+            const calcValueAnalysisResultsBody = document.getElementById('valueAnalysisResultsBody');
+            const calcNoDataRow = document.getElementById('noDataRow');
+            let calcComponentIdCounter = 0;
+
+            function calcCreateRow() {
+                calcComponentIdCounter++;
+                const rowId = `componentRow-${calcComponentIdCounter}`;
+                const newRow = document.createElement('div');
+                newRow.classList.add('calculator-input-group');
+                newRow.id = rowId;
+                newRow.innerHTML = `
+                    <div><label for="componentName-${calcComponentIdCounter}" class="font-medium">Nombre Componente/Función</label><input type="text" id="componentName-${calcComponentIdCounter}" name="componentName" class="component-input" placeholder="Ej: Carcasa principal"></div>
+                    <div><label for="componentCost-${calcComponentIdCounter}" class="font-medium">Costo Actual ($)</label><input type="number" id="componentCost-${calcComponentIdCounter}" name="componentCost" class="component-input" placeholder="0.00" step="0.01" min="0"></div>
+                    <div><label for="componentImportance-${calcComponentIdCounter}" class="font-medium">Importancia (1-10)</label><input type="number" id="componentImportance-${calcComponentIdCounter}" name="componentImportance" class="component-input" placeholder="7" min="1" max="10" step="1"></div>
+                    <div class="col-span-1 md:col-span-1 flex items-end"><span id="valueIndexDisplay-${calcComponentIdCounter}" class="text-sm text-gray-700 self-center py-2 mr-2 w-20 text-center"></span></div>
+                    <div class="col-span-1 md:col-span-1 flex items-end"><button type="button" class="remove-row-btn" data-row-id="${rowId}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 inline-block"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 005.375 15H4.75a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434a.75.75 0 00-.524-1.005A18.72 18.72 0 0014 4.193v-.443A2.75 2.75 0 0011.25 1h-2.5zM7.5 3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 009.375 15H8.75a.75.75 0 000 1.5h2.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0012.5 4.193v-.443A1.25 1.25 0 0011.25 2.5h-2.5A1.25 1.25 0 007.5 3.75v0z" clip-rule="evenodd" /><path d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 005.375 15H4.75a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0014 4.193v-.443A2.75 2.75 0 0011.25 1h-2.5zM7.5 3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 009.375 15H8.75a.75.75 0 000 1.5h2.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0012.5 4.193v-.443A1.25 1.25 0 0011.25 2.5h-2.5A1.25 1.25 0 007.5 3.75z" /></svg>Eliminar</button></div>`;
+                calcComponentRowsContainer.appendChild(newRow);
+                newRow.querySelector('.remove-row-btn').addEventListener('click', function() {
+                    document.getElementById(this.dataset.rowId).remove();
+                    calcUpdateTable();
+                });
+                newRow.querySelectorAll('.component-input').forEach(input => {
+                    input.addEventListener('input', calcUpdateTable);
+                });
+                calcUpdateTable();
+            }
+
+            function calcUpdateTable() {
+                if(!calcValueAnalysisResultsBody || !calcComponentRowsContainer || !calcNoDataRow) return;
+                calcValueAnalysisResultsBody.innerHTML = '';
+                const rows = calcComponentRowsContainer.querySelectorAll('.calculator-input-group');
+                let hasData = false;
+
+                rows.forEach(row => {
+                    const nameInput = row.querySelector('input[name="componentName"]');
+                    const costInput = row.querySelector('input[name="componentCost"]');
+                    const importanceInput = row.querySelector('input[name="componentImportance"]');
+                    const valueIndexDisplay = row.querySelector(`span[id^="valueIndexDisplay-"]`);
+                    const name = nameInput.value.trim();
+                    const cost = parseFloat(costInput.value);
+                    const importance = parseInt(importanceInput.value);
+
+                    if (name && !isNaN(cost) && cost > 0 && !isNaN(importance) && importance >= 1 && importance <= 10) {
+                        hasData = true;
+                        const valueIndex = (importance / cost);
+                        const tr = document.createElement('tr');
+                        let valueIndexClass = 'value-index-medium';
+                        let observationText = 'Valor Aceptable.';
+                        if (valueIndex < 0.3) { valueIndexClass = 'value-index-low'; observationText = 'Costo alto para su importancia. Considerar optimización.';}
+                        else if (valueIndex > 0.7) { valueIndexClass = 'value-index-high'; observationText = 'Buen valor. Mantener o buscar eficiencias menores.';}
+                        if(valueIndexDisplay) valueIndexDisplay.textContent = `Índice: ${valueIndex.toFixed(2)}`;
+                        tr.innerHTML = `<td class="border-t border-gray-200">${name}</td><td class="border-t border-gray-200">$${cost.toFixed(2)}</td><td class="border-t border-gray-200">${importance}</td><td class="border-t border-gray-200 ${valueIndexClass}">${valueIndex.toFixed(2)}</td><td class="border-t border-gray-200 text-xs">${observationText}</td>`;
+                        calcValueAnalysisResultsBody.appendChild(tr);
+                    } else {
+                         if(valueIndexDisplay) valueIndexDisplay.textContent = ``;
+                    }
+                });
+                if (!hasData) { calcValueAnalysisResultsBody.appendChild(calcNoDataRow); calcNoDataRow.classList.remove('hidden');}
+                else { calcNoDataRow.classList.add('hidden');}
+            }
+            
+            calcAddComponentRowButton.addEventListener('click', calcCreateRow);
+            if(calcComponentRowsContainer.children.length === 0) calcCreateRow(); // Add one row if empty
+        }
+
+    </script>
+
+</body>
+</html>
