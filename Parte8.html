@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script> 
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 1rem; 
+            padding-bottom: 2rem;
+        }
+        .content-section h2 { /* Title for "Parte X" */
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            color: #1F2937; 
+            border-bottom: 3px solid #2563EB; 
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 { /* Title for "Módulo X" */
+            font-size: 1.875rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1E40AF; 
+        }
+        .content-section h4 { /* Title for "Apartado X.X" */
+            font-size: 1.5rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1D4ED8; 
+        }
+        .content-section h5 { /* Sub-sub-titles */
+            font-size: 1.25rem; 
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1F2937; 
+        }
+        .content-section h6 { /* Sub-sub-sub-titles / Card titles */
+            font-size: 1.125rem; 
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151; 
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #4B5563; 
+            margin-bottom: 1rem;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 1.5rem;
+        }
+        .content-section ul { list-style-type: disc; }
+        .content-section ol { list-style-type: decimal; }
+        
+        .content-section strong {
+            color: #111827; 
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #F0F9FF; 
+            border-left: 4px solid #0EA5E9; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .example-box {
+            background-color: #EFF6FF; 
+            border: 1px solid #BFDBFE; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .example-box strong {
+            color: #1E40AF; 
+        }
+
+        /* Styles for interactive map */
+        .filter-button {
+            @apply px-4 py-2 mr-2 mb-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors;
+        }
+        .filter-button.active {
+            @apply bg-blue-800 ring-4 ring-blue-400;
+        }
+        .org-card {
+            @apply bg-white border border-gray-200 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col justify-between;
+        }
+        .org-logo {
+            @apply w-24 h-12 object-contain mx-auto mb-2 flex-shrink-0;
+        }
+        .org-name {
+            @apply text-center font-semibold text-blue-700 text-sm flex-grow;
+        }
+        .org-acronym {
+            @apply text-center text-xs text-gray-500;
+        }
+
+        /* Modal styles */
+        .modal {
+            @apply fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex justify-center items-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto;
+        }
+        .modal-close-button {
+            @apply absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold leading-none p-1;
+        }
+
+        /* Styles for certification guide & ISO 9001 Guide */
+        .step-card, .iso-step-card {
+            @apply bg-white rounded-xl shadow-lg p-6 mb-6 flex items-start space-x-4 hover:shadow-xl transition-shadow;
+        }
+        .step-icon-container, .iso-step-icon-container {
+            @apply flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold;
+        }
+        .iso-step-icon-container { @apply bg-indigo-600; } 
+
+        .step-content h5, .iso-step-content h5 {
+            @apply text-xl font-semibold text-blue-700 mb-1 mt-0;
+        }
+        .iso-step-content h5 { @apply text-indigo-700; }
+        .iso-phase-title {
+             @apply text-2xl font-bold text-indigo-800 mb-4 mt-8 border-b-2 border-indigo-300 pb-2;
+        }
+
+        .step-content p, .iso-step-content p {
+            @apply text-sm text-gray-600;
+        }
+         .step-content ul, .iso-step-content ul {
+            @apply text-sm text-gray-600 list-disc pl-5 mt-2;
+        }
+
+        /* Case study (DFMA) styles */
+        .case-study-section {
+            @apply mt-6 mb-4;
+        }
+        .case-study-section h6 { 
+            @apply text-lg font-semibold text-blue-700 mb-2 mt-4;
+        }
+        .case-study-image-placeholder {
+            @apply w-full h-48 md:h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-lg md:text-xl my-4; /* Adjusted height */
+        }
+        .results-table {
+            @apply min-w-full divide-y divide-gray-200 mt-4 mb-4;
+        }
+        .results-table th {
+            @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .results-table td {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+         .comparison-grid {
+            @apply grid md:grid-cols-2 gap-6 my-4;
+        }
+        .comparison-item {
+            @apply bg-gray-50 p-4 rounded-lg border border-gray-200;
+        }
+        .comparison-item h6 {
+             @apply text-md font-semibold text-gray-700 mb-2 mt-0;
+        }
+
+        /* Tutorial Section Styles */
+        .tutorial-section {
+            @apply mt-8 mb-12;
+        }
+        .tutorial-subsection {
+            @apply mt-6 mb-8 p-6 bg-sky-50 rounded-lg shadow;
+        }
+        .tutorial-subsection h5 { 
+            @apply text-xl font-semibold text-sky-700 mb-3;
+        }
+         .tutorial-subsection h6 { 
+            @apply text-lg font-semibold text-sky-600 mb-2 mt-4;
+        }
+        .tool-card {
+            @apply bg-white p-4 rounded-lg shadow border border-sky-200 mb-4;
+        }
+        .tool-card h6 {
+             @apply text-md font-semibold text-sky-700 mb-1 mt-0;
+        }
+        .tool-card p, .tool-card ul {
+            @apply text-sm;
+        }
+        .clickable-definition {
+            @apply cursor-pointer text-blue-600 hover:text-blue-800 underline decoration-dotted;
+        }
+        .definition-content {
+            @apply hidden mt-2 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm;
+        }
+        .icon-placeholder-tutorial {
+            @apply w-10 h-10 bg-sky-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-3 flex-shrink-0;
+        }
+        .flex-title {
+            @apply flex items-center mb-3;
+        }
+
+        /* Value Analysis Calculator Styles */
+        .calculator-section {
+            @apply mt-8 mb-12 p-6 bg-green-50 rounded-lg shadow;
+        }
+        .calculator-section h5 {
+            @apply text-xl font-semibold text-green-700 mb-4;
+        }
+        .calculator-input-group {
+            @apply grid grid-cols-1 md:grid-cols-5 gap-4 items-end mb-3 p-3 border border-green-200 rounded-md bg-white;
+        }
+        .calculator-input-group label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .calculator-input-group input[type="text"],
+        .calculator-input-group input[type="number"] {
+            @apply mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm;
+        }
+        .remove-row-btn {
+            @apply bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-3 rounded-md transition-colors h-10;
+        }
+        .add-row-btn {
+            @apply bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors;
+        }
+        .value-index-low { @apply text-red-600 font-bold; }
+        .value-index-medium { @apply text-yellow-600 font-bold; }
+        .value-index-high { @apply text-green-600 font-bold; }
+        #valueAnalysisTable th, #valueAnalysisTable td {
+            @apply px-4 py-2 text-sm;
+        }
+
+        /* ISO 9001 Guide Section */
+        .iso-guide-section {
+             @apply mt-8 mb-12 p-6 bg-indigo-50 rounded-lg shadow;
+        }
+
+        /* Innovation Case Study Section */
+        .innovation-case-section {
+            @apply mt-8 mb-12 p-6 bg-purple-50 rounded-lg shadow;
+        }
+        .innovation-case-section h5 {
+             @apply text-xl font-semibold text-purple-700 mb-3;
+        }
+        .innovation-case-card {
+            @apply bg-white p-6 rounded-lg shadow-md border border-purple-200 mb-6;
+        }
+        .innovation-case-card h6 {
+            @apply text-lg font-semibold text-purple-600 mb-2 mt-0;
+        }
+        .innovation-case-card ul {
+            @apply list-disc pl-5 text-sm text-gray-600 space-y-1;
+        }
+        .comparison-table-innovation th {
+            @apply px-4 py-3 bg-purple-100 text-left text-xs font-medium text-purple-700 uppercase tracking-wider;
+        }
+        .comparison-table-innovation td {
+             @apply px-4 py-3 text-sm text-gray-700 border-t border-purple-200;
+        }
+
+        /* ACV Simulator Styles */
+        .acv-simulator-section {
+            @apply mt-8 mb-12 p-6 bg-teal-50 rounded-lg shadow;
+        }
+        .acv-simulator-section h5 {
+            @apply text-xl font-semibold text-teal-700 mb-4;
+        }
+        .acv-stage-card {
+            @apply bg-white p-4 rounded-lg shadow border border-teal-200 mb-4;
+        }
+        .acv-stage-card h6 {
+            @apply text-md font-semibold text-teal-700 mb-2 mt-0;
+        }
+        .acv-input-field label {
+            @apply block text-xs font-medium text-gray-600;
+        }
+        .acv-input-field input[type="number"] {
+            @apply mt-1 block w-full px-2 py-1.5 text-sm bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500;
+        }
+        .calculate-acv-btn {
+            @apply bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-6 rounded-md transition-colors mt-4;
+        }
+        #acvResultsChartContainer {
+            @apply mt-6 p-4 bg-white rounded-lg shadow;
+            max-width: 600px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* IA/IoT Catalog Styles */
+        .ia-iot-catalog-section {
+            @apply mt-8 mb-12 p-6 bg-cyan-50 rounded-lg shadow;
+        }
+        .ia-iot-catalog-section h5 {
+             @apply text-xl font-semibold text-cyan-700 mb-4;
+        }
+        .app-card {
+            @apply bg-white p-5 rounded-lg shadow-md border border-cyan-200 flex flex-col h-full hover:shadow-lg transition-shadow;
+        }
+        .app-card-header {
+            @apply flex items-center mb-3;
+        }
+        .app-card-icon {
+            @apply w-8 h-8 text-cyan-600 mr-3 flex-shrink-0;
+        }
+        .app-card-title {
+            @apply text-md font-semibold text-cyan-700;
+        }
+        .app-card-tech {
+            @apply text-xs font-medium text-cyan-500 mb-2 uppercase tracking-wider;
+        }
+        .app-card-description {
+            @apply text-sm text-gray-600 mb-2 flex-grow;
+        }
+        .app-card-example {
+            @apply text-xs text-gray-500 italic;
+        }
+
+        /* Supply Chain Standards Map Styles */
+        .supply-chain-map-section {
+            @apply mt-8 mb-12 p-6 bg-orange-50 rounded-lg shadow;
+        }
+        .supply-chain-map-section h5 {
+            @apply text-xl font-semibold text-orange-700 mb-4;
+        }
+        .sc-filter-button {
+            @apply px-3 py-1.5 mr-2 mb-2 text-xs font-medium text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:ring-2 focus:ring-orange-300 transition-colors;
+        }
+        .sc-filter-button.active {
+            @apply bg-orange-800 ring-2 ring-orange-400;
+        }
+        .sc-standard-card {
+            @apply bg-white p-4 rounded-lg shadow border border-orange-200 flex flex-col h-full hover:shadow-md transition-shadow;
+        }
+        .sc-standard-card-header {
+            @apply flex items-center mb-2;
+        }
+        .sc-standard-card-icon {
+            @apply w-7 h-7 text-orange-600 mr-2.5 flex-shrink-0;
+        }
+        .sc-standard-card-title {
+            @apply text-base font-semibold text-orange-700;
+        }
+         .sc-standard-card-category {
+            @apply text-xs font-medium text-orange-500 mb-2 uppercase tracking-wider;
+        }
+        .sc-standard-card-description {
+            @apply text-sm text-gray-600 mb-2 flex-grow;
+        }
+        .sc-standard-card-relevance {
+            @apply text-xs text-gray-500 italic mb-2;
+        }
+        .sc-standard-card-link {
+            @apply text-xs text-orange-600 hover:text-orange-800 hover:underline font-medium self-start mt-auto;
+        }
+
+        /* IP Guide Styles */
+        .ip-guide-section {
+            @apply mt-8 mb-12 p-6 bg-slate-50 rounded-lg shadow; /* Neutral background */
+        }
+        .ip-guide-section h5 {
+             @apply text-xl font-semibold text-slate-700 mb-4;
+        }
+        .ip-card {
+            @apply bg-white p-5 rounded-lg shadow-md border border-slate-200 flex flex-col h-full hover:shadow-lg transition-shadow;
+        }
+        .ip-card-header {
+            @apply flex items-center mb-3;
+        }
+        .ip-card-icon {
+            @apply w-8 h-8 text-slate-600 mr-3 flex-shrink-0;
+        }
+        .ip-card-title {
+            @apply text-md font-semibold text-slate-700;
+        }
+        .ip-card-description {
+            @apply text-sm text-gray-600 mb-2 flex-grow;
+        }
+        .ip-card-relevance, .ip-card-considerations {
+            @apply text-xs text-gray-500 italic mb-1;
+        }
+        .ip-card-considerations ul {
+             @apply list-disc pl-4 text-xs text-gray-500;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-blue-700">Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <section id="parte1" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 1: Fundamentos y Estándares</h2>
+            <article id="modulo1" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+            </article>
+        </section>
+
+        <section id="parte2" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 2: Optimización y Calidad</h2>
+            <article id="modulo4_5" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+            </article>
+        </section>
+
+        <section id="parte3" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 3: Sostenibilidad y Tecnologías Emergentes</h2>
+
+            <article id="modulo7_8_9" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 7/8/9: Sostenibilidad, Tecnologías Emergentes y Cadena de Suministro</h3>
+                
+                <div id="apartado3_1" class="acv-simulator-section">
+                    </div>
+
+                <div id="apartado3_2" class="ia-iot-catalog-section">
+                    </div>
+
+                <div id="apartado3_3" class="supply-chain-map-section">
+                    </div>
+
+                <div id="apartado3_4" class="ip-guide-section">
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">3.4 Guía de Propiedad Intelectual para Diseñadores Industriales</h4>
+                    <p class="mb-6 text-sm text-gray-600">La Propiedad Intelectual (PI) se refiere a las creaciones de la mente: invenciones, obras literarias y artísticas, diseños, símbolos, nombres e imágenes utilizados en el comercio. Para los diseñadores industriales, comprender y proteger la PI es fundamental para salvaguardar su trabajo creativo, obtener ventajas competitivas y monetizar sus innovaciones.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="ip-card">
+                            <div class="ip-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ip-card-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L1.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.25 12L17 13.75M17 13.75L15.75 12M17 13.75L18.25 15M15.75 12L17 10.25m-7.5 0h7.5" /></svg>
+                                <h6 class="ip-card-title">Patentes (Invenciones y Modelos de Utilidad)</h6>
+                            </div>
+                            <p class="ip-card-description">Una patente otorga un derecho exclusivo sobre una invención, permitiendo al titular impedir que terceros fabriquen, usen, vendan o importen la invención sin su consentimiento.</p>
+                            <p class="ip-card-relevance"><strong>Relevancia para DI:</strong> Protege soluciones técnicas nuevas a problemas existentes, mecanismos innovadores, nuevos procesos de fabricación aplicados a un diseño, o mejoras funcionales en productos.</p>
+                            <div class="ip-card-considerations">
+                                <strong>Consideraciones Clave:</strong>
+                                <ul>
+                                    <li><strong>Novedad:</strong> La invención no debe haber sido divulgada públicamente antes de la solicitud.</li>
+                                    <li><strong>Actividad Inventiva (Altura Inventiva):</strong> No debe ser obvia para un experto en la materia.</li>
+                                    <li><strong>Aplicación Industrial:</strong> Debe poder ser fabricada o utilizada en algún tipo de industria.</li>
+                                    <li><strong>Modelos de Utilidad:</strong> (En algunos países como México) Protegen invenciones con menor altura inventiva, usualmente mejoras a herramientas, utensilios o dispositivos existentes. Son más rápidos y económicos de obtener.</li>
+                                    <li><strong>Duración:</strong> Generalmente 20 años para patentes de invención, 10-15 años para modelos de utilidad (varía por país).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="ip-card">
+                            <div class="ip-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ip-card-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                                <h6 class="ip-card-title">Diseños Industriales (Dibujos y Modelos)</h6>
+                            </div>
+                            <p class="ip-card-description">Protegen la apariencia ornamental o estética de un producto. No cubren aspectos técnicos o funcionales (eso es para patentes).</p>
+                            <p class="ip-card-relevance"><strong>Relevancia para DI:</strong> Es la forma de PI más directa para proteger el trabajo principal del diseñador industrial: la forma, configuración, patrón, ornamento o combinación de estos que dan una apariencia particular a un producto.</p>
+                            <div class="ip-card-considerations">
+                                <strong>Consideraciones Clave:</strong>
+                                <ul>
+                                    <li><strong>Novedad:</strong> El diseño no debe haber sido divulgado antes.</li>
+                                    <li><strong>Carácter Singular (Originalidad):</strong> Debe producir una impresión general diferente en un usuario informado en comparación con diseños anteriores.</li>
+                                    <li><strong>Protección de formas bidimensionales</strong> (dibujos: patrones textiles, gráficos) y <strong>tridimensionales</strong> (modelos: forma de una silla, carcasa de un teléfono).</li>
+                                    <li><strong>Duración:</strong> Varía, pero suele ser de 5 años, renovables por periodos hasta un máximo de 15-25 años (según el país).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="ip-card">
+                            <div class="ip-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ip-card-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 1.255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.759 6.759 0 010-1.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <h6 class="ip-card-title">Marcas Registradas</h6>
+                            </div>
+                            <p class="ip-card-description">Una marca es un signo (palabra, logo, sonido, forma tridimensional, etc.) que distingue los productos o servicios de una empresa de los de otras. El registro otorga el derecho exclusivo a usarla.</p>
+                            <p class="ip-card-relevance"><strong>Relevancia para DI:</strong> El nombre del producto, el logo de la marca que va en el producto, e incluso formas tridimensionales distintivas del producto o su empaque pueden ser registradas como marcas.</p>
+                            <div class="ip-card-considerations">
+                                <strong>Consideraciones Clave:</strong>
+                                <ul>
+                                    <li><strong>Distintividad:</strong> No debe ser genérica ni descriptiva del producto/servicio.</li>
+                                    <li><strong>Disponibilidad:</strong> No debe ser idéntica o similar a marcas ya registradas para productos/servicios similares.</li>
+                                    <li><strong>Uso:</strong> Se debe usar la marca tal como se registró para mantener el registro.</li>
+                                    <li><strong>Duración:</strong> Generalmente 10 años, renovables indefinidamente mientras se use y se paguen las tasas.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="ip-card">
+                            <div class="ip-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ip-card-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                                <h6 class="ip-card-title">Derechos de Autor (Copyright)</h6>
+                            </div>
+                            <p class="ip-card-description">Protegen obras originales de autoría literaria y artística, incluyendo dibujos, fotografías, software, manuales, música, etc. Surge automáticamente con la creación de la obra.</p>
+                            <p class="ip-card-relevance"><strong>Relevancia para DI:</strong> Protege los bocetos originales, planos técnicos (como obras de dibujo), fotografías del producto, manuales de usuario, el software de un producto inteligente, y el contenido multimedia del manual que estás leyendo.</p>
+                            <div class="ip-card-considerations">
+                                <strong>Consideraciones Clave:</strong>
+                                <ul>
+                                    <li><strong>Originalidad:</strong> La obra debe ser una creación propia del autor.</li>
+                                    <li><strong>Fijación:</strong> La obra debe estar plasmada en un soporte material (papel, archivo digital).</li>
+                                    <li><strong>No protege ideas:</strong> Solo la forma de expresión de esas ideas.</li>
+                                    <li><strong>Registro:</strong> Aunque la protección es automática, el registro (ej. ante INDAUTOR en México) facilita la prueba de autoría y el ejercicio de derechos.</li>
+                                    <li><strong>Duración:</strong> Generalmente, la vida del autor más 70-100 años (varía por país).</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="ip-card md:col-span-2"> <div class="ip-card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ip-card-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                                <h6 class="ip-card-title">Secretos Industriales (Know-How)</h6>
+                            </div>
+                            <p class="ip-card-description">Información confidencial que posee una empresa y que le da una ventaja competitiva. No se registra, se protege manteniendo el secreto.</p>
+                            <p class="ip-card-relevance"><strong>Relevancia para DI:</strong> Métodos de diseño particulares, procesos de fabricación no evidentes, listas de proveedores clave, "recetas" de materiales específicos, o incluso estrategias de diseño que no se quieren divulgar.</p>
+                            <div class="ip-card-considerations">
+                                <strong>Consideraciones Clave:</strong>
+                                <ul>
+                                    <li>Debe ser información secreta (no generalmente conocida ni fácilmente accesible).</li>
+                                    <li>Debe tener valor comercial por ser secreta.</li>
+                                    <li>Se deben tomar medidas razonables para mantenerla en secreto (acuerdos de confidencialidad, seguridad física y digital).</li>
+                                    <li>La protección dura mientras la información se mantenga secreta y tenga valor.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box mt-8 bg-yellow-50 border-yellow-400">
+                        <p class="text-sm text-yellow-700"><strong>Estrategia de PI para Diseñadores:</strong> No se trata de elegir un solo tipo de PI, sino de considerar una combinación estratégica. Un mismo producto puede estar protegido por patentes (funcionalidad), diseños industriales (apariencia), marcas (nombre/logo) y derechos de autor (manuales/software). Consultar con un especialista en PI es siempre recomendable.</p>
+                    </div>
+                </div>
+                
+            </article>
+            </section>
+
+    </main>
+
+    <div id="organizationModal" class="modal hidden">
+        </div>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Manual Multimedia de Estandarización y Optimización de Procesos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        let acvChartInstance = null; 
+
+        // --- (Re)inicialización de scripts de secciones anteriores ---
+        function initializePageScripts() {
+            // Mapa Interactivo (1.2) 
+            const orgContainer = document.getElementById('organizationsContainer');
+            if (orgContainer) { 
+                const orgModal = document.getElementById('organizationModal');
+                const orgCloseModalBtn = orgModal ? orgModal.querySelector('#closeModalButton') : null;
+                const orgFilterBtns = document.querySelectorAll('.filter-button');
+                const orgNoResultsMsg = document.getElementById('noResultsMessage');
+                let orgCurrentFilters = { region: 'all', type: 'all' };
+                
+                function orgRender(filteredOrgs) { /* ... */ } 
+                function orgShowDetails(org) { /* ... */ } 
+                
+                if(orgCloseModalBtn && orgModal) { orgCloseModalBtn.addEventListener('click', () => orgModal.classList.add('hidden')); }
+                if(orgModal) { orgModal.addEventListener('click', (event) => { if (event.target === orgModal) orgModal.classList.add('hidden'); }); }
+               
+                function orgApplyFilters() {
+                    const currentOrganizationsData = typeof organizations !== 'undefined' ? organizations : [];
+                    const filtered = currentOrganizationsData.filter(org => (orgCurrentFilters.region === 'all' || org.region === orgCurrentFilters.region) && (orgCurrentFilters.type === 'all' || org.type === orgCurrentFilters.type));
+                    orgRender(filtered); 
+                }
+
+                orgFilterBtns.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const filterType = button.dataset.filterType;
+                        const filterValue = button.dataset.filterValue;
+                        orgCurrentFilters[filterType] = filterValue;
+                        document.querySelectorAll(`.filter-button[data-filter-type="${filterType}"]`).forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        orgApplyFilters();
+                    });
+                });
+
+                const orgInitialRegionFilter = document.querySelector('.filter-button[data-filter-type="region"][data-filter-value="all"]');
+                const orgInitialTypeFilter = document.querySelector('.filter-button[data-filter-type="type"][data-filter-value="all"]');
+                if(orgInitialRegionFilter) orgInitialRegionFilter.classList.add('active');
+                if(orgInitialTypeFilter) orgInitialTypeFilter.classList.add('active');
+                
+                function orgRender(filteredOrgs) {
+                    if(!orgContainer || !orgNoResultsMsg) return;
+                    orgContainer.innerHTML = ''; 
+                    if (filteredOrgs.length === 0) { orgNoResultsMsg.classList.remove('hidden'); } 
+                    else {
+                        orgNoResultsMsg.classList.add('hidden');
+                        filteredOrgs.forEach(org => {
+                            const card = document.createElement('div');
+                            card.className = 'org-card';
+                            card.innerHTML = `<img src="${org.logo}" alt="Logo de ${org.acronym}" class="org-logo"><h5 class="org-name">${org.name}</h5><p class="org-acronym">${org.acronym}</p>`;
+                            card.addEventListener('click', () => orgShowDetails(org)); 
+                            orgContainer.appendChild(card);
+                        });
+                    }
+                }
+
+                function orgShowDetails(org) {
+                    if(orgModal){
+                        orgModal.querySelector('#modalOrgLogo').src = org.logo;
+                        orgModal.querySelector('#modalOrgName').textContent = org.name;
+                        orgModal.querySelector('#modalOrgAcronym').textContent = org.acronym;
+                        orgModal.querySelector('#modalOrgType').textContent = `${org.type}`;
+                        orgModal.querySelector('#modalOrgDescription').textContent = org.description;
+                        orgModal.querySelector('#modalOrgRegion').textContent = org.region;
+                        orgModal.querySelector('#modalOrgCountry').textContent = org.country || 'N/A';
+                        orgModal.querySelector('#modalOrgWebsite').href = org.website;
+                        orgModal.classList.remove('hidden');
+                        const modalContent = orgModal.querySelector('.modal-content');
+                        if (modalContent) modalContent.scrollTop = 0; 
+                    }
+                }
+                if(typeof organizations !== 'undefined' && organizations.length > 0) orgRender(organizations); else if(orgNoResultsMsg) orgNoResultsMsg.classList.remove('hidden');
+            }
+
+            // Tutorial Interactivo (2.1)
+            const newClickableDefinitions = document.querySelectorAll('.clickable-definition');
+            newClickableDefinitions.forEach(definition => { 
+                if (!definition.dataset.listenerAttached) {
+                    definition.addEventListener('click', () => { /* ... */ }); 
+                    definition.dataset.listenerAttached = 'true';
+                }
+            });
+
+            // Calculadora de Análisis de Valor (2.2) 
+            const calcAddComponentRowButton = document.getElementById('addComponentRow');
+            if (calcAddComponentRowButton) { /* ... */ }
+            
+            // Simulador ACV (3.1) 
+            const acvFormEl = document.getElementById('acvForm');
+            if (acvFormEl) { /* ... */ }
+
+            // Mapa de Estándares de Cadena de Suministro (3.3)
+            const scFiltersContainer = document.getElementById('supplyChainFilters');
+            if (scFiltersContainer) { /* ... */ }
+        }
+        
+        document.addEventListener('DOMContentLoaded', initializePageScripts);
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            initializePageScripts(); 
+        }
+    </script>
+
+</body>
+</html>
