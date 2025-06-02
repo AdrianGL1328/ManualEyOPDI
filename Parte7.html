@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script> 
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 1rem; 
+            padding-bottom: 2rem;
+        }
+        .content-section h2 { /* Title for "Parte X" */
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            color: #1F2937; 
+            border-bottom: 3px solid #2563EB; 
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 { /* Title for "Módulo X" */
+            font-size: 1.875rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1E40AF; 
+        }
+        .content-section h4 { /* Title for "Apartado X.X" */
+            font-size: 1.5rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1D4ED8; 
+        }
+        .content-section h5 { /* Sub-sub-titles */
+            font-size: 1.25rem; 
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1F2937; 
+        }
+        .content-section h6 { /* Sub-sub-sub-titles / Card titles */
+            font-size: 1.125rem; 
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151; 
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #4B5563; 
+            margin-bottom: 1rem;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 1.5rem;
+        }
+        .content-section ul { list-style-type: disc; }
+        .content-section ol { list-style-type: decimal; }
+        
+        .content-section strong {
+            color: #111827; 
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #F0F9FF; 
+            border-left: 4px solid #0EA5E9; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .example-box {
+            background-color: #EFF6FF; 
+            border: 1px solid #BFDBFE; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .example-box strong {
+            color: #1E40AF; 
+        }
+
+        /* Styles for interactive map */
+        .filter-button {
+            @apply px-4 py-2 mr-2 mb-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors;
+        }
+        .filter-button.active {
+            @apply bg-blue-800 ring-4 ring-blue-400;
+        }
+        .org-card {
+            @apply bg-white border border-gray-200 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col justify-between;
+        }
+        .org-logo {
+            @apply w-24 h-12 object-contain mx-auto mb-2 flex-shrink-0;
+        }
+        .org-name {
+            @apply text-center font-semibold text-blue-700 text-sm flex-grow;
+        }
+        .org-acronym {
+            @apply text-center text-xs text-gray-500;
+        }
+
+        /* Modal styles */
+        .modal {
+            @apply fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex justify-center items-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto;
+        }
+        .modal-close-button {
+            @apply absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold leading-none p-1;
+        }
+
+        /* Styles for certification guide & ISO 9001 Guide */
+        .step-card, .iso-step-card {
+            @apply bg-white rounded-xl shadow-lg p-6 mb-6 flex items-start space-x-4 hover:shadow-xl transition-shadow;
+        }
+        .step-icon-container, .iso-step-icon-container {
+            @apply flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold;
+        }
+        .iso-step-icon-container { @apply bg-indigo-600; } 
+
+        .step-content h5, .iso-step-content h5 {
+            @apply text-xl font-semibold text-blue-700 mb-1 mt-0;
+        }
+        .iso-step-content h5 { @apply text-indigo-700; }
+        .iso-phase-title {
+             @apply text-2xl font-bold text-indigo-800 mb-4 mt-8 border-b-2 border-indigo-300 pb-2;
+        }
+
+        .step-content p, .iso-step-content p {
+            @apply text-sm text-gray-600;
+        }
+         .step-content ul, .iso-step-content ul {
+            @apply text-sm text-gray-600 list-disc pl-5 mt-2;
+        }
+
+        /* Case study (DFMA) styles */
+        .case-study-section {
+            @apply mt-6 mb-4;
+        }
+        .case-study-section h6 { 
+            @apply text-lg font-semibold text-blue-700 mb-2 mt-4;
+        }
+        .case-study-image-placeholder {
+            @apply w-full h-48 md:h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-lg md:text-xl my-4; /* Adjusted height */
+        }
+        .results-table {
+            @apply min-w-full divide-y divide-gray-200 mt-4 mb-4;
+        }
+        .results-table th {
+            @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .results-table td {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+         .comparison-grid {
+            @apply grid md:grid-cols-2 gap-6 my-4;
+        }
+        .comparison-item {
+            @apply bg-gray-50 p-4 rounded-lg border border-gray-200;
+        }
+        .comparison-item h6 {
+             @apply text-md font-semibold text-gray-700 mb-2 mt-0;
+        }
+
+        /* Tutorial Section Styles */
+        .tutorial-section {
+            @apply mt-8 mb-12;
+        }
+        .tutorial-subsection {
+            @apply mt-6 mb-8 p-6 bg-sky-50 rounded-lg shadow;
+        }
+        .tutorial-subsection h5 { 
+            @apply text-xl font-semibold text-sky-700 mb-3;
+        }
+         .tutorial-subsection h6 { 
+            @apply text-lg font-semibold text-sky-600 mb-2 mt-4;
+        }
+        .tool-card {
+            @apply bg-white p-4 rounded-lg shadow border border-sky-200 mb-4;
+        }
+        .tool-card h6 {
+             @apply text-md font-semibold text-sky-700 mb-1 mt-0;
+        }
+        .tool-card p, .tool-card ul {
+            @apply text-sm;
+        }
+        .clickable-definition {
+            @apply cursor-pointer text-blue-600 hover:text-blue-800 underline decoration-dotted;
+        }
+        .definition-content {
+            @apply hidden mt-2 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm;
+        }
+        .icon-placeholder-tutorial {
+            @apply w-10 h-10 bg-sky-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-3 flex-shrink-0;
+        }
+        .flex-title {
+            @apply flex items-center mb-3;
+        }
+
+        /* Value Analysis Calculator Styles */
+        .calculator-section {
+            @apply mt-8 mb-12 p-6 bg-green-50 rounded-lg shadow;
+        }
+        .calculator-section h5 {
+            @apply text-xl font-semibold text-green-700 mb-4;
+        }
+        .calculator-input-group {
+            @apply grid grid-cols-1 md:grid-cols-5 gap-4 items-end mb-3 p-3 border border-green-200 rounded-md bg-white;
+        }
+        .calculator-input-group label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .calculator-input-group input[type="text"],
+        .calculator-input-group input[type="number"] {
+            @apply mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm;
+        }
+        .remove-row-btn {
+            @apply bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-3 rounded-md transition-colors h-10;
+        }
+        .add-row-btn {
+            @apply bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors;
+        }
+        .value-index-low { @apply text-red-600 font-bold; }
+        .value-index-medium { @apply text-yellow-600 font-bold; }
+        .value-index-high { @apply text-green-600 font-bold; }
+        #valueAnalysisTable th, #valueAnalysisTable td {
+            @apply px-4 py-2 text-sm;
+        }
+
+        /* ISO 9001 Guide Section */
+        .iso-guide-section {
+             @apply mt-8 mb-12 p-6 bg-indigo-50 rounded-lg shadow;
+        }
+
+        /* Innovation Case Study Section */
+        .innovation-case-section {
+            @apply mt-8 mb-12 p-6 bg-purple-50 rounded-lg shadow;
+        }
+        .innovation-case-section h5 {
+             @apply text-xl font-semibold text-purple-700 mb-3;
+        }
+        .innovation-case-card {
+            @apply bg-white p-6 rounded-lg shadow-md border border-purple-200 mb-6;
+        }
+        .innovation-case-card h6 {
+            @apply text-lg font-semibold text-purple-600 mb-2 mt-0;
+        }
+        .innovation-case-card ul {
+            @apply list-disc pl-5 text-sm text-gray-600 space-y-1;
+        }
+        .comparison-table-innovation th {
+            @apply px-4 py-3 bg-purple-100 text-left text-xs font-medium text-purple-700 uppercase tracking-wider;
+        }
+        .comparison-table-innovation td {
+             @apply px-4 py-3 text-sm text-gray-700 border-t border-purple-200;
+        }
+
+        /* ACV Simulator Styles */
+        .acv-simulator-section {
+            @apply mt-8 mb-12 p-6 bg-teal-50 rounded-lg shadow;
+        }
+        .acv-simulator-section h5 {
+            @apply text-xl font-semibold text-teal-700 mb-4;
+        }
+        .acv-stage-card {
+            @apply bg-white p-4 rounded-lg shadow border border-teal-200 mb-4;
+        }
+        .acv-stage-card h6 {
+            @apply text-md font-semibold text-teal-700 mb-2 mt-0;
+        }
+        .acv-input-field label {
+            @apply block text-xs font-medium text-gray-600;
+        }
+        .acv-input-field input[type="number"] {
+            @apply mt-1 block w-full px-2 py-1.5 text-sm bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500;
+        }
+        .calculate-acv-btn {
+            @apply bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-6 rounded-md transition-colors mt-4;
+        }
+        #acvResultsChartContainer {
+            @apply mt-6 p-4 bg-white rounded-lg shadow;
+            max-width: 600px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* IA/IoT Catalog Styles */
+        .ia-iot-catalog-section {
+            @apply mt-8 mb-12 p-6 bg-cyan-50 rounded-lg shadow;
+        }
+        .ia-iot-catalog-section h5 {
+             @apply text-xl font-semibold text-cyan-700 mb-4;
+        }
+        .app-card {
+            @apply bg-white p-5 rounded-lg shadow-md border border-cyan-200 flex flex-col h-full hover:shadow-lg transition-shadow;
+        }
+        .app-card-header {
+            @apply flex items-center mb-3;
+        }
+        .app-card-icon {
+            @apply w-8 h-8 text-cyan-600 mr-3 flex-shrink-0;
+        }
+        .app-card-title {
+            @apply text-md font-semibold text-cyan-700;
+        }
+        .app-card-tech {
+            @apply text-xs font-medium text-cyan-500 mb-2 uppercase tracking-wider;
+        }
+        .app-card-description {
+            @apply text-sm text-gray-600 mb-2 flex-grow;
+        }
+        .app-card-example {
+            @apply text-xs text-gray-500 italic;
+        }
+
+        /* Supply Chain Standards Map Styles */
+        .supply-chain-map-section {
+            @apply mt-8 mb-12 p-6 bg-orange-50 rounded-lg shadow;
+        }
+        .supply-chain-map-section h5 {
+            @apply text-xl font-semibold text-orange-700 mb-4;
+        }
+        .sc-filter-button {
+            @apply px-3 py-1.5 mr-2 mb-2 text-xs font-medium text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:ring-2 focus:ring-orange-300 transition-colors;
+        }
+        .sc-filter-button.active {
+            @apply bg-orange-800 ring-2 ring-orange-400;
+        }
+        .sc-standard-card {
+            @apply bg-white p-4 rounded-lg shadow border border-orange-200 flex flex-col h-full hover:shadow-md transition-shadow;
+        }
+        .sc-standard-card-header {
+            @apply flex items-center mb-2;
+        }
+        .sc-standard-card-icon {
+            @apply w-7 h-7 text-orange-600 mr-2.5 flex-shrink-0;
+        }
+        .sc-standard-card-title {
+            @apply text-base font-semibold text-orange-700;
+        }
+         .sc-standard-card-category {
+            @apply text-xs font-medium text-orange-500 mb-2 uppercase tracking-wider;
+        }
+        .sc-standard-card-description {
+            @apply text-sm text-gray-600 mb-2 flex-grow;
+        }
+        .sc-standard-card-relevance {
+            @apply text-xs text-gray-500 italic mb-2;
+        }
+        .sc-standard-card-link {
+            @apply text-xs text-orange-600 hover:text-orange-800 hover:underline font-medium self-start mt-auto;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-blue-700">Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <section id="parte1" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 1: Fundamentos y Estándares</h2>
+            <article id="modulo1" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+            </article>
+        </section>
+
+        <section id="parte2" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 2: Optimización y Calidad</h2>
+            <article id="modulo4_5" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+            </article>
+        </section>
+
+        <section id="parte3" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 3: Sostenibilidad y Tecnologías Emergentes</h2>
+
+            <article id="modulo7_8_9" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 7/8/9: Sostenibilidad, Tecnologías Emergentes y Cadena de Suministro</h3>
+                
+                <div id="apartado3_1" class="acv-simulator-section">
+                    </div>
+
+                <div id="apartado3_2" class="ia-iot-catalog-section">
+                    </div>
+
+                <div id="apartado3_3" class="supply-chain-map-section">
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">3.3 Mapa Interactivo: Estándares Clave en la Cadena de Suministro Global</h4>
+                    <p class="mb-6 text-sm text-gray-600">La cadena de suministro global depende de una compleja red de estándares para asegurar la eficiencia, interoperabilidad, trazabilidad y seguridad. Este catálogo interactivo te permite explorar algunos de los estándares más importantes y su impacto.</p>
+
+                    <div id="supplyChainFilters" class="mb-6">
+                        <span class="font-semibold mr-3 text-sm text-gray-700">Filtrar por Categoría:</span>
+                        <button class="sc-filter-button" data-filter-category="all">Todos</button>
+                        <button class="sc-filter-button" data-filter-category="Identificación y Trazabilidad">Identificación</button>
+                        <button class="sc-filter-button" data-filter-category="Comunicación de Datos">Comunicación</button>
+                        <button class="sc-filter-button" data-filter-category="Logística y Transporte">Logística</button>
+                        <button class="sc-filter-button" data-filter-category="Seguridad">Seguridad</button>
+                        <button class="sc-filter-button" data-filter-category="Comercio Internacional">Comercio</button>
+                    </div>
+
+                    <div id="supplyChainStandardsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        </div>
+                    <p id="noSupplyChainResultsMessage" class="text-center text-gray-500 mt-8 hidden">No se encontraron estándares que coincidan con el filtro seleccionado.</p>
+                </div>
+                
+            </article>
+            </section>
+
+    </main>
+
+    <div id="organizationModal" class="modal hidden">
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Manual Multimedia de Estandarización y Optimización de Procesos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        let acvChartInstance = null; 
+
+        // --- Datos para el Mapa de Estándares de Cadena de Suministro (Apartado 3.3) ---
+        const supplyChainStandards = [
+            {
+                id: 'gs1',
+                name: 'Estándares GS1 (GTIN, GLN, SSCC, EPC/RFID)',
+                category: 'Identificación y Trazabilidad',
+                iconSVG: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5z" /></svg>`,
+                description: 'Sistema global para la identificación única de productos (GTIN), ubicaciones (GLN), unidades logísticas (SSCC) y activos (EPC/RFID). Esencial para la trazabilidad.',
+                relevance_di: 'Diseño de empaques que incorporen códigos de barras GS1 o etiquetas RFID. Especificación de GTINs para nuevos productos.',
+                website: 'https://www.gs1.org'
+            },
+            {
+                id: 'edifact',
+                name: 'UN/EDIFACT',
+                category: 'Comunicación de Datos',
+                iconSVG: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" /></svg>`,
+                description: 'Estándar de la ONU para el Intercambio Electrónico de Datos para la Administración, el Comercio y el Transporte. Define mensajes estructurados (pedidos, facturas, etc.).',
+                relevance_di: 'Asegurar que la información del producto (dimensiones, peso) sea precisa para su inclusión en mensajes EDI.',
+                website: 'https://unece.org/trade/uncefact/unedifact'
+            },
+            {
+                id: 'iso28000',
+                name: 'ISO 28000 Series',
+                category: 'Seguridad',
+                iconSVG: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>`,
+                description: 'Especificaciones para sistemas de gestión de la seguridad en la cadena de suministro. Ayuda a las organizaciones a identificar riesgos y gestionarlos.',
+                relevance_di: 'Diseño de productos y embalajes que consideren aspectos de seguridad para prevenir robos o manipulaciones durante el tránsito.',
+                website: 'https://www.iso.org/standard/71052.html'
+            },
+            {
+                id: 'incoterms',
+                name: 'Incoterms® (ICC)',
+                category: 'Comercio Internacional',
+                iconSVG: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 3L18 12m0 0v8.25m0-8.25L15 3.126A59.768 59.768 0 002.515 3L6 12m0 0h12M6 12L3.269 20.874A59.768 59.768 0 0021.485 21L18 12" /></svg>`,
+                description: 'Reglas internacionales publicadas por la Cámara de Comercio Internacional (ICC) que definen las responsabilidades de compradores y vendedores en transacciones internacionales (entrega, costos, riesgos).',
+                relevance_di: 'El diseño del embalaje debe ser adecuado para el transporte y las responsabilidades definidas por el Incoterm acordado (ej. protección para transporte marítimo).',
+                website: 'https://iccwbo.org/resources-for-business/incoterms-rules/'
+            },
+            {
+                id: 'ispm15',
+                name: 'ISPM 15 (NIMF 15)',
+                category: 'Logística y Transporte',
+                iconSVG: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125V6.375c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v.001c0 .621.504 1.125 1.125 1.125zM12 18.75L12 15m0 0l-2.25-2.25M12 15l2.25-2.25" /></svg>`,
+                description: 'Norma Internacional para Medidas Fitosanitarias No. 15. Regula el embalaje de madera utilizado en el comercio internacional para prevenir la propagación de plagas.',
+                relevance_di: 'Si el producto requiere embalaje de madera para exportación (ej. maquinaria pesada), este debe cumplir con ISPM 15 (tratamiento térmico o fumigación y marcado).',
+                website: 'https://www.ippc.int/en/core-activities/standards-setting/ispm-15/'
+            },
+            {
+                id: 'iata_dgr',
+                name: 'IATA Dangerous Goods Regulations (DGR)',
+                category: 'Logística y Transporte',
+                iconSVG: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>`,
+                description: 'Reglamentación de la Asociación Internacional de Transporte Aéreo (IATA) para el transporte seguro de mercancías peligrosas por vía aérea.',
+                relevance_di: 'Si el producto o sus componentes (ej. baterías de litio) son considerados mercancías peligrosas, el diseño del producto y su embalaje deben cumplir con DGR.',
+                website: 'https://www.iata.org/dgr'
+            }
+            // Se pueden añadir más estándares aquí
+        ];
+
+        // --- (Re)inicialización de scripts de secciones anteriores ---
+        function initializePageScripts() {
+            // Mapa Interactivo (1.2) 
+            const orgContainer = document.getElementById('organizationsContainer');
+            if (orgContainer) { 
+                // ... (lógica completa del mapa de organizaciones colapsada por brevedad)
+                const orgModal = document.getElementById('organizationModal');
+                const orgCloseModalBtn = orgModal ? orgModal.querySelector('#closeModalButton') : null;
+                const orgFilterBtns = document.querySelectorAll('.filter-button');
+                const orgNoResultsMsg = document.getElementById('noResultsMessage');
+                let orgCurrentFilters = { region: 'all', type: 'all' };
+                function orgRender(filteredOrgs) {
+                    if(!orgContainer || !orgNoResultsMsg) return;
+                    orgContainer.innerHTML = ''; 
+                    if (filteredOrgs.length === 0) { orgNoResultsMsg.classList.remove('hidden'); } 
+                    else {
+                        orgNoResultsMsg.classList.add('hidden');
+                        filteredOrgs.forEach(org => {
+                            const card = document.createElement('div');
+                            card.className = 'org-card';
+                            card.innerHTML = `<img src="${org.logo}" alt="Logo de ${org.acronym}" class="org-logo"><h5 class="org-name">${org.name}</h5><p class="org-acronym">${org.acronym}</p>`;
+                            card.addEventListener('click', () => orgShowDetails(org));
+                            orgContainer.appendChild(card);
+                        });
+                    }
+                }
+                function orgShowDetails(org) {
+                    if(orgModal){
+                        orgModal.querySelector('#modalOrgLogo').src = org.logo;
+                        orgModal.querySelector('#modalOrgName').textContent = org.name;
+                        // ... (resto de la asignación de detalles del modal)
+                        orgModal.classList.remove('hidden');
+                        const modalContent = orgModal.querySelector('.modal-content');
+                        if (modalContent) modalContent.scrollTop = 0; 
+                    }
+                }
+                if(orgCloseModalBtn && orgModal) { orgCloseModalBtn.addEventListener('click', () => orgModal.classList.add('hidden')); }
+                if(orgModal) { orgModal.addEventListener('click', (event) => { if (event.target === orgModal) orgModal.classList.add('hidden'); }); }
+                function orgApplyFilters() {
+                    const currentOrganizationsData = typeof organizations !== 'undefined' ? organizations : [];
+                    const filtered = currentOrganizationsData.filter(org => (orgCurrentFilters.region === 'all' || org.region === orgCurrentFilters.region) && (orgCurrentFilters.type === 'all' || org.type === orgCurrentFilters.type));
+                    orgRender(filtered);
+                }
+                orgFilterBtns.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const filterType = button.dataset.filterType;
+                        const filterValue = button.dataset.filterValue;
+                        orgCurrentFilters[filterType] = filterValue;
+                        document.querySelectorAll(`.filter-button[data-filter-type="${filterType}"]`).forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        orgApplyFilters();
+                    });
+                });
+                const orgInitialRegionFilter = document.querySelector('.filter-button[data-filter-type="region"][data-filter-value="all"]');
+                const orgInitialTypeFilter = document.querySelector('.filter-button[data-filter-type="type"][data-filter-value="all"]');
+                if(orgInitialRegionFilter) orgInitialRegionFilter.classList.add('active');
+                if(orgInitialTypeFilter) orgInitialTypeFilter.classList.add('active');
+                if(typeof organizations !== 'undefined' && organizations.length > 0) orgRender(organizations); else if(orgNoResultsMsg) orgNoResultsMsg.classList.remove('hidden');
+            }
+
+            // Tutorial Interactivo (2.1)
+            const newClickableDefinitions = document.querySelectorAll('.clickable-definition');
+            newClickableDefinitions.forEach(definition => { 
+                if (!definition.dataset.listenerAttached) {
+                    definition.addEventListener('click', () => { /* ... */ }); // Lógica colapsada
+                    definition.dataset.listenerAttached = 'true';
+                }
+            });
+
+            // Calculadora de Análisis de Valor (2.2) 
+            const calcAddComponentRowButton = document.getElementById('addComponentRow');
+            if (calcAddComponentRowButton) { /* ... lógica de la calculadora colapsada ... */ }
+            
+            // Simulador ACV (3.1) 
+            const acvFormEl = document.getElementById('acvForm');
+            if (acvFormEl) { /* ... lógica del simulador ACV colapsada ... */ }
+
+            // --- Nuevo Script para Mapa de Estándares de Cadena de Suministro (Apartado 3.3) ---
+            const scFiltersContainer = document.getElementById('supplyChainFilters');
+            const scStandardsContainer = document.getElementById('supplyChainStandardsContainer');
+            const noSCResultsMessage = document.getElementById('noSupplyChainResultsMessage');
+            let currentSCFilter = 'all';
+
+            if (scFiltersContainer && scStandardsContainer && noSCResultsMessage) {
+                function renderSupplyChainStandards(filter) {
+                    scStandardsContainer.innerHTML = '';
+                    const filteredStandards = filter === 'all' ? supplyChainStandards : supplyChainStandards.filter(std => std.category === filter);
+
+                    if (filteredStandards.length === 0) {
+                        noSCResultsMessage.classList.remove('hidden');
+                    } else {
+                        noSCResultsMessage.classList.add('hidden');
+                        filteredStandards.forEach(std => {
+                            const card = document.createElement('div');
+                            card.className = 'sc-standard-card';
+                            card.innerHTML = `
+                                <div class="sc-standard-card-header">
+                                    <div class="sc-standard-card-icon">${std.iconSVG || ''}</div>
+                                    <h6 class="sc-standard-card-title">${std.name}</h6>
+                                </div>
+                                <p class="sc-standard-card-category">${std.category}</p>
+                                <p class="sc-standard-card-description">${std.description}</p>
+                                <p class="sc-standard-card-relevance"><strong>Relevancia para DI:</strong> ${std.relevance_di}</p>
+                                ${std.website ? `<a href="${std.website}" target="_blank" class="sc-standard-card-link">Más información &rarr;</a>` : ''}
+                            `;
+                            scStandardsContainer.appendChild(card);
+                        });
+                    }
+                }
+
+                scFiltersContainer.querySelectorAll('.sc-filter-button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        currentSCFilter = this.dataset.filterCategory;
+                        scFiltersContainer.querySelectorAll('.sc-filter-button').forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        renderSupplyChainStandards(currentSCFilter);
+                    });
+                });
+                
+                // Activar filtro "Todos" por defecto y renderizar
+                const defaultSCFilterButton = scFiltersContainer.querySelector('.sc-filter-button[data-filter-category="all"]');
+                if (defaultSCFilterButton) defaultSCFilterButton.classList.add('active');
+                renderSupplyChainStandards('all');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', initializePageScripts);
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            initializePageScripts(); 
+        }
+    </script>
+
+</body>
+</html>
