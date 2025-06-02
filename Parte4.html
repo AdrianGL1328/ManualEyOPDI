@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 1rem; 
+            padding-bottom: 2rem;
+        }
+        .content-section h2 { /* Title for "Parte X" */
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            color: #1F2937; 
+            border-bottom: 3px solid #2563EB; 
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 { /* Title for "Módulo X" */
+            font-size: 1.875rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1E40AF; 
+        }
+        .content-section h4 { /* Title for "Apartado X.X" */
+            font-size: 1.5rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1D4ED8; 
+        }
+        .content-section h5 { /* Sub-sub-titles */
+            font-size: 1.25rem; 
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1F2937; 
+        }
+        .content-section h6 { /* Sub-sub-sub-titles / Card titles */
+            font-size: 1.125rem; 
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151; 
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #4B5563; 
+            margin-bottom: 1rem;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 1.5rem;
+        }
+        .content-section ul { list-style-type: disc; }
+        .content-section ol { list-style-type: decimal; }
+        
+        .content-section strong {
+            color: #111827; 
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #F0F9FF; 
+            border-left: 4px solid #0EA5E9; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .example-box {
+            background-color: #EFF6FF; 
+            border: 1px solid #BFDBFE; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .example-box strong {
+            color: #1E40AF; 
+        }
+
+        /* Styles for interactive map */
+        .filter-button {
+            @apply px-4 py-2 mr-2 mb-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors;
+        }
+        .filter-button.active {
+            @apply bg-blue-800 ring-4 ring-blue-400;
+        }
+        .org-card {
+            @apply bg-white border border-gray-200 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col justify-between;
+        }
+        .org-logo {
+            @apply w-24 h-12 object-contain mx-auto mb-2 flex-shrink-0;
+        }
+        .org-name {
+            @apply text-center font-semibold text-blue-700 text-sm flex-grow;
+        }
+        .org-acronym {
+            @apply text-center text-xs text-gray-500;
+        }
+
+        /* Modal styles */
+        .modal {
+            @apply fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex justify-center items-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto;
+        }
+        .modal-close-button {
+            @apply absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold leading-none p-1;
+        }
+
+        /* Styles for certification guide & ISO 9001 Guide */
+        .step-card, .iso-step-card {
+            @apply bg-white rounded-xl shadow-lg p-6 mb-6 flex items-start space-x-4 hover:shadow-xl transition-shadow;
+        }
+        .step-icon-container, .iso-step-icon-container {
+            @apply flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold;
+        }
+        .iso-step-icon-container { @apply bg-indigo-600; } 
+
+        .step-content h5, .iso-step-content h5 {
+            @apply text-xl font-semibold text-blue-700 mb-1 mt-0;
+        }
+        .iso-step-content h5 { @apply text-indigo-700; }
+        .iso-phase-title {
+             @apply text-2xl font-bold text-indigo-800 mb-4 mt-8 border-b-2 border-indigo-300 pb-2;
+        }
+
+        .step-content p, .iso-step-content p {
+            @apply text-sm text-gray-600;
+        }
+         .step-content ul, .iso-step-content ul {
+            @apply text-sm text-gray-600 list-disc pl-5 mt-2;
+        }
+
+        /* Case study (DFMA) styles */
+        .case-study-section {
+            @apply mt-6 mb-4;
+        }
+        .case-study-section h6 { 
+            @apply text-lg font-semibold text-blue-700 mb-2 mt-4;
+        }
+        .case-study-image-placeholder {
+            @apply w-full h-48 md:h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-lg md:text-xl my-4; /* Adjusted height */
+        }
+        .results-table {
+            @apply min-w-full divide-y divide-gray-200 mt-4 mb-4;
+        }
+        .results-table th {
+            @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .results-table td {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+         .comparison-grid {
+            @apply grid md:grid-cols-2 gap-6 my-4;
+        }
+        .comparison-item {
+            @apply bg-gray-50 p-4 rounded-lg border border-gray-200;
+        }
+        .comparison-item h6 {
+             @apply text-md font-semibold text-gray-700 mb-2 mt-0;
+        }
+
+        /* Tutorial Section Styles */
+        .tutorial-section {
+            @apply mt-8 mb-12;
+        }
+        .tutorial-subsection {
+            @apply mt-6 mb-8 p-6 bg-sky-50 rounded-lg shadow;
+        }
+        .tutorial-subsection h5 { 
+            @apply text-xl font-semibold text-sky-700 mb-3;
+        }
+         .tutorial-subsection h6 { 
+            @apply text-lg font-semibold text-sky-600 mb-2 mt-4;
+        }
+        .tool-card {
+            @apply bg-white p-4 rounded-lg shadow border border-sky-200 mb-4;
+        }
+        .tool-card h6 {
+             @apply text-md font-semibold text-sky-700 mb-1 mt-0;
+        }
+        .tool-card p, .tool-card ul {
+            @apply text-sm;
+        }
+        .clickable-definition {
+            @apply cursor-pointer text-blue-600 hover:text-blue-800 underline decoration-dotted;
+        }
+        .definition-content {
+            @apply hidden mt-2 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm;
+        }
+        .icon-placeholder-tutorial {
+            @apply w-10 h-10 bg-sky-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-3 flex-shrink-0;
+        }
+        .flex-title {
+            @apply flex items-center mb-3;
+        }
+
+        /* Value Analysis Calculator Styles */
+        .calculator-section {
+            @apply mt-8 mb-12 p-6 bg-green-50 rounded-lg shadow;
+        }
+        .calculator-section h5 {
+            @apply text-xl font-semibold text-green-700 mb-4;
+        }
+        .calculator-input-group {
+            @apply grid grid-cols-1 md:grid-cols-5 gap-4 items-end mb-3 p-3 border border-green-200 rounded-md bg-white;
+        }
+        .calculator-input-group label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .calculator-input-group input[type="text"],
+        .calculator-input-group input[type="number"] {
+            @apply mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm;
+        }
+        .remove-row-btn {
+            @apply bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-3 rounded-md transition-colors h-10;
+        }
+        .add-row-btn {
+            @apply bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors;
+        }
+        .value-index-low { @apply text-red-600 font-bold; }
+        .value-index-medium { @apply text-yellow-600 font-bold; }
+        .value-index-high { @apply text-green-600 font-bold; }
+        #valueAnalysisTable th, #valueAnalysisTable td {
+            @apply px-4 py-2 text-sm;
+        }
+
+        /* ISO 9001 Guide Section */
+        .iso-guide-section {
+             @apply mt-8 mb-12 p-6 bg-indigo-50 rounded-lg shadow;
+        }
+
+        /* Innovation Case Study Section */
+        .innovation-case-section {
+            @apply mt-8 mb-12 p-6 bg-purple-50 rounded-lg shadow;
+        }
+        .innovation-case-section h5 {
+             @apply text-xl font-semibold text-purple-700 mb-3;
+        }
+        .innovation-case-card {
+            @apply bg-white p-6 rounded-lg shadow-md border border-purple-200 mb-6;
+        }
+        .innovation-case-card h6 {
+            @apply text-lg font-semibold text-purple-600 mb-2 mt-0;
+        }
+        .innovation-case-card ul {
+            @apply list-disc pl-5 text-sm text-gray-600 space-y-1;
+        }
+        .comparison-table-innovation th {
+            @apply px-4 py-3 bg-purple-100 text-left text-xs font-medium text-purple-700 uppercase tracking-wider;
+        }
+        .comparison-table-innovation td {
+             @apply px-4 py-3 text-sm text-gray-700 border-t border-purple-200;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-blue-700">Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <section id="parte1" class="mb-12">
+             <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 1: Fundamentos y Estándares</h2>
+            <article id="modulo1" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                 </article>
+        </section>
+
+        <section id="parte2" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 2: Optimización y Calidad</h2>
+
+            <article id="modulo4_5" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 4/5: Optimización de Procesos y Gestión de Calidad</h3>
+                
+                <div id="apartado2_1" class="tutorial-section">
+                    </div>
+
+                <div id="apartado2_2" class="calculator-section">
+                    </div>
+                
+                <div id="apartado2_3" class="iso-guide-section">
+                    </div>
+
+                <div id="apartado2_4" class="innovation-case-section">
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">2.4 Análisis Comparativo: Innovación Impulsada por la Estandarización</h4>
+                    <p class="mb-4 text-sm text-gray-600">Contrario a la creencia popular de que los estándares limitan la creatividad, muchos han sido catalizadores cruciales para la innovación tecnológica y de productos. Al establecer una base común, los estándares permiten a los innovadores construir sobre plataformas estables, asegurar la interoperabilidad y alcanzar mercados más amplios. A continuación, analizamos dos casos emblemáticos.</p>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="innovation-case-card">
+                            <div class="flex items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-purple-600 mr-3">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L10.5 15l3-2.25M10.5 6.75H13.5" />
+                                </svg>
+                                <h6>Caso 1: USB (Universal Serial Bus) - La Conexión Universal</h6>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3"><strong>Contexto Previo:</strong> Antes del USB, conectar periféricos a una computadora era un caos. Puertos serie, paralelo, PS/2, cada uno con conectores y configuraciones diferentes, velocidades limitadas y, a menudo, la necesidad de reiniciar el PC.</p>
+                            <p class="text-sm text-gray-600 mb-3"><strong>El Estándar USB:</strong> Introducido a mediados de los 90, el USB buscaba simplificar esta complejidad con:</p>
+                            <ul>
+                                <li>Un conector estándar y fácil de usar.</li>
+                                <li>Capacidad "Plug and Play" (conectar y usar) y "Hot Swapping" (conectar/desconectar en caliente).</li>
+                                <li>Alimentación eléctrica para dispositivos de bajo consumo.</li>
+                                <li>Velocidades de transferencia progresivamente mayores con cada nueva versión (USB 1.0, 2.0, 3.x, USB4).</li>
+                            </ul>
+                            <p class="text-sm text-gray-600 mb-3"><strong>Innovación Habilitada:</strong></p>
+                            <ul>
+                                <li><strong>Proliferación masiva de periféricos:</strong> Desde memorias flash (pendrives), ratones, teclados, impresoras, cámaras web, discos duros externos, hasta cargadores de móviles y un sinfín de gadgets.</li>
+                                <li><strong>Diseño de productos más compactos:</strong> Al no necesitar múltiples puertos grandes y específicos.</li>
+                                <li><strong>Nuevas categorías de productos:</strong> Como los hubs USB, que expanden la conectividad.</li>
+                                <li><strong>Facilidad de uso para el consumidor:</strong> Redujo drásticamente la curva de aprendizaje y las frustraciones.</li>
+                            </ul>
+                             <div class="case-study-image-placeholder mt-4 text-sm">
+                                [Imagen: Variedad de dispositivos USB y conectores]
+                            </div>
+                        </div>
+
+                        <div class="innovation-case-card">
+                             <div class="flex items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-purple-600 mr-3">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.136 12.006a8.25 8.25 0 0113.728 0M2.002 8.992a11.25 11.25 0 0119.996 0M12 17.952v.008" />
+                                </svg>
+                                <h6>Caso 2: Wi-Fi (IEEE 802.11) - La Libertad Inalámbrica</h6>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3"><strong>Contexto Previo:</strong> Las redes de área local (LAN) dependían principalmente de cables Ethernet. La movilidad era limitada y la instalación de redes, costosa y compleja en muchos entornos.</p>
+                            <p class="text-sm text-gray-600 mb-3"><strong>El Estándar IEEE 802.11 (Wi-Fi):</strong> Desarrollado por el IEEE y promovido por la Wi-Fi Alliance, este conjunto de estándares definió cómo los dispositivos podían comunicarse de forma inalámbrica. Características clave:</p>
+                            <ul>
+                                <li>Interoperabilidad entre dispositivos de diferentes fabricantes.</li>
+                                <li>Especificaciones para diferentes bandas de frecuencia y velocidades (802.11a/b/g/n/ac/ax).</li>
+                                <li>Protocolos de seguridad (WEP, WPA, WPA2, WPA3).</li>
+                            </ul>
+                            <p class="text-sm text-gray-600 mb-3"><strong>Innovación Habilitada:</strong></p>
+                            <ul>
+                                <li><strong>Revolución de la computación móvil:</strong> Laptops, tablets y smartphones con conectividad ubicua.</li>
+                                <li><strong>Nuevos modelos de negocio:</strong> Hotspots públicos, servicios basados en la localización.</li>
+                                <li><strong>Hogares y oficinas conectadas:</strong> Facilidad para crear redes sin cables.</li>
+                                <li><strong>Internet de las Cosas (IoT):</strong> Una base para que millones de dispositivos inteligentes se conecten a internet.</li>
+                                <li><strong>Innovación en diseño de productos:</strong> Dispositivos más pequeños y portátiles al no depender de puertos Ethernet.</li>
+                            </ul>
+                            <div class="case-study-image-placeholder mt-4 text-sm">
+                                [Imagen: Símbolo de Wi-Fi y dispositivos conectados inalámbricamente]
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h5 class="text-xl font-semibold text-purple-700 mb-4">Análisis Comparativo y Lecciones para Diseñadores</h5>
+                        <p class="mb-4 text-sm text-gray-600">Ambos estándares, USB y Wi-Fi, aunque diferentes en su aplicación (conexión física vs. inalámbrica), comparten elementos comunes en cómo fomentaron la innovación:</p>
+                        
+                        <div class="overflow-x-auto bg-white rounded-lg shadow">
+                            <table class="min-w-full">
+                                <thead class="bg-purple-50">
+                                    <tr>
+                                        <th class="comparison-table-innovation th">Aspecto</th>
+                                        <th class="comparison-table-innovation th">USB</th>
+                                        <th class="comparison-table-innovation th">Wi-Fi (IEEE 802.11)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="comparison-table-innovation"><strong>Problema Resuelto</strong></td>
+                                        <td class="comparison-table-innovation">Caos de puertos y dificultad de conexión de periféricos.</td>
+                                        <td class="comparison-table-innovation">Dependencia de cables para redes locales, limitando movilidad.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comparison-table-innovation"><strong>Clave del Estándar</strong></td>
+                                        <td class="comparison-table-innovation">Interfaz física y protocolo de comunicación unificados, simplicidad.</td>
+                                        <td class="comparison-table-innovation">Protocolos de comunicación inalámbrica interoperables.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comparison-table-innovation"><strong>Tipo de Innovación Fomentada</strong></td>
+                                        <td class="comparison-table-innovation">Explosión de periféricos, miniaturización, facilidad de uso.</td>
+                                        <td class="comparison-table-innovation">Movilidad, nuevos servicios, IoT, conectividad ubicua.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comparison-table-innovation"><strong>Impacto en el Diseño de Productos</strong></td>
+                                        <td class="comparison-table-innovation">Diseños más limpios con menos puertos, productos alimentados por bus.</td>
+                                        <td class="comparison-table-innovation">Productos inherentemente portátiles y conectados, interfaces de usuario para configuración de red.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class="comparison-table-innovation"><strong>Rol del Ecosistema</strong></td>
+                                        <td class="comparison-table-innovation">Fabricantes de PCs, periféricos y chipsets adoptaron el estándar.</td>
+                                        <td class="comparison-table-innovation">Fabricantes de routers, dispositivos móviles, chipsets y proveedores de servicios. Wi-Fi Alliance crucial para la certificación.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h6 class="text-lg font-semibold text-purple-600 mt-6 mb-2">Lecciones Clave para Diseñadores Industriales:</h6>
+                        <ul class="list-disc pl-5 text-sm text-gray-600 space-y-2">
+                            <li><strong>Los estándares crean plataformas:</strong> Un estándar robusto y bien adoptado reduce la incertidumbre y permite a los diseñadores y empresas enfocarse en la innovación de valor agregado sobre esa plataforma, en lugar de reinventar la rueda.</li>
+                            <li><strong>La interoperabilidad es un motor de crecimiento:</strong> Cuando los productos "simplemente funcionan" juntos, el mercado se expande y surgen nuevas oportunidades. Los diseñadores deben considerar cómo sus productos interactúan con otros dentro de ecosistemas estandarizados.</li>
+                            <li><strong>La simplicidad y la experiencia del usuario importan:</strong> Tanto USB como Wi-Fi triunfaron en parte porque simplificaron tareas complejas para el usuario final. Los diseñadores deben abogar por estándares que mejoren la UX.</li>
+                            <li><strong>Participar en la estandarización (cuando sea posible):</strong> Aunque más aplicable a empresas grandes, influir en el desarrollo de estándares puede ser una ventaja estratégica. Para PYMEs, entender y adoptar tempranamente estándares emergentes es clave.</li>
+                            <li><strong>Diseñar pensando en el ecosistema:</strong> Considerar cómo un nuevo producto se integrará con los estándares existentes (ej. conectividad, formatos de datos, protocolos de carga) puede ser crucial para su éxito.</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box mt-8 bg-teal-50 border-teal-400">
+                        <p class="text-sm text-teal-700"><strong>Reflexión para Diseñadores:</strong> Al iniciar un nuevo proyecto, pregúntate: ¿Qué estándares existentes puedo aprovechar para mejorar mi diseño, asegurar la compatibilidad o reducir costos? ¿Hay algún estándar emergente que podría impactar el futuro de este producto?</p>
+                    </div>
+                </div>
+
+            </article>
+            </section>
+
+        </main>
+
+    <div id="organizationModal" class="modal hidden">
+        </div>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Manual Multimedia de Estandarización y Optimización de Procesos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Script para el Mapa Interactivo de Organismos (Apartado 1.2) ---
+        const organizations = [ /* ... data ... */ ]; // Data colapsada por brevedad
+        
+        // --- Script para el Tutorial Interactivo (Apartado 2.1) ---
+        
+        // --- Script para Calculadora de Análisis de Valor (Apartado 2.2) ---
+        
+        // --- Re-ejecutar scripts que dependen de elementos ahora presentes ---
+        function initializePageScripts() {
+            // Mapa Interactivo (1.2)
+            const orgContainer = document.getElementById('organizationsContainer');
+            if (orgContainer) {
+                const orgModal = document.getElementById('organizationModal');
+                const orgCloseModalBtn = orgModal ? orgModal.querySelector('#closeModalButton') : null;
+                const orgFilterBtns = document.querySelectorAll('.filter-button');
+                const orgNoResultsMsg = document.getElementById('noResultsMessage');
+                let orgCurrentFilters = { region: 'all', type: 'all' };
+                
+                function orgRender(filteredOrgs) { /* ... */ } // Definición completa colapsada
+                function orgShowDetails(org) { /* ... */ } // Definición completa colapsada
+                
+                if(orgCloseModalBtn && orgModal) { orgCloseModalBtn.addEventListener('click', () => orgModal.classList.add('hidden')); }
+                if(orgModal) { orgModal.addEventListener('click', (event) => { if (event.target === orgModal) orgModal.classList.add('hidden'); }); }
+               
+                function orgApplyFilters() {
+                    const currentOrganizationsData = typeof organizations !== 'undefined' ? organizations : [];
+                    const filtered = currentOrganizationsData.filter(org => (orgCurrentFilters.region === 'all' || org.region === orgCurrentFilters.region) && (orgCurrentFilters.type === 'all' || org.type === orgCurrentFilters.type));
+                    orgRender(filtered); // Asegúrate que orgRender esté definida y accesible
+                }
+
+                orgFilterBtns.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const filterType = button.dataset.filterType;
+                        const filterValue = button.dataset.filterValue;
+                        orgCurrentFilters[filterType] = filterValue;
+                        document.querySelectorAll(`.filter-button[data-filter-type="${filterType}"]`).forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        orgApplyFilters();
+                    });
+                });
+
+                const orgInitialRegionFilter = document.querySelector('.filter-button[data-filter-type="region"][data-filter-value="all"]');
+                const orgInitialTypeFilter = document.querySelector('.filter-button[data-filter-type="type"][data-filter-value="all"]');
+                if(orgInitialRegionFilter) orgInitialRegionFilter.classList.add('active');
+                if(orgInitialTypeFilter) orgInitialTypeFilter.classList.add('active');
+                
+                // Redefinir orgRender y orgShowDetails aquí si no son globales y se necesitan para la inicialización
+                function orgRender(filteredOrgs) {
+                    if(!orgContainer || !orgNoResultsMsg) return;
+                    orgContainer.innerHTML = ''; 
+                    if (filteredOrgs.length === 0) {
+                        orgNoResultsMsg.classList.remove('hidden');
+                    } else {
+                        orgNoResultsMsg.classList.add('hidden');
+                        filteredOrgs.forEach(org => {
+                            const card = document.createElement('div');
+                            card.className = 'org-card';
+                            card.innerHTML = `<img src="${org.logo}" alt="Logo de ${org.acronym}" class="org-logo"><h5 class="org-name">${org.name}</h5><p class="org-acronym">${org.acronym}</p>`;
+                            card.addEventListener('click', () => orgShowDetails(org)); // orgShowDetails debe estar definida
+                            orgContainer.appendChild(card);
+                        });
+                    }
+                }
+
+                function orgShowDetails(org) {
+                    if(orgModal){
+                        orgModal.querySelector('#modalOrgLogo').src = org.logo;
+                        orgModal.querySelector('#modalOrgLogo').alt = `Logo de ${org.acronym}`;
+                        orgModal.querySelector('#modalOrgName').textContent = org.name;
+                        orgModal.querySelector('#modalOrgAcronym').textContent = org.acronym;
+                        orgModal.querySelector('#modalOrgType').textContent = `${org.type}`;
+                        orgModal.querySelector('#modalOrgDescription').textContent = org.description;
+                        orgModal.querySelector('#modalOrgRegion').textContent = org.region;
+                        orgModal.querySelector('#modalOrgCountry').textContent = org.country || 'N/A';
+                        orgModal.querySelector('#modalOrgWebsite').href = org.website;
+                        orgModal.classList.remove('hidden');
+                        const modalContent = orgModal.querySelector('.modal-content');
+                        if (modalContent) modalContent.scrollTop = 0; 
+                    }
+                }
+                if(typeof organizations !== 'undefined') orgRender(organizations);
+            }
+
+            // Tutorial Interactivo (2.1)
+            const newClickableDefinitions = document.querySelectorAll('.clickable-definition');
+            newClickableDefinitions.forEach(definition => {
+                if (!definition.dataset.listenerAttached) { // Evitar duplicar listeners
+                    definition.addEventListener('click', () => {
+                        const targetId = definition.dataset.target;
+                        const contentElement = document.getElementById(targetId);
+                        if (contentElement) {
+                            const isHidden = contentElement.classList.toggle('hidden');
+                            definition.setAttribute('aria-expanded', !isHidden);
+                            contentElement.setAttribute('aria-hidden', isHidden);
+                        }
+                    });
+                    if (!definition.getAttribute('role')) {
+                        definition.setAttribute('role', 'button');
+                        definition.setAttribute('aria-expanded', 'false');
+                        const targetId = definition.dataset.target;
+                        const contentElement = document.getElementById(targetId);
+                        if (contentElement) {
+                            contentElement.setAttribute('aria-hidden', 'true');
+                            definition.setAttribute('aria-controls', targetId);
+                        }
+                    }
+                    definition.dataset.listenerAttached = 'true';
+                }
+            });
+
+            // Calculadora de Análisis de Valor (2.2)
+            const calcAddComponentRowButton = document.getElementById('addComponentRow');
+            if (calcAddComponentRowButton) {
+                const calcComponentRowsContainer = document.getElementById('componentRowsContainer');
+                const calcValueAnalysisResultsBody = document.getElementById('valueAnalysisResultsBody');
+                const calcNoDataRow = document.getElementById('noDataRow');
+                let calcComponentIdCounter = calcComponentRowsContainer.children.length; // Start counter based on existing rows if any
+
+                function calcCreateRow() { /* ... */ } // Definición completa colapsada
+                function calcUpdateTable() { /* ... */ } // Definición completa colapsada
+
+                // Redefinir funciones de la calculadora aquí
+                function calcCreateRow() {
+                    calcComponentIdCounter++;
+                    const rowId = `componentRow-${calcComponentIdCounter}`;
+                    const newRow = document.createElement('div');
+                    newRow.classList.add('calculator-input-group');
+                    newRow.id = rowId;
+                    newRow.innerHTML = `
+                        <div><label for="componentName-${calcComponentIdCounter}" class="font-medium">Nombre Componente/Función</label><input type="text" id="componentName-${calcComponentIdCounter}" name="componentName" class="component-input" placeholder="Ej: Carcasa principal"></div>
+                        <div><label for="componentCost-${calcComponentIdCounter}" class="font-medium">Costo Actual ($)</label><input type="number" id="componentCost-${calcComponentIdCounter}" name="componentCost" class="component-input" placeholder="0.00" step="0.01" min="0"></div>
+                        <div><label for="componentImportance-${calcComponentIdCounter}" class="font-medium">Importancia (1-10)</label><input type="number" id="componentImportance-${calcComponentIdCounter}" name="componentImportance" class="component-input" placeholder="7" min="1" max="10" step="1"></div>
+                        <div class="col-span-1 md:col-span-1 flex items-end"><span id="valueIndexDisplay-${calcComponentIdCounter}" class="text-sm text-gray-700 self-center py-2 mr-2 w-20 text-center"></span></div>
+                        <div class="col-span-1 md:col-span-1 flex items-end"><button type="button" class="remove-row-btn" data-row-id="${rowId}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 inline-block"><path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 005.375 15H4.75a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434a.75.75 0 00-.524-1.005A18.72 18.72 0 0014 4.193v-.443A2.75 2.75 0 0011.25 1h-2.5zM7.5 3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 009.375 15H8.75a.75.75 0 000 1.5h2.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0012.5 4.193v-.443A1.25 1.25 0 0011.25 2.5h-2.5A1.25 1.25 0 007.5 3.75v0z" clip-rule="evenodd" /><path d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 005.375 15H4.75a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0014 4.193v-.443A2.75 2.75 0 0011.25 1h-2.5zM7.5 3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 009.375 15H8.75a.75.75 0 000 1.5h2.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0012.5 4.193v-.443A1.25 1.25 0 0011.25 2.5h-2.5A1.25 1.25 0 007.5 3.75z" /></svg>Eliminar</button></div>`;
+                    calcComponentRowsContainer.appendChild(newRow);
+                    newRow.querySelector('.remove-row-btn').addEventListener('click', function() {
+                        document.getElementById(this.dataset.rowId).remove();
+                        calcUpdateTable();
+                    });
+                    newRow.querySelectorAll('.component-input').forEach(input => {
+                        input.addEventListener('input', calcUpdateTable);
+                    });
+                    calcUpdateTable();
+                }
+
+                function calcUpdateTable() {
+                    if(!calcValueAnalysisResultsBody || !calcComponentRowsContainer || !calcNoDataRow) return;
+                    calcValueAnalysisResultsBody.innerHTML = '';
+                    const rows = calcComponentRowsContainer.querySelectorAll('.calculator-input-group');
+                    let hasData = false;
+
+                    rows.forEach(row => {
+                        const nameInput = row.querySelector('input[name="componentName"]');
+                        const costInput = row.querySelector('input[name="componentCost"]');
+                        const importanceInput = row.querySelector('input[name="componentImportance"]');
+                        const valueIndexDisplay = row.querySelector(`span[id^="valueIndexDisplay-"]`);
+                        const name = nameInput.value.trim();
+                        const cost = parseFloat(costInput.value);
+                        const importance = parseInt(importanceInput.value);
+
+                        if (name && !isNaN(cost) && cost > 0 && !isNaN(importance) && importance >= 1 && importance <= 10) {
+                            hasData = true;
+                            const valueIndex = (importance / cost);
+                            const tr = document.createElement('tr');
+                            let valueIndexClass = 'value-index-medium';
+                            let observationText = 'Valor Aceptable.';
+                            if (valueIndex < 0.3) { valueIndexClass = 'value-index-low'; observationText = 'Costo alto para su importancia. Considerar optimización.';}
+                            else if (valueIndex > 0.7) { valueIndexClass = 'value-index-high'; observationText = 'Buen valor. Mantener o buscar eficiencias menores.';}
+                            if(valueIndexDisplay) valueIndexDisplay.textContent = `Índice: ${valueIndex.toFixed(2)}`;
+                            tr.innerHTML = `<td class="border-t border-gray-200">${name}</td><td class="border-t border-gray-200">$${cost.toFixed(2)}</td><td class="border-t border-gray-200">${importance}</td><td class="border-t border-gray-200 ${valueIndexClass}">${valueIndex.toFixed(2)}</td><td class="border-t border-gray-200 text-xs">${observationText}</td>`;
+                            calcValueAnalysisResultsBody.appendChild(tr);
+                        } else {
+                             if(valueIndexDisplay) valueIndexDisplay.textContent = ``;
+                        }
+                    });
+                    if (!hasData) { if(calcNoDataRow) {calcValueAnalysisResultsBody.appendChild(calcNoDataRow); calcNoDataRow.classList.remove('hidden');}}
+                    else { if(calcNoDataRow) calcNoDataRow.classList.add('hidden');}
+                }
+                
+                if (!calcAddComponentRowButton.dataset.listenerAttached) {
+                    calcAddComponentRowButton.addEventListener('click', calcCreateRow);
+                    if(calcComponentRowsContainer.children.length === 0) calcCreateRow();
+                    calcAddComponentRowButton.dataset.listenerAttached = 'true';
+                }
+            }
+        }
+
+        // Ejecutar la inicialización de scripts cuando el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', initializePageScripts);
+        // Si la página ya está cargada (para casos de actualizaciones parciales), ejecutar inmediatamente
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            initializePageScripts();
+        }
+
+
+    </script>
+
+</body>
+</html>
