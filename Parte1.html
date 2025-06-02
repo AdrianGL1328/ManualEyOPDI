@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 1rem; 
+            padding-bottom: 2rem;
+        }
+        .content-section h2 { 
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            color: #1F2937; 
+            border-bottom: 3px solid #2563EB; 
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 { 
+            font-size: 1.875rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1E40AF; 
+        }
+        .content-section h4 { 
+            font-size: 1.5rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1D4ED8; 
+        }
+        .content-section h5 { 
+            font-size: 1.25rem; 
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1F2937; 
+        }
+        .content-section h6 { 
+            font-size: 1.125rem; 
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151; 
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #4B5563; 
+            margin-bottom: 1rem;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 1.5rem;
+        }
+        .content-section ul { list-style-type: disc; }
+        .content-section ol { list-style-type: decimal; }
+        
+        .content-section strong {
+            color: #111827; 
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #F0F9FF; 
+            border-left: 4px solid #0EA5E9; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .example-box {
+            background-color: #EFF6FF; 
+            border: 1px solid #BFDBFE; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .example-box strong {
+            color: #1E40AF; 
+        }
+
+        /* Styles for interactive map */
+        .filter-button {
+            @apply px-4 py-2 mr-2 mb-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors;
+        }
+        .filter-button.active {
+            @apply bg-blue-800 ring-4 ring-blue-400;
+        }
+        .org-card {
+            @apply bg-white border border-gray-200 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col justify-between;
+        }
+        .org-logo {
+            @apply w-24 h-12 object-contain mx-auto mb-2 flex-shrink-0;
+        }
+        .org-name {
+            @apply text-center font-semibold text-blue-700 text-sm flex-grow;
+        }
+        .org-acronym {
+            @apply text-center text-xs text-gray-500;
+        }
+
+        /* Modal styles */
+        .modal {
+            @apply fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex justify-center items-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto;
+        }
+        .modal-close-button {
+            @apply absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold leading-none p-1;
+        }
+
+        /* Styles for certification guide */
+        .step-card {
+            @apply bg-white rounded-xl shadow-lg p-6 mb-6 flex items-start space-x-4 hover:shadow-xl transition-shadow;
+        }
+        .step-icon-container {
+            @apply flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold;
+        }
+        .step-content h5 {
+            @apply text-xl font-semibold text-blue-700 mb-1 mt-0;
+        }
+        .step-content p {
+            @apply text-sm text-gray-600;
+        }
+         .step-content ul {
+            @apply text-sm text-gray-600 list-disc pl-5 mt-2;
+        }
+
+        /* Case study styles */
+        .case-study-section {
+            @apply mt-6 mb-4;
+        }
+        .case-study-section h6 { /* Subtitles within the case study */
+            @apply text-lg font-semibold text-blue-700 mb-2 mt-4;
+        }
+        .case-study-image-placeholder {
+            @apply w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xl my-4;
+        }
+        .results-table {
+            @apply min-w-full divide-y divide-gray-200 mt-4 mb-4;
+        }
+        .results-table th {
+            @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .results-table td {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+         .comparison-grid {
+            @apply grid md:grid-cols-2 gap-6 my-4;
+        }
+        .comparison-item {
+            @apply bg-gray-50 p-4 rounded-lg border border-gray-200;
+        }
+        .comparison-item h6 {
+             @apply text-md font-semibold text-gray-700 mb-2 mt-0;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-blue-700">Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <section id="parte1" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 1: Fundamentos y Estándares</h2>
+
+            <article id="modulo1" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 1: Fundamentos de Estandarización y Optimización</h3>
+                
+                <div id="apartado1_1" class="mb-10">
+                    <h4 class="text-xl font-semibold text-blue-600 mt-6 mb-4">1.1 Fundamentos Teóricos de Estandarización y Tipos de Estándares</h4>
+                    <p>La <strong>estandarización</strong> es el proceso de desarrollar y aplicar reglas, condiciones, directrices o características uniformes a los productos, procesos o servicios. Su objetivo es asegurar que los materiales, productos, procesos y servicios se ajusten a los propósitos para los que fueron diseñados, promoviendo la eficiencia, la seguridad, la calidad y la interoperabilidad.</p>
+                    <div class="highlight-box">
+                        <p><strong>Idea Clave:</strong> La estandarización no busca limitar la creatividad, sino proporcionar una base sólida sobre la cual la innovación puede florecer de manera más efectiva y segura.</p>
+                    </div>
+                    <h5 class="text-lg font-semibold text-gray-700 mt-6 mb-2">Impacto de la Estandarización</h5>
+                    <p>El impacto de la estandarización es multifacético y se extiende a diversas áreas:</p>
+                    <ul class="space-y-1">
+                        <li><strong>Impacto Económico:</strong>
+                            <ul class="list-disc pl-6 mt-1 space-y-1">
+                                <li><strong>Reducción de costos:</strong> Simplifica la producción, reduce la variedad de componentes, optimiza inventarios y facilita las economías de escala.</li>
+                                <li><strong>Facilitación del comercio:</strong> Los estándares comunes eliminan barreras técnicas al comercio internacional, permitiendo que los productos accedan a más mercados.</li>
+                                <li><strong>Aumento de la competitividad:</strong> Las empresas que adoptan estándares pueden mejorar su eficiencia y la calidad de sus productos, volviéndose más competitivas.</li>
+                                <li><strong>Fomento de la innovación:</strong> Al establecer plataformas comunes, los estándares permiten que las empresas se enfoquen en innovar en niveles superiores.</li>
+                            </ul>
+                        </li>
+                        <li class="mt-2"><strong>Impacto Social:</strong>
+                            <ul class="list-disc pl-6 mt-1 space-y-1">
+                                <li><strong>Seguridad del consumidor:</strong> Muchos estándares se centran en garantizar que los productos sean seguros para su uso (ej. juguetes, equipos eléctricos).</li>
+                                <li><strong>Protección del medio ambiente:</strong> Estándares ambientales ayudan a reducir el impacto de productos y procesos.</li>
+                                <li><strong>Interoperabilidad y compatibilidad:</strong> Permiten que productos de diferentes fabricantes funcionen juntos (ej. cargadores USB, Wi-Fi).</li>
+                                <li><strong>Mejora de la calidad de vida:</strong> Facilitan el acceso a productos y servicios más confiables y eficientes.</li>
+                                <li><strong>Accesibilidad:</strong> Estándares para el diseño accesible aseguran que los productos puedan ser utilizados por personas con diversas capacidades.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="example-box mt-4">
+                        <p><strong>Ejemplo para Diseñadores Industriales:</strong> Piensa en el sistema de roscas para tornillos y tuercas. La estandarización de estos elementos (como los estándares ISO métricos) permite a los diseñadores seleccionar componentes de fijación de múltiples proveedores con la certeza de que encajarán, simplificando enormemente el diseño, la fabricación y el mantenimiento de innumerables productos.</p>
+                    </div>
+                    <h5 class="text-lg font-semibold text-gray-700 mt-8 mb-2">Tipos de Estándares</h5>
+                    <p>Los estándares pueden clasificarse de diversas maneras. Comprender estas clasificaciones ayuda a los diseñadores industriales a identificar y aplicar los estándares relevantes para su trabajo:</p>
+                    <h6 class="text-md font-semibold text-gray-600 mt-4 mb-1">1. Según su Alcance Geográfico:</h6>
+                    <ul class="space-y-1">
+                        <li><strong>Estándares Internacionales:</strong> Desarrollados por organismos internacionales y destinados a ser utilizados en todo el mundo. Facilitan el comercio global y la cooperación tecnológica.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo: ISO (Organización Internacional de Estandarización), IEC (Comisión Electrotécnica Internacional). Un diseñador de productos electrónicos podría usar estándares IEC para la seguridad eléctrica.</li></ul>
+                        </li>
+                        <li><strong>Estándares Regionales:</strong> Desarrollados para ser utilizados en una región geográfica específica.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo: EN (Estándares Europeos) desarrollados por CEN/CENELEC. Un producto que se comercialice en la Unión Europea debe cumplir con los estándares EN relevantes para obtener el marcado CE.</li></ul>
+                        </li>
+                        <li><strong>Estándares Nacionales:</strong> Desarrollados para su uso dentro de un país específico.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo: NOM (Normas Oficiales Mexicanas) en México, ANSI (Instituto Nacional Estadounidense de Estándares) en EE.UU., DIN (Instituto Alemán de Normalización) en Alemania. Un diseñador en México debe conocer las NOM aplicables a sus productos.</li></ul>
+                        </li>
+                         <li><strong>Estándares de Asociación o Industria:</strong> Desarrollados por asociaciones profesionales o grupos industriales para sus sectores específicos.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo: Estándares de la SAE (Society of Automotive Engineers) para la industria automotriz.</li></ul>
+                        </li>
+                    </ul>
+                    <h6 class="text-md font-semibold text-gray-600 mt-4 mb-1">2. Según su Naturaleza o Contenido:</h6>
+                    <ul class="space-y-1">
+                        <li><strong>Estándares de Terminología:</strong> Definen términos y símbolos para asegurar una comunicación clara y unívoca.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo para DI: Estándares que definen los símbolos utilizados en los planos técnicos (ISO 128).</li></ul>
+                        </li>
+                        <li><strong>Estándares de Producto:</strong> Especifican requisitos que debe cumplir un producto (o grupo de productos) para asegurar su aptitud para el uso. Pueden incluir dimensiones, rendimiento, seguridad, etc.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo para DI: Estándares para la seguridad de los juguetes (EN 71), o estándares dimensionales para mobiliario de oficina.</li></ul>
+                        </li>
+                        <li><strong>Estándares de Proceso:</strong> Especifican requisitos que debe cumplir un proceso para asegurar su eficacia.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo para DI: Estándares para procesos de soldadura o de gestión de la calidad en la producción.</li></ul>
+                        </li>
+                        <li><strong>Estándares de Ensayo o Prueba:</strong> Describen métodos de prueba para determinar si un producto o material cumple con ciertos requisitos.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo para DI: Métodos de prueba estandarizados para la resistencia a la abrasión de un textil o la durabilidad de un acabado superficial.</li></ul>
+                        </li>
+                        <li><strong>Estándares de Interfaz o Compatibilidad:</strong> Aseguran que diferentes productos o sistemas puedan funcionar juntos.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo para DI: Estándares para conectores USB, o el sistema de montaje VESA para pantallas.</li></ul>
+                        </li>
+                         <li><strong>Estándares de Servicio:</strong> Especifican requisitos para asegurar la calidad en la prestación de servicios.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo para DI: Aunque menos directos, un diseñador podría estar involucrado en el diseño de puntos de contacto físicos para un servicio que debe cumplir con ciertos estándares de experiencia del cliente.</li></ul>
+                        </li>
+                    </ul>
+                    <h6 class="text-md font-semibold text-gray-600 mt-4 mb-1">3. Según su Obligatoriedad:</h6>
+                    <ul class="space-y-1">
+                        <li><strong>Estándares Voluntarios:</strong> Su adopción no es legalmente obligatoria, pero a menudo son requeridos por el mercado o los clientes como señal de calidad o compatibilidad. La mayoría de los estándares ISO son voluntarios.</li>
+                        <li><strong>Estándares Mandatorios (Regulaciones Técnicas):</strong> Su cumplimiento es legalmente obligatorio. A menudo están relacionados con la seguridad, la salud o la protección del medio ambiente.
+                            <ul class="list-disc pl-6 mt-1"><li class="italic">Ejemplo: Muchas Normas Oficiales Mexicanas (NOM) son de cumplimiento obligatorio para productos comercializados en México.</li></ul>
+                        </li>
+                    </ul>
+                    <p class="mt-4">Para un diseñador industrial, es crucial identificar qué tipos de estándares son pertinentes para su proyecto específico, considerando el mercado objetivo, el tipo de producto, los materiales y los procesos de fabricación involucrados.</p>
+                </div>
+
+                <div id="apartado1_2" class="mb-10">
+                    <h4 class="text-xl font-semibold text-blue-600 mt-8 mb-4">1.2 Mapa Interactivo de Organismos de Estandarización</h4>
+                    <p class="mb-4">Explora los principales organismos de estandarización a nivel nacional, regional e internacional. Utiliza los filtros para refinar tu búsqueda.</p>
+                    <div id="mapFilters" class="mb-6">
+                        <div class="mb-4">
+                            <span class="font-semibold mr-3">Filtrar por Región:</span>
+                            <button class="filter-button" data-filter-type="region" data-filter-value="all">Todas</button>
+                            <button class="filter-button" data-filter-type="region" data-filter-value="Global">Global</button>
+                            <button class="filter-button" data-filter-type="region" data-filter-value="América">América</button>
+                            <button class="filter-button" data-filter-type="region" data-filter-value="Europa">Europa</button>
+                            <button class="filter-button" data-filter-type="region" data-filter-value="Asia">Asia</button>
+                            <button class="filter-button" data-filter-type="region" data-filter-value="África">África</button>
+                            <button class="filter-button" data-filter-type="region" data-filter-value="Oceanía">Oceanía</button>
+                        </div>
+                        <div>
+                            <span class="font-semibold mr-3">Filtrar por Tipo:</span>
+                            <button class="filter-button" data-filter-type="type" data-filter-value="all">Todos</button>
+                            <button class="filter-button" data-filter-type="type" data-filter-value="Internacional">Internacional</button>
+                            <button class="filter-button" data-filter-type="type" data-filter-value="Regional">Regional</button>
+                            <button class="filter-button" data-filter-type="type" data-filter-value="Nacional">Nacional</button>
+                        </div>
+                    </div>
+                    <div id="organizationsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        </div>
+                    <p id="noResultsMessage" class="text-center text-gray-500 mt-8 hidden">No se encontraron organismos que coincidan con los filtros seleccionados.</p>
+                </div>
+
+                <div id="apartado1_3" class="mb-10">
+                    <h4 class="text-xl font-semibold text-blue-600 mt-12 mb-6">1.3 Guía Visual de los Procesos de Certificación y Conformidad</h4>
+                    <p class="mb-6">Obtener una certificación o demostrar la conformidad con un estándar puede parecer complejo. Esta guía visual simplifica el proceso general en etapas clave. Ten en cuenta que los detalles específicos pueden variar según el estándar, el producto/servicio y el organismo evaluador.</p>
+                    <div class="space-y-8">
+                        <div class="step-card">
+                            <div class="step-icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM10.5 16.5c0-1.142.756-2.092 1.8-2.454" />
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h5>Paso 1: Preparación Interna</h5>
+                                <p>La base para un proceso de certificación exitoso. Implica entender a fondo los requisitos y alinear el producto o sistema.</p>
+                                <ul>
+                                    <li><strong>Identificar Estándares Aplicables:</strong> Determinar qué normas o regulaciones son relevantes para tu producto, servicio o sistema de gestión (ej. ISO 9001, NOM-XYZ, EN 71).</li>
+                                    <li><strong>Implementar Requisitos:</strong> Asegurar que el diseño del producto, los procesos de fabricación o el sistema de gestión cumplen con todos los requisitos del estándar. Esto puede implicar rediseños, ajustes de procesos o desarrollo de nueva documentación.</li>
+                                    <li><strong>Elaborar Documentación Técnica:</strong> Preparar toda la documentación requerida por el estándar (ej. especificaciones de diseño, manuales de usuario, registros de calidad, análisis de riesgos).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106A48.554 48.554 0 0012 5.25c-2.295 0-4.515.933-6.207 2.553a11.942 11.942 0 00-1.313 1.313A48.554 48.554 0 006.013 9.57c-.565.058-.987.538-.987 1.106v.958m0 0H3.375m0 0h-.375a1.125 1.125 0 01-1.125-1.125V11.25m17.25 0h.375a1.125 1.125 0 011.125 1.125v3.75m0 0h-1.125M4.5 15.75l3-3m0 0l3 3m-3-3v6" />
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h5>Paso 2: Selección del Organismo de Evaluación de la Conformidad (OEC)</h5>
+                                <p>Elegir el socio adecuado para la evaluación.</p>
+                                <ul>
+                                    <li><strong>Investigar y Seleccionar:</strong> Buscar un OEC (laboratorio de ensayo, organismo de inspección, organismo de certificación) que esté <strong>acreditado</strong> para el estándar y sector específico. La acreditación asegura la competencia e imparcialidad del OEC.</li>
+                                    <li><strong>Solicitar Propuestas:</strong> Contactar a varios OECs para obtener cotizaciones y entender su proceso.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                           <div class="step-icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h5>Paso 3: Solicitud y Revisión Documental</h5>
+                                <p>Inicio formal del proceso con el OEC.</p>
+                                <ul>
+                                    <li><strong>Presentar Solicitud:</strong> Enviar la solicitud formal y la documentación técnica preparada al OEC seleccionado.</li>
+                                    <li><strong>Revisión Documental por el OEC:</strong> El OEC revisa la documentación para asegurar que está completa y que, en teoría, el producto/sistema cumple con los requisitos. Pueden solicitar aclaraciones o información adicional.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h5>Paso 4: Evaluación Práctica (Auditoría, Ensayo o Inspección)</h5>
+                                <p>Verificación de que los requisitos se cumplen en la práctica.</p>
+                                <ul>
+                                    <li><strong>Auditoría (para sistemas/procesos):</strong> Si se certifica un sistema de gestión (ej. ISO 9001), el OEC realiza una auditoría in situ para verificar la implementación y eficacia del sistema.</li>
+                                    <li><strong>Ensayo (para productos):</strong> Se envían muestras del producto a un laboratorio acreditado (puede ser del OEC o un tercero) para realizar pruebas según los métodos especificados en el estándar.</li>
+                                    <li><strong>Inspección (para productos/lotes/instalaciones):</strong> El OEC puede realizar una inspección visual o funcional de productos, lotes de producción o instalaciones.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-icon-container">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.092 1.21-.138 2.43-.138 3.662v2.159c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.678 48.678 0 007.324 0 4.006 4.006 0 003.7-3.7c.092-1.21.138-2.43.138-3.662v-2.159z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75v6m0 3h.01M12 18.75v-1.5" />
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h5>Paso 5: Informe y Acciones Correctivas</h5>
+                                <p>Resultados de la evaluación y oportunidad de mejora.</p>
+                                <ul>
+                                    <li><strong>Emisión de Informe:</strong> El OEC elabora un informe detallado con los hallazgos de la auditoría, ensayo o inspección.</li>
+                                    <li><strong>Tratamiento de No Conformidades:</strong> Si se identifican no conformidades (incumplimientos del estándar), la empresa debe analizarlas, proponer e implementar acciones correctivas para solucionarlas. Se debe presentar evidencia de estas acciones al OEC.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h5>Paso 6: Decisión de Certificación/Declaración de Conformidad</h5>
+                                <p>La culminación del proceso de evaluación.</p>
+                                <ul>
+                                    <li><strong>Revisión Final y Decisión:</strong> El OEC revisa la evidencia de las acciones correctivas (si aplica) y toma una decisión sobre la concesión de la certificación o la validación de la conformidad.</li>
+                                    <li><strong>Emisión del Certificado/Documento:</strong> Si la decisión es favorable, el OEC emite el certificado (para productos o sistemas) o un documento que atestigua la conformidad. Esto permite el uso de marcas de conformidad (ej. Sello NOM, Marcado CE).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-icon-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                </svg>
+                            </div>
+                            <div class="step-content">
+                                <h5>Paso 7: Vigilancia y Mantenimiento</h5>
+                                <p>La conformidad es un compromiso continuo.</p>
+                                <ul>
+                                    <li><strong>Auditorías/Ensayos de Seguimiento:</strong> La mayoría de las certificaciones requieren auditorías o ensayos periódicos (anuales, por ejemplo) para asegurar que el producto o sistema sigue cumpliendo con los requisitos del estándar.</li>
+                                    <li><strong>Renovación del Certificado:</strong> Los certificados suelen tener un periodo de validez (ej. 3 años), tras el cual se debe realizar un proceso de recertificación.</li>
+                                    <li><strong>Gestión de Cambios:</strong> Si se realizan cambios significativos en el producto o proceso certificado, se debe notificar al OEC, ya que podría requerirse una nueva evaluación.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="highlight-box mt-8">
+                        <p><strong>Nota para Diseñadores:</strong> Involucrarse desde las primeras etapas del diseño pensando en los requisitos de los estándares aplicables puede simplificar enormemente el proceso de certificación y evitar costosos rediseños posteriores.</p>
+                    </div>
+                </div>
+
+                <div id="apartado1_4">
+                    <h4 class="text-xl font-semibold text-blue-600 mt-12 mb-6">1.4 Caso de Estudio: Implementación de DFMA en ElectroDinámica S.A.</h4>
+                    <p class="mb-4">Este caso de estudio ilustra cómo la aplicación de los principios de Diseño para la Fabricación y el Ensamblaje (DFMA) puede transformar el desarrollo de un producto, mejorar la eficiencia y reducir costos en una empresa reconocida (ficticia para fines ilustrativos) del sector de electrodomésticos.</p>
+
+                    <div class="case-study-section">
+                        <h6>Introducción: ElectroDinámica S.A. y la Cafetera "AromaPlus"</h6>
+                        <p><strong>ElectroDinámica S.A.</strong> es una empresa con trayectoria en el mercado de pequeños electrodomésticos, conocida por su innovación y calidad. Recientemente, la empresa decidió lanzar una nueva línea de cafeteras de goteo de gama media, denominada "AromaPlus", con el objetivo de ofrecer un diseño moderno, funcionalidades mejoradas y un precio competitivo.</p>
+                        <div class="case-study-image-placeholder">
+                            [Imagen de la cafetera AromaPlus - Diseño conceptual]
+                        </div>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h6>El Desafío: Complejidad y Costos Elevados en Prototipos Iniciales</h6>
+                        <p>Durante las primeras fases de prototipado de la "AromaPlus", el equipo de ingeniería y producción identificó varios problemas:</p>
+                        <ul>
+                            <li><strong>Alto número de componentes:</strong> El diseño inicial constaba de 78 piezas individuales, muchas de ellas pequeñas y de difícil manipulación.</li>
+                            <li><strong>Tiempo de ensamblaje prolongado:</strong> Se estimaba un tiempo de ensamblaje manual de 12 minutos por unidad, lo cual impactaba directamente en los costos de mano de obra.</li>
+                            <li><strong>Complejidad en la fabricación de ciertas piezas:</strong> Algunas carcasas plásticas presentaban geometrías complejas que encarecían los moldes de inyección y generaban un mayor índice de rechazo.</li>
+                            <li><strong>Uso de múltiples tipos de tornillos y fijaciones:</strong> Esto requería diferentes herramientas y aumentaba la posibilidad de errores en el ensamblaje.</li>
+                        </ul>
+                        <p>Estos factores amenazaban la viabilidad económica del producto y su posicionamiento competitivo en el mercado.</p>
+                    </div>
+                    
+                    <div class="case-study-section">
+                        <h6>La Solución: Adopción Estratégica de Principios DFMA</h6>
+                        <p>El equipo de diseño industrial, en colaboración con ingeniería y producción, decidió realizar un rediseño integral aplicando los principios de DFMA.</p>
+
+                        <h6>A. Diseño para el Ensamblaje (DFA)</h6>
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h6>Diseño Original (Antes de DFA)</h6>
+                                <ul>
+                                    <li>78 piezas totales.</li>
+                                    <li>Múltiples subensambles con tornillos.</li>
+                                    <li>Cableado interno complejo y propenso a errores de conexión.</li>
+                                    <li>Necesidad de reorientar la unidad varias veces durante el ensamblaje.</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-item">
+                                <h6>Diseño Optimizado (Después de DFA)</h6>
+                                <ul>
+                                    <li><strong>Reducción a 45 piezas totales (-42%).</strong> Se integraron funciones en piezas únicas (ej. soporte de filtro y guía de agua en una sola pieza).</li>
+                                    <li><strong>Uso extensivo de ensambles a presión (snap-fits) y pestañas de auto-localización,</strong> eliminando 18 tornillos.</li>
+                                    <li><strong>Diseño de arneses de cables preconectados</strong> y guías de cableado integradas en las carcasas.</li>
+                                    <li><strong>Diseño para ensamblaje vertical unidireccional ("top-down"),</strong> minimizando la manipulación.</li>
+                                    <li><strong>Estandarización de tornillos:</strong> Se pasó a usar solo 2 tipos de tornillos en todo el producto.</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="case-study-image-placeholder mt-4">
+                            [Diagrama comparativo: Explosión de piezas Antes y Después del DFA]
+                        </div>
+
+
+                        <h6>B. Diseño para la Fabricación (DFM)</h6>
+                         <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h6>Diseño Original (Antes de DFM)</h6>
+                                <ul>
+                                    <li>Carcasas con ángulos internos agudos y paredes de espesor variable, dificultando el moldeo por inyección.</li>
+                                    <li>Uso de tres tipos diferentes de plásticos para componentes estéticos similares.</li>
+                                    <li>Tolerancias muy ajustadas en piezas no críticas, aumentando el costo de fabricación y el índice de rechazo.</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-item">
+                                <h6>Diseño Optimizado (Después de DFM)</h6>
+                                <ul>
+                                    <li><strong>Simplificación de geometrías de las carcasas:</strong> Se redondearon ángulos, se uniformizaron espesores de pared y se añadieron ángulos de desmoldeo adecuados.</li>
+                                    <li><strong>Consolidación de materiales:</strong> Se seleccionó un único tipo de polipropileno de alto impacto para todas las carcasas principales, simplificando la compra y el reciclaje.</li>
+                                    <li><strong>Revisión y optimización de tolerancias:</strong> Se ampliaron tolerancias en zonas no críticas sin afectar la funcionalidad ni la estética.</li>
+                                    <li><strong>Diseño de piezas para anidamiento eficiente</strong> en el molde, reduciendo el desperdicio de material.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h6>Resultados de la Implementación de DFMA</h6>
+                        <p>La aplicación de DFMA en la cafetera "AromaPlus" generó mejoras significativas y medibles:</p>
+                        <div class="overflow-x-auto">
+                            <table class="results-table">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th scope="col">Métrica</th>
+                                        <th scope="col">Diseño Original</th>
+                                        <th scope="col">Diseño Optimizado con DFMA</th>
+                                        <th scope="col">Mejora (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td>Número total de piezas</td>
+                                        <td>78</td>
+                                        <td>45</td>
+                                        <td class="text-green-600 font-semibold">-42.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tiempo estimado de ensamblaje por unidad</td>
+                                        <td>12 minutos</td>
+                                        <td>5 minutos</td>
+                                        <td class="text-green-600 font-semibold">-58.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Número de tornillos</td>
+                                        <td>26</td>
+                                        <td>8</td>
+                                        <td class="text-green-600 font-semibold">-69.2%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Costo estimado de fabricación por unidad (componentes y ensamblaje)</td>
+                                        <td>$18.50 USD</td>
+                                        <td>$13.20 USD</td>
+                                        <td class="text-green-600 font-semibold">-28.6%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Índice de rechazo en piezas plásticas (estimado)</td>
+                                        <td>8%</td>
+                                        <td>2%</td>
+                                        <td class="text-green-600 font-semibold">-75%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="mt-4"><strong>Otros resultados cualitativos:</strong></p>
+                        <ul>
+                            <li>Mejora en la calidad percibida del producto debido a un ensamblaje más robusto y menos piezas.</li>
+                            <li>Facilidad de desmontaje para reparaciones o reciclaje.</li>
+                            <li>Reducción de la curva de aprendizaje para los operarios de ensamblaje.</li>
+                            <li>Mayor satisfacción del equipo de diseño e ingeniería al ver un producto optimizado y eficiente.</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h6>Lecciones Aprendidas y Claves del Éxito</h6>
+                        <ol>
+                            <li><strong>Colaboración temprana y multifuncional:</strong> La clave del éxito fue la integración de los equipos de diseño industrial, ingeniería de producto, y producción desde las etapas conceptuales.</li>
+                            <li><strong>Enfoque iterativo:</strong> El rediseño no fue un evento único, sino un proceso de análisis, propuesta, prototipado y prueba.</li>
+                            <li><strong>Uso de herramientas de software DFMA:</strong> Aunque no se detalla aquí, el uso de software especializado puede ayudar a cuantificar la complejidad del ensamblaje y a identificar oportunidades de mejora.</li>
+                            <li><strong>Capacitación en DFMA:</strong> Invertir en la formación de los diseñadores e ingenieros en los principios DFMA es fundamental.</li>
+                            <li><strong>Compromiso de la dirección:</strong> El apoyo de la alta dirección para dedicar tiempo y recursos al rediseño fue crucial.</li>
+                        </ol>
+                    </div>
+                     <div class="case-study-section">
+                        <h6>Impacto para Diseñadores Industriales</h6>
+                        <p>Este caso demuestra que el diseñador industrial, armado con los principios de DFMA, juega un rol vital no solo en la estética y funcionalidad del producto, sino también en su viabilidad económica y eficiencia productiva. La capacidad de pensar en cómo se fabrica y ensambla un producto desde el inicio del proceso de diseño es una habilidad cada vez más valorada.</p>
+                    </div>
+
+                    <div class="highlight-box mt-8">
+                        <p><strong>Conclusión del Caso:</strong> La implementación de DFMA en la cafetera "AromaPlus" permitió a ElectroDinámica S.A. no solo alcanzar sus objetivos de costos y eficiencia, sino también lanzar al mercado un producto de mayor calidad y más fácil de mantener, fortaleciendo su posición competitiva.</p>
+                    </div>
+                </div>
+
+
+            </article>
+            </section>
+
+        </main>
+
+    <div id="organizationModal" class="modal hidden">
+        <div class="modal-content relative">
+            <button id="closeModalButton" class="modal-close-button">&times;</button>
+            <img id="modalOrgLogo" src="" alt="Logo del Organismo" class="w-32 h-16 object-contain mx-auto mb-4">
+            <h3 id="modalOrgName" class="text-2xl font-bold text-blue-700 mb-2 text-center"></h3>
+            <p id="modalOrgAcronym" class="text-lg text-gray-600 mb-1 text-center"></p>
+            <p id="modalOrgType" class="text-sm text-gray-500 mb-4 text-center"></p>
+            <p id="modalOrgDescription" class="text-gray-700 mb-4 text-justify"></p>
+            <p class="mb-1"><strong>Región:</strong> <span id="modalOrgRegion"></span></p>
+            <p class="mb-4"><strong>País:</strong> <span id="modalOrgCountry"></span></p>
+            <a id="modalOrgWebsite" href="#" target="_blank" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">Visitar sitio web</a>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Manual Multimedia de Estandarización y Optimización de Procesos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Datos de los organismos de estandarización
+        const organizations = [
+            {id: 'iso', name: 'Organización Internacional de Estandarización', acronym: 'ISO', type: 'Internacional', region: 'Global', logo: 'https://placehold.co/150x75/007bff/ffffff?text=ISO', description: 'Desarrolla y publica estándares internacionales para una amplia gama de industrias. Facilita el comercio mundial y promueve la innovación, la seguridad y la calidad.', website: 'https://www.iso.org', country: 'Suiza (Sede)'},
+            {id: 'iec', name: 'Comisión Electrotécnica Internacional', acronym: 'IEC', type: 'Internacional', region: 'Global', logo: 'https://placehold.co/150x75/17a2b8/ffffff?text=IEC', description: 'Prepara y publica estándares internacionales para todas las tecnologías eléctricas, electrónicas y relacionadas.', website: 'https://www.iec.ch', country: 'Suiza (Sede)'},
+            {id: 'itu', name: 'Unión Internacional de Telecomunicaciones', acronym: 'ITU', type: 'Internacional', region: 'Global', logo: 'https://placehold.co/150x75/28a745/ffffff?text=ITU', description: 'Organismo especializado de las Naciones Unidas para las tecnologías de la información y la comunicación (TIC).', website: 'https://www.itu.int', country: 'Suiza (Sede)'},
+            {id: 'cen', name: 'Comité Europeo de Normalización', acronym: 'CEN', type: 'Regional', region: 'Europa', logo: 'https://placehold.co/150x75/ffc107/000000?text=CEN', description: 'Desarrolla estándares europeos (EN) para una amplia gama de productos, materiales, servicios y procesos.', website: 'https://www.cen.eu', country: 'Bélgica (Sede)'},
+            {id: 'cenelec', name: 'Comité Europeo de Normalización Electrotécnica', acronym: 'CENELEC', type: 'Regional', region: 'Europa', logo: 'https://placehold.co/150x75/fd7e14/ffffff?text=CENELEC', description: 'Responsable de la estandarización europea en el área de ingeniería electrotécnica.', website: 'https://www.cenelec.eu', country: 'Bélgica (Sede)'},
+            {id: 'etsi', name: 'Instituto Europeo de Normas de Telecomunicaciones', acronym: 'ETSI', type: 'Regional', region: 'Europa', logo: 'https://placehold.co/150x75/6f42c1/ffffff?text=ETSI', description: 'Produce estándares para tecnologías de la información y la comunicación (TIC), incluyendo fijas, móviles, radio, convergentes, de difusión y de Internet.', website: 'https://www.etsi.org', country: 'Francia (Sede)'},
+            {id: 'copant', name: 'Comisión Panamericana de Normas Técnicas', acronym: 'COPANT', type: 'Regional', region: 'América', logo: 'https://placehold.co/150x75/e83e8c/ffffff?text=COPANT', description: 'Organización regional de normalización para los países de América. Promueve el desarrollo de la normalización técnica y la evaluación de la conformidad.', website: 'https://www.copant.org', country: 'Varios (Secretaría rotativa)'},
+            {id: 'arso', name: 'Organización Africana de Normalización', acronym: 'ARSO', type: 'Regional', region: 'África', logo: 'https://placehold.co/150x75/20c997/ffffff?text=ARSO', description: 'Armoniza los estándares nacionales y regionales y promueve su implementación en África para facilitar el comercio intraafricano e internacional.', website: 'https://www.arso-oran.org', country: 'Kenia (Sede)'},
+            {id: 'pasc', name: 'Congreso de Estándares del Área del Pacífico', acronym: 'PASC', type: 'Regional', region: 'Oceanía', logo: 'https://placehold.co/150x75/6610f2/ffffff?text=PASC', description: 'Foro de organismos nacionales de normalización de la región del Pacífico. Busca fortalecer la participación de sus miembros en la normalización internacional.', website: 'https://www.pascnet.org', country: 'Varios (Secretaría rotativa)'},
+            {id: 'ansi', name: 'Instituto Nacional Estadounidense de Estándares', acronym: 'ANSI', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/dc3545/ffffff?text=ANSI', description: 'Coordina el desarrollo de estándares voluntarios en los Estados Unidos y representa los intereses de EE.UU. en foros de estandarización internacionales.', website: 'https://www.ansi.org', country: 'Estados Unidos'},
+            {id: 'dgn', name: 'Dirección General de Normas', acronym: 'DGN', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/00695c/ffffff?text=DGN', description: 'Entidad del gobierno mexicano (parte de la Secretaría de Economía) responsable de la normalización, metrología y evaluación de la conformidad en México. Emite las Normas Oficiales Mexicanas (NOM) y las Normas Mexicanas (NMX).', website: 'https://www.gob.mx/se/acciones-y-programas/direccion-general-de-normas', country: 'México'},
+            {id: 'bsi', name: 'British Standards Institution', acronym: 'BSI', type: 'Nacional', region: 'Europa', logo: 'https://placehold.co/150x75/198754/ffffff?text=BSI', description: 'Organismo nacional de normalización del Reino Unido. Produce estándares técnicos y servicios de certificación y formación.', website: 'https://www.bsigroup.com', country: 'Reino Unido'},
+            {id: 'din', name: 'Deutsches Institut für Normung', acronym: 'DIN', type: 'Nacional', region: 'Europa', logo: 'https://placehold.co/150x75/adb5bd/000000?text=DIN', description: 'Organismo nacional de normalización de Alemania. Desarrolla estándares para la industria, la ciencia, la administración y el público.', website: 'https://www.din.de', country: 'Alemania'},
+            {id: 'afnor', name: 'Association Française de Normalisation', acronym: 'AFNOR', type: 'Nacional', region: 'Europa', logo: 'https://placehold.co/150x75/343a40/ffffff?text=AFNOR', description: 'Organismo oficial francés de normalización. Representa a Francia en ISO y CEN.', website: 'https://www.afnor.org', country: 'Francia'},
+            {id: 'jisc', name: 'Japanese Industrial Standards Committee', acronym: 'JISC', type: 'Nacional', region: 'Asia', logo: 'https://placehold.co/150x75/d63384/ffffff?text=JISC', description: 'Organismo nacional de normalización de Japón. Desarrolla los Estándares Industriales Japoneses (JIS).', website: 'https://www.jisc.go.jp', country: 'Japón'},
+            {id: 'sac', name: 'Standardization Administration of China', acronym: 'SAC', type: 'Nacional', region: 'Asia', logo: 'https://placehold.co/150x75/f48024/ffffff?text=SAC', description: 'Organismo gubernamental responsable de la normalización en China. Representa a China en ISO e IEC.', website: 'http://www.sac.gov.cn', country: 'China'},
+            {id: 'abnt', name: 'Associação Brasileira de Normas Técnicas', acronym: 'ABNT', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/009688/ffffff?text=ABNT', description: 'Organismo privado sin fines de lucro, reconocido como el Foro Nacional de Normalización de Brasil. Desarrolla las normas técnicas brasileiras (NBR).', website: 'https://www.abnt.org.br', country: 'Brasil'},
+            {id: 'scc', name: 'Standards Council of Canada', acronym: 'SCC', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/c00000/ffffff?text=SCC', description: 'Organismo de la Corona Canadiense que lidera y facilita el desarrollo y uso de estándares y servicios de acreditación en Canadá.', website: 'https://www.scc.ca', country: 'Canadá'},
+            {id: 'kats', name: 'Korean Agency for Technology and Standards', acronym: 'KATS', type: 'Nacional', region: 'Asia', logo: 'https://placehold.co/150x75/00529b/ffffff?text=KATS', description: 'Agencia gubernamental de Corea del Sur responsable de la normalización, la metrología y la evaluación de la conformidad. Desarrolla los Estándares Coreanos (KS).', website: 'https://www.kats.go.kr', country: 'Corea del Sur'},
+            {id: 'sa', name: 'Standards Australia', acronym: 'SA', type: 'Nacional', region: 'Oceanía', logo: 'https://placehold.co/150x75/ffeb3b/000000?text=SA', description: 'Organismo no gubernamental reconocido por el gobierno australiano como el principal organismo de normalización de Australia.', website: 'https://www.standards.org.au', country: 'Australia'}
+        ];
+
+        const organizationsContainer = document.getElementById('organizationsContainer');
+        const modal = document.getElementById('organizationModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+
+        let currentFilters = {
+            region: 'all',
+            type: 'all'
+        };
+
+        function renderOrganizations(filteredOrganizations) {
+            organizationsContainer.innerHTML = ''; 
+            if (filteredOrganizations.length === 0) {
+                noResultsMessage.classList.remove('hidden');
+            } else {
+                noResultsMessage.classList.add('hidden');
+                filteredOrganizations.forEach(org => {
+                    const card = document.createElement('div');
+                    card.className = 'org-card';
+                    card.innerHTML = `
+                        <img src="${org.logo}" alt="Logo de ${org.acronym}" class="org-logo">
+                        <h5 class="org-name">${org.name}</h5>
+                        <p class="org-acronym">${org.acronym}</p>
+                    `;
+                    card.addEventListener('click', () => showOrganizationDetails(org));
+                    organizationsContainer.appendChild(card);
+                });
+            }
+        }
+
+        function showOrganizationDetails(org) {
+            document.getElementById('modalOrgLogo').src = org.logo;
+            document.getElementById('modalOrgLogo').alt = `Logo de ${org.acronym}`;
+            document.getElementById('modalOrgName').textContent = org.name;
+            document.getElementById('modalOrgAcronym').textContent = org.acronym;
+            document.getElementById('modalOrgType').textContent = `${org.type}`;
+            document.getElementById('modalOrgDescription').textContent = org.description;
+            document.getElementById('modalOrgRegion').textContent = org.region;
+            document.getElementById('modalOrgCountry').textContent = org.country || 'N/A';
+            document.getElementById('modalOrgWebsite').href = org.website;
+            modal.classList.remove('hidden');
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.scrollTop = 0; 
+        }
+
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) { 
+                modal.classList.add('hidden');
+            }
+        });
+        
+        function applyFilters() {
+            const filtered = organizations.filter(org => {
+                const regionMatch = currentFilters.region === 'all' || org.region === currentFilters.region;
+                const typeMatch = currentFilters.type === 'all' || org.type === currentFilters.type;
+                return regionMatch && typeMatch;
+            });
+            renderOrganizations(filtered);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterType = button.dataset.filterType;
+                const filterValue = button.dataset.filterValue;
+                currentFilters[filterType] = filterValue;
+                document.querySelectorAll(`.filter-button[data-filter-type="${filterType}"]`).forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                applyFilters();
+            });
+        });
+
+        document.querySelector('.filter-button[data-filter-type="region"][data-filter-value="all"]').classList.add('active');
+        document.querySelector('.filter-button[data-filter-type="type"][data-filter-value="all"]').classList.add('active');
+        renderOrganizations(organizations); 
+
+    </script>
+
+</body>
+</html>
