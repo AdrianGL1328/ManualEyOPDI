@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 1rem; 
+            padding-bottom: 2rem;
+        }
+        .content-section h2 { /* Title for "Parte X" */
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            color: #1F2937; 
+            border-bottom: 3px solid #2563EB; 
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 { /* Title for "Módulo X" */
+            font-size: 1.875rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1E40AF; 
+        }
+        .content-section h4 { /* Title for "Apartado X.X" */
+            font-size: 1.5rem; 
+            font-weight: 600;
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: #1D4ED8; 
+        }
+        .content-section h5 { /* Sub-sub-titles */
+            font-size: 1.25rem; 
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1F2937; 
+        }
+        .content-section h6 { /* Sub-sub-sub-titles / Card titles */
+            font-size: 1.125rem; 
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151; 
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; 
+            line-height: 1.75; 
+            color: #4B5563; 
+            margin-bottom: 1rem;
+        }
+        .content-section ul, .content-section ol {
+            padding-left: 1.5rem;
+        }
+        .content-section ul { list-style-type: disc; }
+        .content-section ol { list-style-type: decimal; }
+        
+        .content-section strong {
+            color: #111827; 
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #F0F9FF; 
+            border-left: 4px solid #0EA5E9; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .example-box {
+            background-color: #EFF6FF; 
+            border: 1px solid #BFDBFE; 
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; 
+        }
+        .example-box strong {
+            color: #1E40AF; 
+        }
+
+        /* Styles for interactive map */
+        .filter-button {
+            @apply px-4 py-2 mr-2 mb-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-colors;
+        }
+        .filter-button.active {
+            @apply bg-blue-800 ring-4 ring-blue-400;
+        }
+        .org-card {
+            @apply bg-white border border-gray-200 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col justify-between;
+        }
+        .org-logo {
+            @apply w-24 h-12 object-contain mx-auto mb-2 flex-shrink-0;
+        }
+        .org-name {
+            @apply text-center font-semibold text-blue-700 text-sm flex-grow;
+        }
+        .org-acronym {
+            @apply text-center text-xs text-gray-500;
+        }
+
+        /* Modal styles */
+        .modal {
+            @apply fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex justify-center items-center z-50 p-4;
+        }
+        .modal-content {
+            @apply bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl mx-auto max-h-[90vh] overflow-y-auto;
+        }
+        .modal-close-button {
+            @apply absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold leading-none p-1;
+        }
+
+        /* Styles for certification guide */
+        .step-card {
+            @apply bg-white rounded-xl shadow-lg p-6 mb-6 flex items-start space-x-4 hover:shadow-xl transition-shadow;
+        }
+        .step-icon-container {
+            @apply flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold;
+        }
+        .step-content h5 {
+            @apply text-xl font-semibold text-blue-700 mb-1 mt-0;
+        }
+        .step-content p {
+            @apply text-sm text-gray-600;
+        }
+         .step-content ul {
+            @apply text-sm text-gray-600 list-disc pl-5 mt-2;
+        }
+
+        /* Case study styles */
+        .case-study-section {
+            @apply mt-6 mb-4;
+        }
+        .case-study-section h6 { 
+            @apply text-lg font-semibold text-blue-700 mb-2 mt-4;
+        }
+        .case-study-image-placeholder {
+            @apply w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xl my-4;
+        }
+        .results-table {
+            @apply min-w-full divide-y divide-gray-200 mt-4 mb-4;
+        }
+        .results-table th {
+            @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .results-table td {
+            @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+         .comparison-grid {
+            @apply grid md:grid-cols-2 gap-6 my-4;
+        }
+        .comparison-item {
+            @apply bg-gray-50 p-4 rounded-lg border border-gray-200;
+        }
+        .comparison-item h6 {
+             @apply text-md font-semibold text-gray-700 mb-2 mt-0;
+        }
+
+        /* Tutorial Section Styles */
+        .tutorial-section {
+            @apply mt-8 mb-12;
+        }
+        .tutorial-subsection {
+            @apply mt-6 mb-8 p-6 bg-sky-50 rounded-lg shadow;
+        }
+        .tutorial-subsection h5 { 
+            @apply text-xl font-semibold text-sky-700 mb-3;
+        }
+         .tutorial-subsection h6 { 
+            @apply text-lg font-semibold text-sky-600 mb-2 mt-4;
+        }
+        .tool-card {
+            @apply bg-white p-4 rounded-lg shadow border border-sky-200 mb-4;
+        }
+        .tool-card h6 {
+             @apply text-md font-semibold text-sky-700 mb-1 mt-0;
+        }
+        .tool-card p, .tool-card ul {
+            @apply text-sm;
+        }
+        .clickable-definition {
+            @apply cursor-pointer text-blue-600 hover:text-blue-800 underline decoration-dotted;
+        }
+        .definition-content {
+            @apply hidden mt-2 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm;
+        }
+        .icon-placeholder-tutorial {
+            @apply w-10 h-10 bg-sky-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-3 flex-shrink-0;
+        }
+        .flex-title {
+            @apply flex items-center mb-3;
+        }
+
+        /* Value Analysis Calculator Styles */
+        .calculator-section {
+            @apply mt-8 mb-12 p-6 bg-green-50 rounded-lg shadow;
+        }
+        .calculator-section h5 {
+            @apply text-xl font-semibold text-green-700 mb-4;
+        }
+        .calculator-input-group {
+            @apply grid grid-cols-1 md:grid-cols-5 gap-4 items-end mb-3 p-3 border border-green-200 rounded-md bg-white;
+        }
+        .calculator-input-group label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .calculator-input-group input[type="text"],
+        .calculator-input-group input[type="number"] {
+            @apply mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm;
+        }
+        .remove-row-btn {
+            @apply bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-3 rounded-md transition-colors h-10;
+        }
+        .add-row-btn {
+            @apply bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors;
+        }
+        .value-index-low { @apply text-red-600 font-bold; }
+        .value-index-medium { @apply text-yellow-600 font-bold; }
+        .value-index-high { @apply text-green-600 font-bold; }
+        #valueAnalysisTable th, #valueAnalysisTable td {
+            @apply px-4 py-2 text-sm;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-blue-700">Manual Multimedia de Estandarización y Optimización de Procesos para Diseñadores Industriales</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+
+        <section id="parte1" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 1: Fundamentos y Estándares</h2>
+            <article id="modulo1" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 1: Fundamentos de Estandarización y Optimización</h3>
+                <div id="apartado1_1" class="mb-10">
+                    </div>
+                <div id="apartado1_2" class="mb-10">
+                    </div>
+                <div id="apartado1_3" class="mb-10">
+                    </div>
+                <div id="apartado1_4">
+                    </div>
+            </article>
+        </section>
+
+        <section id="parte2" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Parte 2: Optimización y Calidad</h2>
+
+            <article id="modulo4" class="bg-white p-6 rounded-xl shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-6">Módulo 4: Optimización de Procesos</h3>
+                
+                <div id="apartado2_1" class="tutorial-section">
+                    <h4 class="text-xl font-semibold text-blue-600 mb-6">2.1 Tutorial: Herramientas Lean y Six Sigma para el Diseño Industrial</h4>
+                    <p class="mb-6">Bienvenido a este tutorial interactivo. Aquí explorarás cómo las metodologías Lean y Six Sigma pueden potenciar tu proceso de diseño, ayudándote a crear productos de manera más eficiente, con mayor calidad y centrados en el valor para el usuario.</p>
+
+                    <div class="tutorial-subsection">
+                        <div class="flex-title">
+                            <div class="icon-placeholder-tutorial">L</div>
+                            <h5>Lean Design: Maximizando el Valor, Minimizando el Desperdicio</h5>
+                        </div>
+                        <p>El <strong>Lean Design</strong> adapta los principios de Lean Manufacturing al proceso de desarrollo de productos. Se enfoca en entregar el máximo valor al cliente utilizando la menor cantidad de recursos posible, eliminando actividades que no añaden valor (desperdicios).</p>
+                        <h6 class="mt-4">Principios Clave de Lean Aplicados al Diseño:</h6>
+                        <ul class="list-disc pl-5 mb-4">
+                            <li><strong>Definir Valor (desde la perspectiva del cliente):</strong> ¿Qué características y funcionalidades realmente valora el usuario final?</li>
+                            <li><strong>Mapear el Flujo de Valor del Diseño:</strong> Identificar todas las etapas del proceso de diseño, desde la idea hasta el lanzamiento, y distinguir las que añaden valor de las que no.</li>
+                            <li><strong>Crear Flujo Continuo:</strong> Eliminar interrupciones, cuellos de botella y esperas en el proceso de diseño.</li>
+                            <li><strong>Establecer un Sistema Pull:</strong> Iniciar trabajo solo cuando hay una demanda real o necesidad (ej. no sobrediseñar o generar conceptos que no se usarán).</li>
+                            <li><strong>Buscar la Perfección (Mejora Continua - Kaizen):</strong> Fomentar una cultura de revisión y optimización constante de los procesos de diseño.</li>
+                        </ul>
+                        <h6 class="mt-6">Los 8 Desperdicios de Lean (DOWNTIME) en el Diseño Industrial:</h6>
+                        <p class="mb-2">Identificar y eliminar estos desperdicios es fundamental en Lean Design. Haz clic en cada uno para ver ejemplos aplicados al diseño:</p>
+                        <div class="space-y-3">
+                            <div>
+                                <strong class="clickable-definition" data-target="def-defects">D - Defectos (Defects)</strong>
+                                <div id="def-defects" class="definition-content">Errores en el diseño que requieren retrabajo, correcciones o que resultan en productos defectuosos. Ejemplos: Planos con errores dimensionales, prototipos que no funcionan como se esperaba, especificaciones incompletas que llevan a malentendidos en producción.</div>
+                            </div>
+                            <div>
+                                <strong class="clickable-definition" data-target="def-overproduction">O - Sobreproducción (Overproduction)</strong>
+                                <div id="def-overproduction" class="definition-content">Generar más diseños, conceptos, características o prototipos de los necesarios o antes de que se necesiten. Ejemplos: Desarrollar 20 conceptos cuando solo se revisarán 5, crear documentación excesiva que nadie lee, diseñar funcionalidades que el cliente no valora.</div>
+                            </div>
+                            <div>
+                                <strong class="clickable-definition" data-target="def-waiting">W - Espera (Waiting)</strong>
+                                <div id="def-waiting" class="definition-content">Tiempo perdido esperando aprobaciones, información, feedback, decisiones, disponibilidad de recursos o herramientas. Ejemplos: Diseñadores esperando feedback del cliente, aprobación de un gerente para continuar, llegada de materiales para prototipado.</div>
+                            </div>
+                            <div>
+                                <strong class="clickable-definition" data-target="def-nonutilized">N - Talento No Utilizado (Non-Utilized Talent)</strong>
+                                <div id="def-nonutilized" class="definition-content">No aprovechar las habilidades, conocimientos, creatividad e ideas de los miembros del equipo de diseño. Ejemplos: No solicitar la opinión de diseñadores junior, asignar tareas repetitivas a personal altamente cualificado, falta de canales para proponer mejoras.</div>
+                            </div>
+                            <div>
+                                <strong class="clickable-definition" data-target="def-transportation">T - Transporte (Transportation)</strong>
+                                <div id="def-transportation" class="definition-content">Movimiento innecesario de información, documentos, archivos digitales o prototipos físicos. Ejemplos: Enviar archivos grandes por email repetidamente en lugar de usar un sistema centralizado, mover prototipos entre diferentes edificios para pruebas simples.</div>
+                            </div>
+                            <div>
+                                <strong class="clickable-definition" data-target="def-inventory">I - Inventario (Inventory)</strong>
+                                <div id="def-inventory" class="definition-content">Exceso de trabajo en curso (WIP), como diseños parcialmente completados, ideas no desarrolladas, prototipos almacenados sin un propósito claro. Ejemplos: Múltiples versiones de un diseño sin una decisión clara sobre cuál avanzar, gran cantidad de conceptos en "stand-by".</div>
+                            </div>
+                            <div>
+                                <strong class="clickable-definition" data-target="def-motion">M - Movimiento (Motion)</strong>
+                                <div id="def-motion" class="definition-content">Movimientos innecesarios realizados por los diseñadores para realizar su trabajo. Ejemplos: Búsqueda de archivos en sistemas desorganizados, desplazamientos frecuentes para acceder a herramientas o impresoras, mala ergonomía del puesto de trabajo.</div>
+                            </div>
+                            <div>
+                                <strong class="clickable-definition" data-target="def-extraprocessing">E - Sobreprocesamiento (Extra-Processing)</strong>
+                                <div id="def-extraprocessing" class="definition-content">Realizar más trabajo del necesario para cumplir con los requisitos del cliente o del producto; usar herramientas o métodos más complejos de lo necesario. Ejemplos: Añadir detalles excesivos a un modelo CAD en etapas tempranas, crear renders hiperrealistas para revisiones internas informales, usar software avanzado para tareas simples.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-subsection">
+                         <div class="flex-title">
+                            <div class="icon-placeholder-tutorial">🛠️</div>
+                            <h5>Herramientas Lean Prácticas para Diseñadores</h5>
+                        </div>
+                        <div class="tool-card">
+                            <h6>5S para el Espacio de Trabajo del Diseñador</h6>
+                            <p>Un método para organizar el lugar de trabajo (físico y digital) para mejorar la eficiencia, seguridad y productividad.</p>
+                            <ul>
+                                <li><strong>Seiri (Clasificar):</strong> Eliminar lo innecesario. <em>Ej: Archivar proyectos antiguos, descartar software no utilizado.</em></li>
+                                <li><strong>Seiton (Ordenar):</strong> Un lugar para cada cosa y cada cosa en su lugar. <em>Ej: Estructura de carpetas lógica, layout de herramientas CAD organizado.</em></li>
+                                <li><strong>Seiso (Limpiar):</strong> Mantener limpio el espacio de trabajo. <em>Ej: Limpieza regular de escritorio y archivos temporales.</em></li>
+                                <li><strong>Seiketsu (Estandarizar):</strong> Crear reglas y procedimientos para mantener los primeros 3S. <em>Ej: Protocolos de nomenclatura de archivos, checklists de limpieza.</em></li>
+                                <li><strong>Shitsuke (Sostener/Disciplina):</strong> Mantener la disciplina y la mejora continua. <em>Ej: Revisiones periódicas del sistema 5S.</em></li>
+                            </ul>
+                            <div class="case-study-image-placeholder mt-3 text-sm">
+                                [Placeholder: Mini-video o infografía interactiva de 5S digital para diseñadores]
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <h6>Kanban para la Gestión de Proyectos de Diseño</h6>
+                            <p>Un sistema visual para gestionar el flujo de trabajo, limitar el trabajo en curso (WIP) y mejorar la entrega.</p>
+                            <p>Columnas típicas para un proyecto de diseño: <em>Backlog de Ideas -> Diseño Conceptual -> Diseño Detallado (CAD) -> Prototipado -> Pruebas -> Revisión -> Completado.</em></p>
+                             <div class="case-study-image-placeholder mt-3 text-sm">
+                                [Placeholder: Ejemplo interactivo de un tablero Kanban para un proyecto de diseño]
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <h6>Poka-Yoke (Diseño a Prueba de Errores)</h6>
+                            <p>Diseñar productos o procesos de tal manera que los errores sean imposibles o inmediatamente evidentes.</p>
+                            <ul>
+                                <li><em>Ejemplo en producto:</em> Conectores USB que solo encajan en una orientación, tapas de batería con guías para evitar colocación incorrecta.</li>
+                                <li><em>Ejemplo en proceso de diseño:</em> Plantillas de software con campos obligatorios para asegurar que no falte información crítica.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-subsection">
+                        <div class="flex-title">
+                            <div class="icon-placeholder-tutorial">σ</div>
+                            <h5>Six Sigma para Diseño: Calidad y Precisión desde el Inicio</h5>
+                        </div>
+                        <p><strong>Six Sigma</strong> es una metodología enfocada en mejorar la calidad y reducir la variabilidad en los procesos, lo que lleva a productos y servicios más consistentes y con menos defectos. Aplicado al diseño, se conoce como <strong>Diseño Para Six Sigma (DFSS)</strong>.</p>
+                        <h6 class="mt-4">DMADV: El Ciclo de DFSS</h6>
+                        <p>DMADV es el proceso central de DFSS, utilizado para diseñar nuevos productos o procesos con calidad Six Sigma:</p>
+                        <ol class="list-decimal pl-5 mb-4 space-y-2">
+                            <li><strong>Definir (Define):</strong> Definir claramente los objetivos del proyecto de diseño, los requisitos del cliente (CTQs - Critical To Quality) y el alcance.</li>
+                            <li><strong>Medir (Measure):</strong> Identificar las necesidades del cliente, traducirlas a especificaciones medibles y establecer métricas de rendimiento.</li>
+                            <li><strong>Analizar (Analyze):</strong> Analizar diferentes conceptos de diseño, evaluar sus capacidades para cumplir los CTQs y seleccionar el mejor concepto.</li>
+                            <li><strong>Diseñar (Design):</strong> Desarrollar el diseño detallado del producto o proceso, optimizarlo y planificar la verificación del diseño.</li>
+                            <li><strong>Verificar (Verify):</strong> Probar y validar el diseño para asegurar que cumple con los requisitos del cliente y los objetivos del proyecto antes de la implementación a gran escala.</li>
+                        </ol>
+                        <div class="case-study-image-placeholder mt-3 text-sm">
+                            [Placeholder: Diagrama interactivo explicando cada fase de DMADV con ejemplos de diseño]
+                        </div>
+                    </div>
+                    <div class="highlight-box mt-8">
+                        <p><strong>Próximamente:</strong> Mini-casos prácticos y ejemplos interactivos para aplicar estos conceptos.</p>
+                    </div>
+                </div>
+
+                <div id="apartado2_2" class="calculator-section">
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">2.2 Calculadora Interactiva para Análisis de Valor</h4>
+                    <p class="mb-4 text-sm text-gray-600">El Análisis de Valor (VA) o Ingeniería de Valor (VE) es una metodología sistemática para mejorar el "valor" de bienes o servicios. El valor se define como la relación entre la función (o importancia percibida por el cliente) y el costo. Esta calculadora te ayudará a identificar componentes o funciones de un producto que podrían ser candidatos para una optimización de valor.</p>
+                    <p class="mb-6 text-sm text-gray-600"><strong>Instrucciones:</strong>
+                        <ol class="list-decimal pl-5 text-sm text-gray-600">
+                            <li>Añade los componentes o funciones principales de tu producto.</li>
+                            <li>Para cada uno, introduce su costo actual estimado.</li>
+                            <li>Asigna una puntuación de "Importancia para el Cliente" (ej. en una escala de 1 a 10, donde 10 es máxima importancia).</li>
+                            <li>La calculadora mostrará el "Índice de Valor" (Importancia / Costo). Un índice más alto sugiere un mejor valor. Índices bajos pueden indicar áreas de mejora.</li>
+                        </ol>
+                    </p>
+
+                    <div id="valueAnalysisForm">
+                        <div id="componentRowsContainer" class="space-y-3">
+                            </div>
+                        <button type="button" id="addComponentRow" class="add-row-btn mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 inline-block mr-1">
+                                <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                            </svg>
+                            Añadir Componente/Función
+                        </button>
+                    </div>
+
+                    <div class="mt-8">
+                        <h5 class="text-lg font-semibold text-green-700 mb-3">Resultados del Análisis de Valor:</h5>
+                        <div class="overflow-x-auto bg-white rounded-lg shadow">
+                            <table id="valueAnalysisTable" class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Componente/Función</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Costo ($)</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Importancia (1-10)</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Índice de Valor</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Observaciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="valueAnalysisResultsBody" class="bg-white divide-y divide-gray-200">
+                                    <tr id="noDataRow">
+                                        <td colspan="5" class="px-4 py-3 text-center text-gray-500">Aún no hay datos para analizar. Añade componentes arriba.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                     <div class="highlight-box mt-6 bg-yellow-50 border-yellow-400">
+                        <p class="text-sm text-yellow-700"><strong>Interpretación del Índice de Valor:</strong> Un índice de valor <span class="font-bold">bajo</span> sugiere que el costo del componente es alto en relación con la importancia que el cliente le da. Estos son los principales candidatos para rediseño, búsqueda de alternativas más económicas o eliminación si la función no es crítica. Un índice <span class="font-bold">alto</span> indica un buen valor, pero siempre se puede buscar mejorar.</p>
+                    </div>
+                </div>
+
+            </article>
+            </section>
+
+        </main>
+
+    <div id="organizationModal" class="modal hidden">
+        </div>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Manual Multimedia de Estandarización y Optimización de Procesos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Script para el Mapa Interactivo de Organismos (Apartado 1.2) ---
+        const organizations = [
+            {id: 'iso', name: 'Organización Internacional de Estandarización', acronym: 'ISO', type: 'Internacional', region: 'Global', logo: 'https://placehold.co/150x75/007bff/ffffff?text=ISO', description: 'Desarrolla y publica estándares internacionales para una amplia gama de industrias. Facilita el comercio mundial y promueve la innovación, la seguridad y la calidad.', website: 'https://www.iso.org', country: 'Suiza (Sede)'},
+            {id: 'iec', name: 'Comisión Electrotécnica Internacional', acronym: 'IEC', type: 'Internacional', region: 'Global', logo: 'https://placehold.co/150x75/17a2b8/ffffff?text=IEC', description: 'Prepara y publica estándares internacionales para todas las tecnologías eléctricas, electrónicas y relacionadas.', website: 'https://www.iec.ch', country: 'Suiza (Sede)'},
+            {id: 'itu', name: 'Unión Internacional de Telecomunicaciones', acronym: 'ITU', type: 'Internacional', region: 'Global', logo: 'https://placehold.co/150x75/28a745/ffffff?text=ITU', description: 'Organismo especializado de las Naciones Unidas para las tecnologías de la información y la comunicación (TIC).', website: 'https://www.itu.int', country: 'Suiza (Sede)'},
+            {id: 'cen', name: 'Comité Europeo de Normalización', acronym: 'CEN', type: 'Regional', region: 'Europa', logo: 'https://placehold.co/150x75/ffc107/000000?text=CEN', description: 'Desarrolla estándares europeos (EN) para una amplia gama de productos, materiales, servicios y procesos.', website: 'https://www.cen.eu', country: 'Bélgica (Sede)'},
+            {id: 'cenelec', name: 'Comité Europeo de Normalización Electrotécnica', acronym: 'CENELEC', type: 'Regional', region: 'Europa', logo: 'https://placehold.co/150x75/fd7e14/ffffff?text=CENELEC', description: 'Responsable de la estandarización europea en el área de ingeniería electrotécnica.', website: 'https://www.cenelec.eu', country: 'Bélgica (Sede)'},
+            {id: 'etsi', name: 'Instituto Europeo de Normas de Telecomunicaciones', acronym: 'ETSI', type: 'Regional', region: 'Europa', logo: 'https://placehold.co/150x75/6f42c1/ffffff?text=ETSI', description: 'Produce estándares para tecnologías de la información y la comunicación (TIC), incluyendo fijas, móviles, radio, convergentes, de difusión y de Internet.', website: 'https://www.etsi.org', country: 'Francia (Sede)'},
+            {id: 'copant', name: 'Comisión Panamericana de Normas Técnicas', acronym: 'COPANT', type: 'Regional', region: 'América', logo: 'https://placehold.co/150x75/e83e8c/ffffff?text=COPANT', description: 'Organización regional de normalización para los países de América. Promueve el desarrollo de la normalización técnica y la evaluación de la conformidad.', website: 'https://www.copant.org', country: 'Varios (Secretaría rotativa)'},
+            {id: 'arso', name: 'Organización Africana de Normalización', acronym: 'ARSO', type: 'Regional', region: 'África', logo: 'https://placehold.co/150x75/20c997/ffffff?text=ARSO', description: 'Armoniza los estándares nacionales y regionales y promueve su implementación en África para facilitar el comercio intraafricano e internacional.', website: 'https://www.arso-oran.org', country: 'Kenia (Sede)'},
+            {id: 'pasc', name: 'Congreso de Estándares del Área del Pacífico', acronym: 'PASC', type: 'Regional', region: 'Oceanía', logo: 'https://placehold.co/150x75/6610f2/ffffff?text=PASC', description: 'Foro de organismos nacionales de normalización de la región del Pacífico. Busca fortalecer la participación de sus miembros en la normalización internacional.', website: 'https://www.pascnet.org', country: 'Varios (Secretaría rotativa)'},
+            {id: 'ansi', name: 'Instituto Nacional Estadounidense de Estándares', acronym: 'ANSI', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/dc3545/ffffff?text=ANSI', description: 'Coordina el desarrollo de estándares voluntarios en los Estados Unidos y representa los intereses de EE.UU. en foros de estandarización internacionales.', website: 'https://www.ansi.org', country: 'Estados Unidos'},
+            {id: 'dgn', name: 'Dirección General de Normas', acronym: 'DGN', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/00695c/ffffff?text=DGN', description: 'Entidad del gobierno mexicano (parte de la Secretaría de Economía) responsable de la normalización, metrología y evaluación de la conformidad en México. Emite las Normas Oficiales Mexicanas (NOM) y las Normas Mexicanas (NMX).', website: 'https://www.gob.mx/se/acciones-y-programas/direccion-general-de-normas', country: 'México'},
+            {id: 'bsi', name: 'British Standards Institution', acronym: 'BSI', type: 'Nacional', region: 'Europa', logo: 'https://placehold.co/150x75/198754/ffffff?text=BSI', description: 'Organismo nacional de normalización del Reino Unido. Produce estándares técnicos y servicios de certificación y formación.', website: 'https://www.bsigroup.com', country: 'Reino Unido'},
+            {id: 'din', name: 'Deutsches Institut für Normung', acronym: 'DIN', type: 'Nacional', region: 'Europa', logo: 'https://placehold.co/150x75/adb5bd/000000?text=DIN', description: 'Organismo nacional de normalización de Alemania. Desarrolla estándares para la industria, la ciencia, la administración y el público.', website: 'https://www.din.de', country: 'Alemania'},
+            {id: 'afnor', name: 'Association Française de Normalisation', acronym: 'AFNOR', type: 'Nacional', region: 'Europa', logo: 'https://placehold.co/150x75/343a40/ffffff?text=AFNOR', description: 'Organismo oficial francés de normalización. Representa a Francia en ISO y CEN.', website: 'https://www.afnor.org', country: 'Francia'},
+            {id: 'jisc', name: 'Japanese Industrial Standards Committee', acronym: 'JISC', type: 'Nacional', region: 'Asia', logo: 'https://placehold.co/150x75/d63384/ffffff?text=JISC', description: 'Organismo nacional de normalización de Japón. Desarrolla los Estándares Industriales Japoneses (JIS).', website: 'https://www.jisc.go.jp', country: 'Japón'},
+            {id: 'sac', name: 'Standardization Administration of China', acronym: 'SAC', type: 'Nacional', region: 'Asia', logo: 'https://placehold.co/150x75/f48024/ffffff?text=SAC', description: 'Organismo gubernamental responsable de la normalización en China. Representa a China en ISO e IEC.', website: 'http://www.sac.gov.cn', country: 'China'},
+            {id: 'abnt', name: 'Associação Brasileira de Normas Técnicas', acronym: 'ABNT', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/009688/ffffff?text=ABNT', description: 'Organismo privado sin fines de lucro, reconocido como el Foro Nacional de Normalización de Brasil. Desarrolla las normas técnicas brasileiras (NBR).', website: 'https://www.abnt.org.br', country: 'Brasil'},
+            {id: 'scc', name: 'Standards Council of Canada', acronym: 'SCC', type: 'Nacional', region: 'América', logo: 'https://placehold.co/150x75/c00000/ffffff?text=SCC', description: 'Organismo de la Corona Canadiense que lidera y facilita el desarrollo y uso de estándares y servicios de acreditación en Canadá.', website: 'https://www.scc.ca', country: 'Canadá'},
+            {id: 'kats', name: 'Korean Agency for Technology and Standards', acronym: 'KATS', type: 'Nacional', region: 'Asia', logo: 'https://placehold.co/150x75/00529b/ffffff?text=KATS', description: 'Agencia gubernamental de Corea del Sur responsable de la normalización, la metrología y la evaluación de la conformidad. Desarrolla los Estándares Coreanos (KS).', website: 'https://www.kats.go.kr', country: 'Corea del Sur'},
+            {id: 'sa', name: 'Standards Australia', acronym: 'SA', type: 'Nacional', region: 'Oceanía', logo: 'https://placehold.co/150x75/ffeb3b/000000?text=SA', description: 'Organismo no gubernamental reconocido por el gobierno australiano como el principal organismo de normalización de Australia.', website: 'https://www.standards.org.au', country: 'Australia'}
+        ];
+
+        const organizationsContainer = document.getElementById('organizationsContainer');
+        const modal = document.getElementById('organizationModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        let currentFilters = { region: 'all', type: 'all' };
+
+        if (organizationsContainer) { 
+            function renderOrganizations(filteredOrgs) {
+                organizationsContainer.innerHTML = ''; 
+                if (filteredOrgs.length === 0) {
+                    noResultsMessage.classList.remove('hidden');
+                } else {
+                    noResultsMessage.classList.add('hidden');
+                    filteredOrgs.forEach(org => {
+                        const card = document.createElement('div');
+                        card.className = 'org-card';
+                        card.innerHTML = `<img src="${org.logo}" alt="Logo de ${org.acronym}" class="org-logo"><h5 class="org-name">${org.name}</h5><p class="org-acronym">${org.acronym}</p>`;
+                        card.addEventListener('click', () => showOrganizationDetails(org));
+                        organizationsContainer.appendChild(card);
+                    });
+                }
+            }
+
+            function showOrganizationDetails(org) {
+                if(modal){
+                    modal.querySelector('#modalOrgLogo').src = org.logo;
+                    modal.querySelector('#modalOrgLogo').alt = `Logo de ${org.acronym}`;
+                    modal.querySelector('#modalOrgName').textContent = org.name;
+                    modal.querySelector('#modalOrgAcronym').textContent = org.acronym;
+                    modal.querySelector('#modalOrgType').textContent = `${org.type}`;
+                    modal.querySelector('#modalOrgDescription').textContent = org.description;
+                    modal.querySelector('#modalOrgRegion').textContent = org.region;
+                    modal.querySelector('#modalOrgCountry').textContent = org.country || 'N/A';
+                    modal.querySelector('#modalOrgWebsite').href = org.website;
+                    modal.classList.remove('hidden');
+                    const modalContent = modal.querySelector('.modal-content');
+                    modalContent.scrollTop = 0; 
+                }
+            }
+            if(closeModalButton){
+                closeModalButton.addEventListener('click', () => modal.classList.add('hidden'));
+            }
+            if(modal){
+                 modal.addEventListener('click', (event) => { if (event.target === modal) modal.classList.add('hidden'); });
+            }
+           
+            function applyFilters() {
+                const filtered = organizations.filter(org => (currentFilters.region === 'all' || org.region === currentFilters.region) && (currentFilters.type === 'all' || org.type === currentFilters.type));
+                renderOrganizations(filtered);
+            }
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filterType = button.dataset.filterType;
+                    const filterValue = button.dataset.filterValue;
+                    currentFilters[filterType] = filterValue;
+                    document.querySelectorAll(`.filter-button[data-filter-type="${filterType}"]`).forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    applyFilters();
+                });
+            });
+
+            const initialRegionFilter = document.querySelector('.filter-button[data-filter-type="region"][data-filter-value="all"]');
+            const initialTypeFilter = document.querySelector('.filter-button[data-filter-type="type"][data-filter-value="all"]');
+            if(initialRegionFilter) initialRegionFilter.classList.add('active');
+            if(initialTypeFilter) initialTypeFilter.classList.add('active');
+            renderOrganizations(organizations); 
+        }
+
+        // --- Script para el Tutorial Interactivo (Apartado 2.1) ---
+        const clickableDefinitions = document.querySelectorAll('.clickable-definition');
+        clickableDefinitions.forEach(definition => {
+            definition.addEventListener('click', () => {
+                const targetId = definition.dataset.target;
+                const contentElement = document.getElementById(targetId);
+                if (contentElement) {
+                    const isHidden = contentElement.classList.toggle('hidden');
+                    definition.setAttribute('aria-expanded', !isHidden);
+                    contentElement.setAttribute('aria-hidden', isHidden);
+                }
+            });
+            definition.setAttribute('role', 'button');
+            definition.setAttribute('aria-expanded', 'false');
+            const targetId = definition.dataset.target;
+            const contentElement = document.getElementById(targetId);
+            if (contentElement) {
+                contentElement.setAttribute('aria-hidden', 'true');
+                definition.setAttribute('aria-controls', targetId);
+            }
+        });
+
+        // --- Script para Calculadora de Análisis de Valor (Apartado 2.2) ---
+        const componentRowsContainer = document.getElementById('componentRowsContainer');
+        const addComponentRowButton = document.getElementById('addComponentRow');
+        const valueAnalysisResultsBody = document.getElementById('valueAnalysisResultsBody');
+        const noDataRow = document.getElementById('noDataRow');
+        let componentIdCounter = 0;
+
+        function createComponentRow() {
+            componentIdCounter++;
+            const rowId = `componentRow-${componentIdCounter}`;
+            const newRow = document.createElement('div');
+            newRow.classList.add('calculator-input-group');
+            newRow.id = rowId;
+            newRow.innerHTML = `
+                <div>
+                    <label for="componentName-${componentIdCounter}" class="font-medium">Nombre Componente/Función</label>
+                    <input type="text" id="componentName-${componentIdCounter}" name="componentName" class="component-input" placeholder="Ej: Carcasa principal">
+                </div>
+                <div>
+                    <label for="componentCost-${componentIdCounter}" class="font-medium">Costo Actual ($)</label>
+                    <input type="number" id="componentCost-${componentIdCounter}" name="componentCost" class="component-input" placeholder="0.00" step="0.01" min="0">
+                </div>
+                <div>
+                    <label for="componentImportance-${componentIdCounter}" class="font-medium">Importancia (1-10)</label>
+                    <input type="number" id="componentImportance-${componentIdCounter}" name="componentImportance" class="component-input" placeholder="7" min="1" max="10" step="1">
+                </div>
+                <div class="col-span-1 md:col-span-1 flex items-end">
+                     <span id="valueIndexDisplay-${componentIdCounter}" class="text-sm text-gray-700 self-center py-2 mr-2 w-20 text-center"></span>
+                </div>
+                <div class="col-span-1 md:col-span-1 flex items-end">
+                    <button type="button" class="remove-row-btn" data-row-id="${rowId}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 inline-block">
+                            <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 005.375 15H4.75a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434a.75.75 0 00-.524-1.005A18.72 18.72 0 0014 4.193v-.443A2.75 2.75 0 0011.25 1h-2.5zM7.5 3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 009.375 15H8.75a.75.75 0 000 1.5h2.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434a.75.75 0 00-.524-1.005A18.72 18.72 0 0012.5 4.193v-.443A1.25 1.25 0 0011.25 2.5h-2.5A1.25 1.25 0 007.5 3.75v0z" clip-rule="evenodd" />
+                             <path d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 005.375 15H4.75a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0014 4.193v-.443A2.75 2.75 0 0011.25 1h-2.5zM7.5 3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25v.443c-.795.077-1.58.197-2.326.368a.75.75 0 00-.524 1.005A18.07 18.07 0 009.375 15H8.75a.75.75 0 000 1.5h2.5a.75.75 0 000-1.5h-.625a18.07 18.07 0 002.22-8.434.75.75 0 00-.524-1.005A18.72 18.72 0 0012.5 4.193v-.443A1.25 1.25 0 0011.25 2.5h-2.5A1.25 1.25 0 007.5 3.75z" />
+                        </svg>
+                        Eliminar
+                    </button>
+                </div>
+            `;
+            componentRowsContainer.appendChild(newRow);
+            newRow.querySelector('.remove-row-btn').addEventListener('click', function() {
+                document.getElementById(this.dataset.rowId).remove();
+                updateValueAnalysisTable();
+            });
+            newRow.querySelectorAll('.component-input').forEach(input => {
+                input.addEventListener('input', updateValueAnalysisTable);
+            });
+             updateValueAnalysisTable(); // Update table in case this is the first row
+        }
+
+        function updateValueAnalysisTable() {
+            valueAnalysisResultsBody.innerHTML = ''; // Clear previous results
+            const rows = componentRowsContainer.querySelectorAll('.calculator-input-group');
+            let hasData = false;
+
+            rows.forEach(row => {
+                const nameInput = row.querySelector('input[name="componentName"]');
+                const costInput = row.querySelector('input[name="componentCost"]');
+                const importanceInput = row.querySelector('input[name="componentImportance"]');
+                const valueIndexDisplay = row.querySelector(`span[id^="valueIndexDisplay-"]`);
+
+
+                const name = nameInput.value.trim();
+                const cost = parseFloat(costInput.value);
+                const importance = parseInt(importanceInput.value);
+
+                if (name && !isNaN(cost) && cost > 0 && !isNaN(importance) && importance >= 1 && importance <= 10) {
+                    hasData = true;
+                    const valueIndex = (importance / cost);
+                    
+                    const tr = document.createElement('tr');
+                    let valueIndexClass = 'value-index-medium';
+                    let observationText = 'Valor Aceptable.';
+                    if (valueIndex < 0.3) { // Example thresholds, adjust as needed
+                        valueIndexClass = 'value-index-low';
+                        observationText = 'Costo alto para su importancia. Considerar optimización.';
+                    } else if (valueIndex > 0.7) {
+                        valueIndexClass = 'value-index-high';
+                        observationText = 'Buen valor. Mantener o buscar eficiencias menores.';
+                    }
+                    
+                    if(valueIndexDisplay) valueIndexDisplay.textContent = `Índice: ${valueIndex.toFixed(2)}`;
+
+
+                    tr.innerHTML = `
+                        <td class="border-t border-gray-200">${name}</td>
+                        <td class="border-t border-gray-200">$${cost.toFixed(2)}</td>
+                        <td class="border-t border-gray-200">${importance}</td>
+                        <td class="border-t border-gray-200 ${valueIndexClass}">${valueIndex.toFixed(2)}</td>
+                        <td class="border-t border-gray-200 text-xs">${observationText}</td>
+                    `;
+                    valueAnalysisResultsBody.appendChild(tr);
+                } else {
+                     if(valueIndexDisplay) valueIndexDisplay.textContent = ``; // Clear if data invalid
+                }
+            });
+
+            if (!hasData) {
+                valueAnalysisResultsBody.appendChild(noDataRow);
+                noDataRow.classList.remove('hidden');
+            } else {
+                 noDataRow.classList.add('hidden');
+            }
+        }
+        
+        if(addComponentRowButton) {
+            addComponentRowButton.addEventListener('click', createComponentRow);
+            // Add one row by default on page load
+            createComponentRow();
+        }
+
+
+    </script>
+
+</body>
+</html>
